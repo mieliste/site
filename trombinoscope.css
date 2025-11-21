@@ -19,11 +19,13 @@ a{
 }
 
 body{
-    display: flex;
+    display: grid;
     height: 100vh;
     width: 100vw;
-    flex-wrap: nowrap; /* utilité ?*/
-    flex-direction: column;
+   
+   /* flex-wrap: nowrap; */ /* utilité ?*/ 
+  /*flex-direction: column;*/
+    grid-template-rows: 1fr 9fr;
     margin: 0; /*Pour ne pas avoir de dépassement*/
 }
 
@@ -44,7 +46,8 @@ main
     align-items: center;
     text-align: center;
    
-    background-color: var(--yellow-color);
+    min-height: 0; 
+    overflow: auto;
 }
 
 .container
