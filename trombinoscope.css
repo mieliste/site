@@ -4,6 +4,8 @@
   --yellow-hover-color:#fecb00;
 }
   
+/*Version responsive pour les fouailles !*/
+
 @font-face
 {
     font-family: tropiland;
@@ -126,6 +128,14 @@ main
 
 
 
+@media  (max-width: 1249px){
+  main{
+    background-size: 100%;
+  }
+  
+}
+
+
 @media (max-width: 700px) {
   body {
     background-color: lightblue;
@@ -133,12 +143,18 @@ main
   .menu-icon
   {
     display: block;
-   
     z-index: 1;
-    width: 30px;
-    height: 30px;
-    
+    justify-self: center; /*Permet de centrer le burger */
+    margin: 0;
+    width: 80px;
+    height: auto;
   }
+  .menu-icon:hover
+  {
+    transform: scale(1.10);
+    transition: all 0.5s ease;
+  }
+
   header{
     grid-template-columns: 1fr 1fr;
     text-align: center;
@@ -160,7 +176,7 @@ main
    }
   .mobile-menu
   {
-  margin-left: 0;
+    margin-left: 0;
   }
   
   .welcome
@@ -176,4 +192,25 @@ main
    {
     grid-row: 1;
    }
+   .containerPhotos
+   {
+    flex-direction: column;
+   }
+}
+
+@media (max-width: 600px)
+{
+  .welcome
+  {
+    font-size: 2em;
+  }
+
+}
+
+@media (max-width: 500px)
+{
+  .logo {
+    width: 80px;
+    height: auto;  /* conserve les proportions */
+}
 }
