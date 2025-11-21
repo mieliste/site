@@ -1,10 +1,3 @@
-/*
-Code couleur : 
-Jaune : #FEAB00
-Orange : #F67B00
-
-
-*/
 :root{
   --orange-color: #F67B00;
   --yellow-color: #FEAB00;
@@ -29,26 +22,10 @@ body{
     display: grid;
     height: 100vh;
     width: 100vw;
-    grid-template-rows: 1fr 8fr 1fr;
-    
+    /*flex-wrap: nowrap;*/ /* utilité ?*/
+    /*flex-direction: column;*/
+    grid-template-rows: 1fr 9fr;
     margin: 0; /*Pour ne pas avoir de dépassement*/
-}
-
-footer{
-    background-color: var(--orange-color);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-    text-align: center;
-}
-
-.containerLogoFoot
-{
-    grid-column: 2;
-    display: grid;
-    align-items: center;
-    text-align: center;
-    grid-template-columns: 1fr 1fr;
 }
 
 header
@@ -61,16 +38,13 @@ header
 }
 
 main
-{
+{ 
     background-color: var(--yellow-color);
-    display: grid;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
-}
 
-.welcome{
-    font-size: 9em;
-    color: var(--orange-color);
 }
 
 
@@ -79,19 +53,6 @@ main
     height: auto;  /* conserve les proportions */
 }
 .logo:hover
-{
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: 0.3s;
-}
-
-.logoFoot
-{
-    width: 80px;
-    height: auto;
-}
-
-.logoFoot:hover
 {
     cursor: pointer;
     transform: scale(1.05);
@@ -135,12 +96,6 @@ main
 }
 
 
-@media  (max-width: 1249px){
-  main{
-    background-size: 100%;
-  }
-  
-}
 
 
 @media (max-width: 700px) {
@@ -150,18 +105,12 @@ main
   .menu-icon
   {
     display: block;
+   
     z-index: 1;
-    justify-self: center; /*Permet de centrer le burger */
-    margin: 0;
-    width: 80px;
-    height: auto;
+    width: 30px;
+    height: 30px;
+    
   }
-  .menu-icon:hover
-  {
-    transform: scale(1.10);
-    transition: all 0.5s ease;
-  }
-
   header{
     grid-template-columns: 1fr 1fr;
     text-align: center;
@@ -183,7 +132,7 @@ main
    }
   .mobile-menu
   {
-    margin-left: 0;
+  margin-left: 0;
   }
   
   .welcome
@@ -199,21 +148,4 @@ main
    {
     grid-row: 1;
    }
-}
-
-@media (max-width: 600px)
-{
-  .welcome
-  {
-    font-size: 2em;
-  }
-
-}
-
-@media (max-width: 500px)
-{
-  .logo {
-    width: 80px;
-    height: auto;  /* conserve les proportions */
-}
 }
