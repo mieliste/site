@@ -1,0 +1,46 @@
+{
+    "events":{
+
+        "petit-dejeuner" : [
+            {
+            "listes": "Braziliste",
+            "date": "Sophie",
+            "id" : 1
+            },
+            {
+            "listes": "Napoliste",
+            "date": "Lucas",
+            "id" : 2
+            }
+        ],
+
+        "repas-du-midi": [
+            {
+                "listes":"Thierceliste",
+                "date":"05/01",
+                "id" : 1
+            },
+            {
+            "listes": "Williste",
+            "date": "ouaisouais",
+            "id" : 2
+            }
+        ],
+
+        "repas-du-soir": [
+            {
+                "listes":"Williste",
+                "date":"06/01",
+                "id" : 1
+            }
+        ],
+
+        "soiree":[
+            {
+                "listes":"Braziliste",
+                "date":"07/01",
+                "id" : 1
+            }
+        ]
+    }
+}
