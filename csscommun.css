@@ -40,6 +40,7 @@ header
 main
 {
     background-color: var(--yellow-color);
+    background-image: url(assets/nidabeille.png);
     align-items: center;
     text-align: center;
 }

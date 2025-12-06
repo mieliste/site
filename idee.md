@@ -1,0 +1,6 @@
+- pour le planning en fonction de la date de l'evt matin, soir, aprem changer le théme (soleil haut, bas etc ...)
+- abeille qui vole
+- quand on ouvre le site abeille qui spawn
+- quand on touche une ruche plein d'abeilles sortent
+- plusieurs vu pour le planning ?
+- evts passés / à venir
