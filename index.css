@@ -65,9 +65,115 @@ main
     display: grid;
     align-items: center;
     text-align: center;
-    background: url("assets/fondAnime.gif") repeat-x top ;
+    grid-template-rows: 1fr 1fr;
+    /*background: url("assets/fondAnime.gif") repeat-x top ;*/
+
+    /*background: url("assets/fondCampagne.png") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    */
+    position: relative;
     background-color: var(--yellow-color);
 }
+
+#interieur-ruche {
+    position: fixed; /* Recouvre tout l'écran, même si on scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Le fond alvéole */
+    background: url("assets/nidabeille.png") repeat; /* Ou no-repeat cover selon ton image */
+    background-color: #FEAB00;
+    
+    z-index: 200; /* Doit être plus grand que le paysage */
+    
+    /* LA MAGIE POUR CACHER/MONTRER */
+    opacity: 0;            /* Invisible */
+    visibility: hidden;    /* Non cliquable */
+    transition: opacity 0.5s ease; /* Transition douce (fondu) */
+}
+
+
+/* Quand on ajoute cette classe via JS, l'élément apparait */
+#interieur-ruche.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style rapide pour l'abeille */
+.container-abeille {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+.bulle-dialogue {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 2px solid black;
+    font-family: sans-serif;
+}
+
+
+
+
+
+
+
+
+
+.background-image {
+    position: absolute; /* Elle flotte */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* On la met tout au fond, derrière le contenu */
+    
+    /* C'est ici que vous choisissez votre "poison" (la méthode d'adaptation) */
+    /* Choisissez UNE seule ligne ci-dessous : */
+    
+    /* OPTION A : Ça remplit tout mais ça déforme (étire/écrase) */
+    /*object-fit: fill;*/ 
+    
+    /* OPTION B : Ça coupe les bords pour garder les proportions (comme background-size: cover) */
+    object-fit: cover; 
+    
+    /* OPTION C : On voit tout sans déformer, mais il y a des vides (comme background-size: contain) */
+    /*object-fit: contain;*/ 
+}
+
+.welcome
+{
+  z-index: 2;
+}
+
+.tree-image
+{
+  z-index: 2;
+}
+
+.ruche-image
+{
+  position: absolute;
+  z-index: 2;
+  width: 400px;
+  height: auto;
+}
+
+.ruche-image:hover
+{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+
 
 /*
 .honey-frame {
