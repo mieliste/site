@@ -74,14 +74,16 @@ main
     */
     position: relative;
     background-color: var(--yellow-color);
+    
 }
 
 #interieur-ruche {
-    position: fixed; /* Recouvre tout l'écran, même si on scroll */
+    position:absolute; /* Recouvre tout l'écran, même si on scroll */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+
     
     /* Le fond alvéole */
     background: url("assets/nidabeille.png") repeat; /* Ou no-repeat cover selon ton image */
