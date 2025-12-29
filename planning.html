@@ -25,23 +25,94 @@
         </nav>
     </header>
     <main>
-        <label for="event-select">Afficher:</label>
-
-        <select name="event" id="event-select">
-        
-        </select>
-
-
-        <h1 id="txtAfficher">petit-dejeuner</h1>
-        <div id="container-events">
-            
-            <p id="listepara">lll</p>
-            <p id="datepara">hhh</p>
-            <img id="imgLogoListe"src="assets/LogoBraziliste.jpg"/>
-        
+        <div class="dateContainer">
+            <div class="todayButtonContainer">
+                <button class="todayButton">Aujourd'hui</button>
+            </div>
+            <div class="dateSelect">
+                <button class="datePrevious">&lt;</button>
+                <p class="date">28 décembre 2025</p>
+                <button class="dateNext">&gt;</button>
+            </div>
+            <div class="dateSelectFormat">
+                <select name="FormatSelect" id="FormatSelect"> 
+                    <option value="jour">jour</option>
+                    <option value="semaine">semaine</option>
+                </select>
+            </div>
         </div>
 
-        <button id="boutonChangement">Change</button>
+        <div class="tableContainer">
+            <table class="tableJour">
+                <tbody>
+                    <tr>
+                        <th>Matin</th>
+                        <th class="matin1">
+                            <img class="imgmatin1 imgtable" src="../assets/Logo.png"/>
+                            
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Midi</th>
+                        <th class="midi1">
+                            <img class="imgmidi1 imgtable" src="../assets/Logo.png"/>
+                            
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Soir</th>
+                        <th class="soir1">
+                            <img class="imgsoir1 imgtable" src="../assets/Logo.png"/>
+                            
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+<table class="tablesSemaine tablesHide">
+    <thead>
+        <tr>
+            <th></th> <th class="head-1">Lun.</th>
+            <th class="head-2">Mar.</th>
+            <th class="head-3">Mer.</th>
+            <th class="head-4">Jeu.</th>
+            <th class="head-5">Ven.</th>
+            <th class="head-6">Sam.</th>
+            <th class="head-7">Dim.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Matin</th>
+            <td class="matin1"><img class="imgmatin1 imgtable" src=""/></td>
+            <td class="matin2"><img class="imgmatin2 imgtable" src=""/></td>
+            <td class="matin3"><img class="imgmatin3 imgtable" src=""/></td>
+            <td class="matin4"><img class="imgmatin4 imgtable" src=""/></td>
+            <td class="matin5"><img class="imgmatin5 imgtable" src=""/></td>
+            <td class="matin6"><img class="imgmatin6 imgtable" src=""/></td>
+            <td class="matin7"><img class="imgmatin7 imgtable" src=""/></td>
+        </tr>
+        <tr>
+            <th>Midi</th>
+            <td class="midi1"><img class="imgmidi1 imgtable" src=""/></td>
+            <td class="midi2"><img class="imgmidi2 imgtable" src=""/></td>
+            <td class="midi3"><img class="imgmidi3 imgtable" src=""/></td>
+            <td class="midi4"><img class="imgmidi4 imgtable" src=""/></td>
+            <td class="midi5"><img class="imgmidi5 imgtable" src=""/></td>
+            <td class="midi6"><img class="imgmidi6 imgtable" src=""/></td>
+            <td class="midi7"><img class="imgmidi7 imgtable" src=""/></td>
+        </tr>
+        <tr>
+            <th>Soir</th>
+            <td class="soir1"><img class="imgsoir1 imgtable" src=""/></td>
+            <td class="soir2"><img class="imgsoir2 imgtable" src=""/></td>
+            <td class="soir3"><img class="imgsoir3 imgtable" src=""/></td>
+            <td class="soir4"><img class="imgsoir4 imgtable" src=""/></td>
+            <td class="soir5"><img class="imgsoir5 imgtable" src=""/></td>
+            <td class="soir6"><img class="imgsoir6 imgtable" src=""/></td>
+            <td class="soir7"><img class="imgsoir7 imgtable" src=""/></td>
+        </tr>
+    </tbody>
+</table>
     </main>
     
 </body>

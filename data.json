@@ -1,46 +1,82 @@
 {
-    "events":{
-
-        "petit-dejeuner" : [
-            {
-            "listes": "Braziliste",
-            "date": "Sophie",
-            "id" : 1
-            },
-            {
-            "listes": "Napoliste",
-            "date": "Lucas",
-            "id" : 2
-            }
-        ],
-
-        "repas-du-midi": [
-            {
-                "listes":"Thierceliste",
-                "date":"05/01",
-                "id" : 1
-            },
-            {
-            "listes": "Williste",
-            "date": "ouaisouais",
-            "id" : 2
-            }
-        ],
-
-        "repas-du-soir": [
-            {
-                "listes":"Williste",
-                "date":"06/01",
-                "id" : 1
-            }
-        ],
-
-        "soiree":[
-            {
-                "listes":"Braziliste",
-                "date":"07/01",
-                "id" : 1
-            }
-        ]
-    }
+  "2025-12-28": {
+    "matin": "Napoliste",
+    "midi": "Williste",
+    "soir": "Braziliste"
+  },
+  "2025-12-29": {
+    "matin": "Thierceliste",
+    "midi": "Braziliste",
+    "soir": "Napoliste"
+  },
+  "2025-12-30": {
+    "matin": "Williste",
+    "midi": "Thierceliste",
+    "soir": "Braziliste"
+  },
+  "2025-12-31": {
+    "matin": "Napoliste",
+    "midi": "Williste",
+    "soir": "Thierceliste"
+  },
+  "2026-01-02": {
+    "matin": "Braziliste",
+    "midi": "Napoliste",
+    "soir": "Williste"
+  },
+  "2026-01-03": {
+    "matin": "Thierceliste",
+    "midi": "Braziliste",
+    "soir": "Napoliste"
+  },
+  "2026-01-04": {
+    "matin": "Williste",
+    "midi": "Thierceliste",
+    "soir": "Braziliste"
+  },
+  "2026-01-05": {
+    "matin": "Napoliste",
+    "midi": "Williste",
+    "soir": "Thierceliste"
+  },
+  "2026-01-06": {
+    "matin": "Braziliste",
+    "midi": "Napoliste",
+    "soir": "Williste"
+  },
+  "2026-01-07": {
+    "matin": "Thierceliste",
+    "midi": "Braziliste",
+    "soir": "Napoliste"
+  },
+  "2026-01-08": {
+    "matin": "Williste",
+    "midi": "Thierceliste",
+    "soir": "Braziliste"
+  },
+  "2026-01-09": {
+    "matin": "Napoliste",
+    "midi": "Williste",
+    "soir": "Thierceliste"
+  },
+  "2026-01-10": {
+    "matin": "Braziliste",
+    "midi": "Napoliste",
+    "soir": "Williste"
+  },
+  "2026-01-11": {
+    "matin": "Thierceliste",
+    "midi": "Braziliste",
+    "soir": "Napoliste"
+  },
+  "2026-01-12": {
+    "matin": "Williste",
+    "midi": "Thierceliste",
+    "soir": "Braziliste"
+  },
+  "2026-01-13": {
+    "matin": "Napoliste",
+    "midi": "Williste",
+    "soir": "Thierceliste"
+  }
 }

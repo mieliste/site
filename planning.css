@@ -15,15 +15,124 @@ header
 
 main
 { 
- 
-    display: flex;
-    flex-direction: column;
-    
-
+  display: grid;
+  grid-template-rows: 2fr 8fr;
+  height: 100%;
 }
 
-#imgLogoListe
+.dateContainer
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.dateSelect
+{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.tableContainer
+{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableJour {
+  display: flex;       /* Change le comportement par défaut de la table */
+  flex-direction: column;
+  width: 99%;
+  height: 98%;        /* Ici, le 100% va enfin fonctionner */
+  
+}
+
+.tableJour tbody {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;        /* Force le corps du tableau à grossir */
+  height: 100%;
+}
+
+.tableJour tr {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  flex-grow: 1;        /* Divise l'espace en 3 parts égales (Matin/Midi/Soir) */
+  
+}
+.tableJour table, th, td {
+  border: 1px solid;
+}
+
+.tableJour th
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tablesSemaine
+{
+  display: flex;       /* Change le comportement par défaut de la table */
+  flex-direction: column;
+  width: 99%;
+  height: 98%; 
+}
+
+/* Configuration spécifique pour le tableau Semaine */
+.tablesSemaine tr {
+    display: grid;
+    /* 1 colonne pour le label, puis 7 colonnes pour les jours */
+    grid-template-columns: repeat(8, 1fr); 
+    flex-grow: 1; 
+    width: 100%;
+}
+
+.tablesSemaine th, .tablesSemaine td {
+    border: 1px solid;
+    padding: 15px 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px; /* Donne de la hauteur aux cases */
+}
+
+.tablesSemaine tbody{
+  display: flex;       /* Change le comportement par défaut de la table */
+  flex-direction: column;
+  flex-grow: 1;        /* Force le corps du tableau à grossir */
+  height: 100%;
+}
+
+/* Style pour l'en-tête (Lun, Mar...) */
+.tablesSemaine thead tr {
+    min-height: auto;
+    
+}
+
+/* Optionnel : mettre en valeur le jour actuel comme sur ta photo */
+.today-header {
+    color: #00707a;
+    font-weight: bold;
+}
+
+.imgtable
+{
+  width: 100px;
+  height: auto;
+}
+
+.tablesHide
+{
+  display: none;
+}
+
+/* #imgLogoListe
 {
   width: 400px;
   height: auto;
-}
+} */
