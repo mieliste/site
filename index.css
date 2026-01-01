@@ -61,19 +61,25 @@ header
 
 main
 {
+    height:100%;
+    width: 100%;
+    overflow: hidden; 
     background-color: var(--yellow-color);
-    display: grid;
+    
+    /* display: grid;
     align-items: center;
     text-align: center;
     grid-template-rows: 1fr 1fr;
+     */
     /*background: url("assets/fondAnime.gif") repeat-x top ;*/
 
-    /*background: url("assets/fondCampagne.png") no-repeat;
-    background-size: cover;
+    background: no-repeat center url("assets/fondAvecL\'ecole.png"); 
+    /* background-size: cover;
     background-attachment: fixed;
-    */
+    */ 
     position: relative;
     background-color: var(--yellow-color);
+    background-size: cover;
     
 }
 
@@ -173,7 +179,16 @@ main
 
 .welcome
 {
-  z-index: 2;
+  position: absolute;
+  top: 5%;    /* On le place un peu vers le haut pour laisser de la place au sol */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrage parfait */
+  width: 90%;  /* Évite que le texte ne touche les bords sur mobile */
+  text-align: center;
+  z-index: 10; /* Toujours au-dessus du décor */
+  color: var(--orange-color);
+  font-size: clamp(1rem, 15vw, 5rem);
+  pointer-events: none; /* <--- AJOUTE CECI : le clic passera à travers  temporairej'ai*/ 
 }
 
 .tree-image
@@ -198,6 +213,7 @@ main
 
 
 
+
 /*
 .honey-frame {
     background: url("assets/imgbg.png") no-repeat center top;
@@ -207,10 +223,10 @@ main
 }
 */
 
-.welcome{
+/* .welcome{
     font-size: 9em;
     color: var(--orange-color);
-}
+} */
 
 
 .logo {
@@ -349,10 +365,10 @@ main
     margin-left: 0;
   }
   
-  .welcome
+  /* .welcome
   {
     font-size: 4em;
-  }
+  } */
 
   .nav-link
    {
@@ -364,14 +380,14 @@ main
    }
 }
 
-@media (max-width: 600px)
+/* @media (max-width: 600px)
 {
-  .welcome
+   .welcome
   {
     font-size: 2em;
-  }
+  } 
 
-}
+}*/
 
 @media (max-width: 500px)
 {
@@ -393,3 +409,4 @@ main.ruche-ouverte .ruche-image {
     filter: blur(10px); /* Ajuste l'intensité ici */
     pointer-events: none; /* Empêche de cliquer sur la ruche du fond pendant qu'on est dedans */
 }
+
