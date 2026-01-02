@@ -22,7 +22,7 @@ btnRetour.addEventListener('click', () => {
 });
 
 
-const seed = 7; 
+const seed = 40; 
 
 function seededRandom(s) {
     return function() {
@@ -66,64 +66,103 @@ for (let i = 0; i < grassCount; i++) {
 }
 
 
-const bee = document.getElementById('main-bee');
-const main = document.querySelector('main');
-
-// On récupère les dimensions réelles de la zone de vol
-let zoneWidth = main.clientWidth;
-let zoneHeight = main.clientHeight;
-
-// Position de départ au centre du main
-let beePos = { x: zoneWidth / 2, y: zoneHeight / 2 };
-let target = { x: beePos.x, y: beePos.y };
-let angle = 0;
-const speed = 2.5; 
-
-function moveBee() {
-    // 1. On met à jour les dimensions de la zone (au cas où on redimensionne la fenêtre)
-    zoneWidth = main.clientWidth;
-    zoneHeight = main.clientHeight;
-
-    const distToTarget = Math.hypot(target.x - beePos.x, target.y - beePos.y);
-    
-    // 2. Si proche de la cible, on en choisit une nouvelle STRICTEMENT dans le main
-    if (distToTarget < 20) {
-        target = {
-            x: Math.random() * (zoneWidth - 100) + 50,
-            y: Math.random() * (zoneHeight - 100) + 50
-        };
-    }
-
-    // 3. Calcul de l'angle fluide
-    const targetAngle = Math.atan2(target.y - beePos.y, target.x - beePos.x) * 180 / Math.PI;
-    
-    // Pour éviter que l'abeille ne fasse des tours sur elle-même brusquement
-    let diff = targetAngle - angle;
-    while (diff < -180) diff += 360;
-    while (diff > 180) diff -= 360;
-    angle += diff * 0.05;
-
-    const radians = angle * Math.PI / 180;
-    beePos.x += Math.cos(radians) * speed;
-    beePos.y += Math.sin(radians) * speed;
-
-    // 4. On s'assure que beePos ne sorte JAMAIS des limites (Sécurité)
-    beePos.x = Math.max(20, Math.min(beePos.x, zoneWidth - 20));
-    beePos.y = Math.max(20, Math.min(beePos.y, zoneHeight - 20));
-
-    // 5. Rendu : on ajuste le Flip (miroir) pour qu'elle ne vole pas sur le dos
-    const flip = (Math.cos(radians) < 0) ? -1 : 1;
-    
-    // On utilise scaleX pour la direction gauche/droite et rotate pour l'inclinaison
-    // Note: On utilise scaleY(-1) si on veut qu'elle se retourne proprement sans être à l'envers
-    bee.style.transform = `translate(${beePos.x}px, ${beePos.y}px) rotate(${angle}deg) scaleY(${flip})`;
-
-    requestAnimationFrame(moveBee);
-}
-
-moveBee();
-
 // main.addEventListener('mousemove', (e) => {
 //     target.x = e.clientX;
 //     target.y = e.clientY;
 // });
+
+function spawnCloud(isInitial = false) {
+    const main = document.querySelector('main');
+    if (!main) return;
+
+    const cloud = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    cloud.setAttribute("viewBox", "0 0 100 60");
+    cloud.classList.add("cloud-svg");
+    cloud.innerHTML = `<path d="M10,40 Q0,40 0,30 Q0,10 20,10 Q30,-5 50,5 Q70,-5 80,10 Q100,10 100,30 Q100,40 90,40 Q90,55 70,55 Q50,65 30,55 Q10,55 10,40 Z" fill="white"/>`;
+
+    // Paramètres aléatoires
+    const top = Math.random() * 45; 
+    const duration = 60 + Math.random() * 60; // Plus lent pour plus de réalisme
+    const opacity = 0.4 + Math.random() * 0.4;
+    const scale = 0.4 + Math.random() * 0.6;
+
+    cloud.style.setProperty('--rand-top', `${top}%`);
+    cloud.style.setProperty('--rand-duration', `${duration}s`);
+    cloud.style.opacity = opacity;
+    cloud.style.transform = `scale(${scale})`;
+
+    // L'ASTUCE : Si c'est au chargement, on "avance" l'animation aléatoirement
+    if (isInitial) {
+        const randomDelay = Math.random() * duration;
+        cloud.style.animationDelay = `-${randomDelay}s`;
+    }
+
+    main.appendChild(cloud);
+
+    cloud.addEventListener('animationend', () => cloud.remove());
+}
+
+function startCloudSystem() {
+    // 1. On génère 8 nuages immédiatement répartis sur l'écran
+    for (let i = 0; i < 8; i++) {
+        spawnCloud(true);
+    }
+
+    // 2. On continue d'en faire apparaître de nouveaux par la gauche
+    const nextSpawn = () => {
+        const time = 8000 + Math.random() * 10000;
+        setTimeout(() => {
+            spawnCloud(false); // isInitial = false pour qu'ils partent bien de la gauche
+            nextSpawn();
+        }, time);
+    };
+    nextSpawn();
+}
+
+
+function spawnImageFlowers(count) {
+    const main = document.querySelector('main'); //
+    if (!main) return;
+
+    const flowerImages = [
+        'assets/fleur/image.png',
+        'assets/fleur/image1.png',
+        'assets/fleur/image2.png'
+    ];
+
+    for (let i = 0; i < count; i++) {
+        const img = document.createElement('img');
+        
+        // On utilise myRandom() pour choisir l'image
+        const randomIndex = Math.floor(myRandom() * flowerImages.length);
+        img.src = flowerImages[randomIndex];
+        
+        // On applique la classe CSS pour le balancement
+        img.classList.add('scattered-flower');
+
+        // --- POSITIONNEMENT DÉTERMINISTE ---
+        
+        // On restreint la zone de semis entre 35% et 85% du haut
+        const bottom = 5 + myRandom() * 30; 
+        const left = myRandom() * 95; 
+
+        // Taille et délai basés sur la seed
+        const scale = 0.4 + myRandom() * 0.8; 
+        const delay = myRandom() * -5;
+
+        // Application des styles via les variables CSS
+        img.style.bottom = `${bottom}%`;
+        img.style.left = `${left}%`;
+        img.style.setProperty('--rand-scale', scale);
+        img.style.animationDelay = `${delay}s`;
+
+        main.appendChild(img);
+    }
+}
+
+// Appelle startCloudSystem() dans ton DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    startCloudSystem();
+    spawnImageFlowers(10);
+    // ... tes autres fonctions (abeilles, arbres) ...
+});

@@ -4,36 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css" />
-<<<<<<< HEAD
-    <link rel="stylesheet" href="csscommun.css"/>
-=======
     <link rel="stylesheet" href="elt.css" />
->>>>>>> anim
+    <link rel="stylesheet" href="csscommun.css" />
     <script type="module" src="index.js"></script>
+    <script type="module" src="bee.js"></script>
     <link rel="icon" href="assets/Logo.png">
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
-
+    <link rel="stylesheet" href="bee.css"/>
     <title>Mieliste</title>
 </head>
 <body>
        
-        <header >
-            <a href="index.html">
-                <img src="assets/Logo.png" class="logo">
-            </a>
-            
-            <img src="assets/burger.svg" class="menu-icon">
-            <!--<p class="menu-icon">☰</p>-->
-            
-            <nav class="nav">
-                <a href="trombinoscope.html" class="nav-link">Trombinoscope</a>
-                <a href="planning.html" class="nav-link">Planning</a>
-                <a href="allos.html" class="nav-link">Allos</a>
-            </nav>
-        </header>
+    <header >
+        <a href="index.html">
+            <img src="assets/Logo.png" class="logo">
+        </a>
+        
+        <img src="assets/burger.svg" class="menu-icon">
+        <!--<p class="menu-icon">☰</p>-->
+        
+        <nav class="nav">
+            <a href="trombinoscope.html" class="nav-link">Trombinoscope</a>
+            <a href="planning.html" class="nav-link">Planning</a>
+            <a href="allos.html" class="nav-link">Allos</a>
+        </nav>
+    </header>
         
     <main>
+
+        <svg class="sun-container" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="sun-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <stop offset="0%" style="stop-color:#FFFFAA; stop-opacity:1" />
+                    <stop offset="80%" style="stop-color:#FFD700; stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FFA500; stop-opacity:1" />
+                </radialGradient>
+            </defs>
+
+            <g class="sun-rays rays-slow">
+                <line x1="100" y1="10" x2="100" y2="40" />
+                <line x1="100" y1="160" x2="100" y2="190" />
+                <line x1="10" y1="100" x2="40" y2="100" />
+                <line x1="160" y1="100" x2="190" y2="100" />
+                <line x1="36" y1="36" x2="57" y2="57" />
+                <line x1="143" y1="143" x2="164" y2="164" />
+                <line x1="36" y1="164" x2="57" y2="143" />
+                <line x1="143" y1="57" x2="164" y2="36" />
+            </g>
+
+            <g class="sun-rays rays-fast">
+                <line x1="100" y1="25" x2="100" y2="45" />
+                <line x1="100" y1="155" x2="100" y2="175" />
+                <line x1="25" y1="100" x2="45" y2="100" />
+                <line x1="155" y1="100" x2="175" y2="100" />
+            </g>
+
+            <circle class="sun-core" cx="100" cy="100" r="50" fill="url(#sun-gradient)" />
+        </svg>
         <p class="welcome">Bienvenue sur le site de la Mieliste</p>
         <!-- <img src="assets/fondCampagne.png" class="background-image" alt="Paysage campagne"> -->
         <!--<img src="assets/arbre.png" class="tree-image" alt="arbre">-->
@@ -64,7 +92,7 @@
                 <div class="bulle-dialogue">
                     Bienvenue dans la ruche ! Trouve les easter eggs pour gagner des kdo =)
                 </div>
-                <img src="assets/ano.png" class="abeille-personnage" alt="Abeille qui parle">
+                <img src="assets/abeillesouritupd.png" class="abeille-personnage" alt="Abeille qui parle">
             </div>
         </div>
 
@@ -87,18 +115,20 @@
                 </div>
                 <div class="trunk"></div>
             </div>
+
+            <div id="a4" class="tree cloud">
+                <div class="foliage">
+                    <div class="inner-branch"></div>
+                    <div class="extra-puff"></div>
+                    <div class="extra-puff2"></div>
+                </div>
+                <div class="trunk"></div>
+            </div>
+
         </div>
 
        
-        <svg class="flying-bee" id="main-bee" viewBox="0 0 120 80">
-            <g class="bee-body">
-                <ellipse cx="60" cy="40" rx="30" ry="20" fill="#FFD966" stroke="#E07B00" stroke-width="2"/>
-                <path d="M45 40 q15 -15 30 0" fill="none" stroke="#E07B00" stroke-width="5" />
-                <circle cx="80" cy="35" r="3" fill="#222"/>
-            </g>
-            <ellipse class="bee-wing wing-l" cx="50" cy="25" rx="15" ry="10" fill="white" opacity="0.8"/>
-            <ellipse class="bee-wing wing-r" cx="70" cy="25" rx="15" ry="10" fill="white" opacity="0.8"/>
-        </svg>
+    
 
 
         <!--
@@ -125,15 +155,15 @@
      
     <footer>
         <div class="containerLogoFoot">
-            <a href="https://www.facebook.com/" target="_blank" class="facebook">
+            <!-- <a href="https://www.facebook.com/" target="_blank" class="facebook">
                 <img src="assets/facebook.svg" class="logoFoot">
-            </a>
+            </a> -->
 
             <!-- 
             <img id="thumb" src="still.jpg" alt="Exemple" width="300" height="200"
              data-gif="anim.gif" data-still="still.jpg">
              -->
-            <a href =https://www.instagram.com target="_blank" class="instagram">
+            <a href =https://www.instagram.com/inaccompliste/ target="_blank" class="instagram">
                 <img src="assets/stillinsta.png" data-gif="assets/instagram3D.gif" id="thumb" class="logoFoot"
                 data-still="assets/stillinsta.png">
             </a>

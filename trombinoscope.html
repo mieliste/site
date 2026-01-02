@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="trombinoscope.css" />
     <link rel="stylesheet" href="csscommun.css"/>
     <script type="module" src="index.js"></script>
+    <script type="module" src="trombinoscope.js"></script>
     <link rel="icon" href="assets/Logo.png">
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -25,87 +26,140 @@
         </nav>
     </header>
     <main>
-        <div class="container">
-            <h2>Le Bureau</h2>
-            <div class="containerPhotos">
-            <div>
-                <h3>Le secretaire</h3>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <h3>La présidente</h3>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <h3>Le trésorier</h3>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            
-        </div>
+
+        <div class="fleur-decor fd-1"><img src="assets/fleur/image.png" class="fleur"></div>
+        <div class="fleur-decor fd-2"><img src="assets/fleur/image1.png" class="fleur"></div>
+        <div class="fleur-decor fd-3"><img src="assets/fleur/image2.png" class="fleur"></div>
+        <div class="fleur-decor fd-4"><img src="assets/fleur/image.png" class="fleur"></div>
 
         <div class="container">
-            <h2>Les fouailles</h2>
+            <h2>Le Bureau<span class="drop"></span></h2>
             <div class="containerPhotos">
-            <div>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <img src="assets/ano.png" class="photo"/>
+                <div class="membre" data-nom="Maya" data-desc="Toujours prête à butiner de nouveaux projets pour l'école !">
+                    <h3>Le secretaire</h3>
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Mieline" data-desc="La Reine Mère. Elle veille à ce que la ruche ne manque jamais de nectar.">
+                    <h3>La présidente</h3>
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Bourdon" data-desc="Gardien du trésor royal. Il compte chaque goutte de miel au centime près.">
+                    <h3>Le trésorier</h3>
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="container">
-            <h2>Les spons</h2>
+            <h2>Les fouailles<span class="drop"></span></h2>
             <div class="containerPhotos">
-            <div>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-        </div>
-        
-        <div class="container">
-            <h2>Les ext</h2>
-            <div class="containerPhotos">
-            <div>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-        </div>
-
-        <div class="container">
-            <h2>Le pole com</h2>
-            <div class="containerPhotos">
-            <div>
-                <h3>La com</h3>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <h3>L'int</h3>
-                <img src="assets/ano.png" class="photo"/>
-            </div>
-            <div>
-                <h3>Le tech</h3>
-                <img src="assets/ano.png" class="photo"/>
+                <div class="membre" data-nom="Zaza" data-desc="Experte en préparation de nectar festif.">
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Bzzz-Point" data-desc="L'abeille qui ne dort jamais quand il y a une soirée.">
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Honey-Maker" data-desc="Il transforme chaque événement en un moment sucré.">
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Drone" data-desc="Toujours dans les airs pour vérifier que l'ambiance décolle.">
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="container">
-            <h2>Le fip</h2>
+            <h2>Les spons<span class="drop"></span></h2>
             <div class="containerPhotos">
-            <div>
-                <img src="assets/ano.png" class="photo"/>
+                <div class="membre" data-nom="Pollen-Man" data-desc="Il récolte les fonds auprès des partenaires comme personne.">
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Ambassadeur Rose" data-desc="Il vend le projet Mieliste avec une élégance royale.">
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
             </div>
-            
+        </div>
+
+        <div class="container">
+            <h2>Le pole com<span class="drop"></span></h2>
+            <div class="containerPhotos">
+                <div class="membre" data-nom="Flash" data-desc="Elle capture chaque instant de la ruche avec son objectif.">
+                    <h3>La com</h3>
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Pixel" data-desc="Il dessine les plus beaux hexagones du Web.">
+                    <h3>L'int</h3>
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+                <div class="membre" data-nom="Circuit-Bee" data-desc="L'abeille bionique qui code plus vite que son ombre.">
+                    <h3>Le tech</h3>
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Le fip<span class="drop"></span></h2>
+            <div class="containerPhotos">
+                <div class="membre" data-nom="Circuit-Bee" data-desc="L'abeille bionique qui code plus vite que son ombre.">
+                    <div class="photo-wrapper">
+                        <img src="assets/ano.png" class="photo"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="fiche-membre" class="overlay-hidden">
+            <div class="card-membre">
+                <button id="close-fiche">✖</button>
+                
+                <div class="card-top">
+                    <div class="photo-wrapperCarte">
+                        <img src="" id="fiche-photo" class="photo-hex">
+                    </div>
+                    <div class="card-id">
+                        <h3 id="fiche-role">Rôle</h3>
+                        <h2 id="fiche-nom">Nom du membre</h2>
+                    </div>
+                </div>
+
+                <div class="card-contact">
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <span id="fiche-tel">Non renseigné</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📸</span>
+                        <span id="fiche-insta">@mieliste</span>
+                    </div>
+                </div>
+
+                <p id="fiche-desc">Petite description ou anecdote sur l'abeille...</p>
+            </div>
         </div>
 
     </main>

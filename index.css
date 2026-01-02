@@ -1,29 +1,63 @@
-body{
+/*
+Code couleur : 
+Jaune : #FEAB00
+Orange : #F67B00
 
+
+*/
+:root{
+  --orange-color: #F67B00;
+  --yellow-color: #FEAB00;
+  --yellow-hover-color:#fecb00;
+}
+
+
+
+@font-face
+{
+    font-family: tropiland;
+    src: url(TropiLand.ttf);
+}
+
+p{
+  font-family: tropiland;
+}
+
+a{
+  font-family: tropiland;
+}
+
+body{
+    display: grid;
+    height: 100vh;
+    width: 100vw;
     grid-template-rows: 1fr 8fr 1fr;
-<<<<<<< HEAD
-    
-   
-=======
     margin: 0; /*Pour ne pas avoir de dépassement*/
->>>>>>> anim
 }
 
 footer{
     background-color: var(--orange-color);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-    text-align: center;
+   
 }
 
 .containerLogoFoot
 {
-    grid-column: 2;
-    display: grid;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    grid-template-columns: 1fr 1fr;
+    
+    
+}
+
+header
+{
+  display: grid;
+  grid-template-columns: 2fr 8fr 1fr; /*  nom à gauche, les liens au mileu */
+  align-items: center; /* centre verticalement */
+  text-align: center;  /*centre horizontalement */
+  background: linear-gradient(to right,var(--orange-color),var(--yellow-color));
 }
 
 main
@@ -32,18 +66,7 @@ main
     width: 100%;
     overflow: hidden; 
     background-color: var(--yellow-color);
-    
-    /* display: grid;
-    align-items: center;
-    text-align: center;
-    grid-template-rows: 1fr 1fr;
-     */
-    /*background: url("assets/fondAnime.gif") repeat-x top ;*/
-
-    background: no-repeat center url("assets/fondAvecL\'ecole.png"); 
-    /* background-size: cover;
-    background-attachment: fixed;
-    */ 
+    background: no-repeat center url("assets/fondSansNuages.png"); 
     position: relative;
     background-color: var(--yellow-color);
     background-size: cover;
@@ -104,6 +127,11 @@ main
     transform: rotate(5deg) scale(1.1);
 }
 
+.abeille-personnage
+{
+  width: 200px;
+  height: auto;
+}
 
 /* Style rapide pour l'abeille */
 .container-abeille {
@@ -114,14 +142,53 @@ main
     text-align: center;
 }
 .bulle-dialogue {
+    position: relative; /* Nécessaire pour placer la pointe */
     background: white;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    border: 2px solid black;
-    font-family: sans-serif;
+    padding: 25px;
+    border-radius: 30px; /* Bords bien arrondis style cartoon */
+    margin-bottom: 30px; /* Espace pour la pointe */
+    
+    /* Trait épais style BD */
+    border: 4px solid #222; 
+    
+    /* Ombre portée "plate" pour donner du relief */
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1); 
+    
+    /* Ton texte */
+    font-family: tropiland, sans-serif; /* On utilise ta police Mieliste ! */
+    font-size: 1.2rem;
+    color: #333;
+    max-width: 300px;
+    line-height: 1.4;
 }
 
+/* --- La Pointe de la bulle --- */
+.bulle-dialogue::after {
+    content: "";
+    position: absolute;
+    bottom: -25px; /* On la descend sous la bulle */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Création du triangle avec la technique des borders */
+    border-width: 25px 20px 0 20px;
+    border-style: solid;
+    border-color: #222 transparent transparent transparent;
+}
+
+/* On ajoute un deuxième triangle blanc par-dessus le noir 
+   pour créer l'effet de bordure sur la pointe */
+.bulle-dialogue::before {
+    content: "";
+    position: absolute;
+    bottom: -18px; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 22px 17px 0 17px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+    z-index: 1; /* Passe devant le triangle noir */
+}
 
 .background-image {
     position: absolute; /* Elle flotte */
@@ -144,6 +211,29 @@ main
     /*object-fit: contain;*/ 
 }
 
+/* Définition de l'animation de surgissement */
+@keyframes pop-bubble {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.1); /* Petit dépassement pour l'effet rebond */
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* On applique l'animation seulement quand la ruche est active */
+#interieur-ruche.active .bulle-dialogue {
+    animation: pop-bubble 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: 0.3s; /* On attend un peu que la ruche s'ouvre d'abord */
+    transform-origin: bottom center; /* L'animation part de la pointe de la bulle */
+    opacity: 0; /* Caché au début de l'anim */
+}
+
 .welcome
 {
   position: absolute;
@@ -163,20 +253,6 @@ main
   z-index: 2;
 }
 
-.ruche-image
-{
-  position: absolute;
-  z-index: 2;
-  width: 400px;
-  height: auto;
-}
-
-.ruche-image:hover
-{
-  cursor: pointer;
-  transform: scale(1.05);
-  transition: 0.3s;
-}
 
 
 
@@ -196,7 +272,16 @@ main
 } */
 
 
-
+.logo {
+    width: 120px;
+    height: auto;  /* conserve les proportions */
+}
+.logo:hover
+{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
 
 .logoFoot
 {
@@ -211,9 +296,14 @@ main
     transition: 0.3s;
 }
 
+.nav {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
 
-<<<<<<< HEAD
-=======
 .nav-link {
   text-decoration: none;
   background-color: var(--yellow-color);
@@ -267,14 +357,6 @@ main
 }
 
 
-@media  (max-width: 1249px){
-  main{
-    background-size: 100%;
-  }
-  
-}
-
-
 @media (max-width: 700px) {
   body {
     background-color: lightblue;
@@ -317,11 +399,6 @@ main
   {
     margin-left: 0;
   }
-  
-  /* .welcome
-  {
-    font-size: 4em;
-  } */
 
   .nav-link
    {
@@ -333,14 +410,6 @@ main
    }
 }
 
-/* @media (max-width: 600px)
-{
-   .welcome
-  {
-    font-size: 2em;
-  } 
-
-}*/
 
 @media (max-width: 500px)
 {
@@ -363,4 +432,70 @@ main.ruche-ouverte .ruche-image {
     pointer-events: none; /* Empêche de cliquer sur la ruche du fond pendant qu'on est dedans */
 }
 
->>>>>>> anim
+@media (max-width: 1250px) {
+    main {
+        background-image: url("assets/fondinter.jpg");
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    main {
+        background-image: url("assets/tabpor.jpg");
+    }
+}
+
+/* --- Version Mobile (petits écrans < 768px) --- */
+@media (max-width: 768px) {
+    main {
+        background-image: url("assets/fondtoup.jpg");
+        /* Sur mobile, on peut ajuster la position si le ciel est trop haut */
+        /* background-position: center 80%; */ 
+    }
+}
+
+@media (max-height: 650px) and (orientation: landscape) {
+    
+    .logoFoot
+    {
+      width: 50px;
+      height: auto;
+    }
+}
+
+
+/* --- Version Mobile PAYSAGE (Orientation Landscape) --- */
+@media (max-height: 500px) and (orientation: landscape) {
+    main {
+        /* On change l'image pour la version large */
+        background-image: url("assets/fondTelFormatPay.png");
+        background-position: center 70%; /* On remonte un peu l'image pour voir l'école */
+    }
+
+    .welcome {
+        top: 15%; /* On remonte le texte pour ne pas cacher l'école */
+        font-size: clamp(1rem, 8vh, 3rem); /* On réduit la taille pour le format court */
+    }
+
+    .ruche-image {
+        width: 150px; /* On réduit la ruche car l'écran est peu haut */
+        bottom: 10%;
+        right: 5%;
+    }
+
+    /* On ajuste les arbres pour qu'ils ne sortent pas de l'écran */
+    .tree {
+        transform: scale(0.4) !important; 
+    }
+    
+    #a1 { left: 5%; bottom: 5%; }
+    #a2 { right: 5%; bottom: 10%; }
+    #a3 { display: none; } /* On cache un arbre pour ne pas surcharger l'écran court */
+
+    .logoFoot
+    {
+      width: 25px;
+      height: auto;
+    }
+}

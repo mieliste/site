@@ -1,0 +1,103 @@
+.flying-bee {
+    position: absolute;
+    /* On force le départ à 0,0 pour que le translate du JS soit précis */
+    top: 0;
+    left: 0;
+    width: 60px; /* Un peu plus grosse pour bien la voir */
+    height: auto;
+    z-index: 100;
+    pointer-events: none;
+    will-change: transform;
+    pointer-events: auto !important;
+    cursor: grab;
+    transition: filter 0.2s ease;
+}
+
+.flying-bee:active {
+    cursor: grabbing;
+}
+
+
+/* Animation des ailes */
+.bee-wing {
+    transform-origin: bottom center;
+    animation: flapWings 0.1s infinite alternate;
+}
+
+@keyframes flapWings {
+    from { transform: scaleY(0.2); }
+    to { transform: scaleY(1.2); }
+}
+
+/* --- Style des particules de la traînée --- */
+.bee-trail-particle {
+    position: absolute;
+    width: 10px;  /* Taille de départ */
+    height: 10px;
+    background-color: var(--yellow-color); /* Couleur miel */
+    border-radius: 50%; /* Rond */
+    pointer-events: none; /* Le clic passe à travers */
+    z-index: 99; /* Juste derrière l'abeille (qui est à 100) */
+    opacity: 0.7; /* Légèrement transparent au début */
+    /* L'animation 'forwards' fait que l'élément reste à l'état final (invisible) à la fin */
+    animation: fadeOutTrail 0.8s forwards ease-out;
+    will-change: transform, opacity; /* Optimisation des performances */
+}
+
+/* --- Animation de disparition --- */
+@keyframes fadeOutTrail {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0.2); /* Rétrécit */
+        opacity: 0; /* Devient invisible */
+    }
+}
+
+
+/* --- Style de la Bulle BD Énervée --- */
+.angry-bubble {
+    position: absolute;
+    z-index: 110; /* Au-dessus de l'abeille */
+    background-color: #fff;
+    border: 3px solid #000;
+    border-radius: 50%; /* Forme ovale */
+    padding: 10px 15px;
+    
+    /* Style Comic Book */
+    font-family: "Comic Sans MS", "Arial Black", impact, sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000;
+    white-space: nowrap;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2); /* Ombre "dure" style BD */
+    
+    /* Centrage par rapport à sa position */
+    transform: translate(-50%, -100%);
+    pointer-events: none; /* Le clic passe à travers la bulle */
+
+    /* Animation d'apparition */
+    animation: popBubble 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* La petite pointe en bas de la bulle */
+.angry-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Création d'un triangle avec les bordures */
+    border-width: 15px 10px 0;
+    border-style: solid;
+    border-color: #000 transparent;
+    display: block;
+    width: 0;
+}
+
+@keyframes popBubble {
+    from { transform: translate(-50%, -80%) scale(0); opacity: 0; }
+    to { transform: translate(-50%, -110%) scale(1); opacity: 1; }
+}

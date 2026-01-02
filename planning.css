@@ -171,13 +171,6 @@ main
     text-transform: uppercase;
 }
 
-/* Ajustement pour l'image */
-.imgtable {
-    max-width: 90%;
-    max-height: 80px;
-    object-fit: contain;
-}
-
 
 /* .tablesSemaine th, .tablesSemaine td {
     border: 1px solid;
@@ -268,13 +261,103 @@ main
     cursor: pointer;
 }
 
-.imgtable {
-    width: 80px; /* Un peu plus petit pour laisser respirer */
-    height: 80px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-    border-radius: 50%; /* Si tes logos sont ronds, sinon enlève */
+.tableJour td 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.tableJour th,
+.tableJour td
+{
+    margin: 5px;
+    
+}
+
+.imgtable {
+    
+    /* Force l'image à rester un carré parfait 1:1 */
+    aspect-ratio: 1 / 1; 
+    /* Empêche Flexbox ou Grid de "pousser" sur les côtés de l'image */
+    flex-shrink: 0;
+    /* Remplit le cercle sans déformer le logo */
+    object-fit: cover; 
+    border-radius: 50%;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    border: 3px solid white; /* Le contour blanc brillant */
+    background-color: white;
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tableJour td:hover .imgtable, 
+.tablesSemaine td:hover .imgtable {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tablesSemaine .imgtable
+{
+    width: 80px;
+    height: 80px;
+}
+
+.tableJour .imgtable
+{
+    width: 120px;
+    height: 120px;
+    
+    
+}
+
+* Le conteneur qui sert de masque pour le reflet */
+.img-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    border-radius: 50%; /* Garde la forme ronde */
+    overflow: hidden;    /* Coupe tout ce qui dépasse (le reflet) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Le reflet (caché à gauche par défaut) */
+.img-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%; /* Départ hors du champ à gauche */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg); /* Incline le reflet pour plus de dynamisme */
+    pointer-events: none;
+}
+
+/* --- Déclenchement au survol de la cellule --- */
+.tableJour tr:hover .img-wrapper::after, 
+.tablesSemaine td:hover .img-wrapper::after {
+    animation: shine 0.75s ease-in-out;
+}
+
+/* Animation du passage de la lumière */
+@keyframes shine {
+    100% {
+        left: 150%; /* Traverse tout le logo jusqu'à la droite */
+    }
+}
+
+
 
 .dateContainer {
     background: var(--glass-bg);
@@ -329,7 +412,7 @@ main
         grid-template-rows: auto auto auto;
         gap: 10px;
         height: auto;
-        padding: 15px;
+        margin: 20px;
         border-radius: 20px;
     }
 
@@ -342,14 +425,23 @@ main
         font-size: 0.9rem; /* Texte un peu plus petit */
     }
 
+    .tableJour th
+    {
+        margin-bottom: 0;
+    }
     
+    .tableJour td
+    {
+        margin-top: 0;
+    }
+
 }
 
 @media (max-width: 600px) {
     .tableJour tr {
         grid-template-columns: 1fr; /* Une seule colonne */
         grid-template-rows: auto 1fr; /* Titre en haut, logo en bas */
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .tableJour th:first-child {
@@ -364,7 +456,9 @@ main
     }
     
     .imgtable {
-        width: 70px; /* Ajuste la taille pour mobile */
+        width: 50px; /* Ajuste la taille pour mobile */
+        height: 50px;
+        
     }
 }
 
@@ -373,7 +467,6 @@ main
         display: block; /* On sort du mode flex pour permettre le scroll */
         overflow-x: auto; /* Scroll horizontal si ça dépasse */
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 20px;
     }
 
     .tablesSemaine {
