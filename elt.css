@@ -38,6 +38,14 @@
     transform-origin: bottom center;
     animation: swayTree 4s ease-in-out infinite alternate;
     z-index: 5;
+    pointer-events: auto;
+    --tree-scale: 1;
+    transition: --tree-scale 0.3s ease; /* Pour un zoom fluide */
+}
+
+.tree:hover {
+    --tree-scale: 1.1; /* Zoom de 15% */
+    z-index: 25; /* Passe devant les autres éléments */
 }
 
 .tree .foliage::after {
@@ -209,10 +217,13 @@
 
 /* --- Animation du balancement (à mettre dans ton CSS principal si pas déjà fait) --- */
 @keyframes swayTree {
-    0% { transform: translateX(-50%) rotate(-2deg); }
-    100% { transform: translateX(-50%) rotate(2deg); }
+    0% { 
+        transform: translateX(-50%) rotate(-2deg) scale(var(--tree-scale)); 
+    }
+    100% { 
+        transform: translateX(-50%) rotate(2deg) scale(var(--tree-scale)); 
+    }
 }
-
 
 
 #a1 { left: 10%; bottom: 40%; top: auto; }
@@ -227,23 +238,53 @@
     left: -150px; /* Point de départ fixe à gauche */
     width: 120px;
     z-index: 3;
-    pointer-events: none;
+    pointer-events: auto;
     will-change: transform;
     top: var(--rand-top);
     /* Utilise forwards pour éviter qu'ils ne reviennent au début après l'anim */
     animation: moveCloud var(--rand-duration) linear forwards;
+    --hover-scale-cloud: 1;
+    /* Transition douce pour le zoom */
+    transition: --hover-scale-cloud 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet un peu "bondissant" */
+}
+
+/* Au SURVOL, on change la variable */
+.cloud-svg:hover {
+    --hover-scale-cloud: 1.25; /* Grossit de 25% */
+    z-index: 10; /* Passe devant les autres éléments */
+    filter: brightness(1.1); /* Devient légèrement plus lumineux */
 }
 
 @keyframes moveCloud {
     from {
-        transform: translateX(0) scale(var(--base-scale, 1));
+        /* On multiplie l'échelle de base par l'échelle de survol */
+        transform: translateX(0) scale(calc(var(--base-scale, 1) * var(--hover-scale-cloud)));
     }
     to {
-        /* On traverse toute la largeur + la taille du nuage */
-        transform: translateX(calc(100vw + 300px)) scale(var(--base-scale, 1));
+        transform: translateX(calc(100vw + 300px)) scale(calc(var(--base-scale, 1) * var(--hover-scale-cloud)));
     }
 }
 
+.raindrop {
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    background: linear-gradient(to bottom, rgba(164, 212, 255, 0.6), rgb(19, 135, 244));
+    border-radius: 50%; /* Bout arrondi */
+    pointer-events: none;
+    z-index: 9; /* Devant le décor, derrière les abeilles */
+    opacity: 0.8;
+    /* Animation de chute rapide */
+    animation: rainFall var(--rain-duration, 0.8s) linear forwards;
+}
+
+@keyframes rainFall {
+    to {
+        /* Tombe de 400px environ */
+        transform: translateY(400px) scaleY(1.2); 
+        opacity: 0; /* Disparaît en bas */
+    }
+}
 
 .ruche-image
 {
@@ -340,25 +381,168 @@
 /* --- Fleurs images semées aléatoirement --- */
 .scattered-flower {
     position: absolute;
-    width: 60px; /* Taille de base, sera ajustée par le JS */
+    width: 60px;
     height: auto;
-    z-index: 4; /* Juste derrière les arbres (z-index: 5) */
-    pointer-events: none; /* Le clic passe à travers */
-    
-    /* Le point de pivot est en bas, là où est la tige */
+    z-index: 4;
     transform-origin: bottom center;
+    /* INDISPENSABLE : doit être cliquable */
+    pointer-events: auto !important; 
+    cursor: pointer;
+    /* On définit une variable pour l'échelle de base et une pour le multiplicateur de survol */
+    --hover-scale: 1; 
     
-    /* Animation douce */
+    /* L'animation utilise maintenant les deux variables multipliées */
     animation: imageFlowerSway 3s ease-in-out infinite alternate;
     
-    /* Petite ombre pour les détacher du sol */
-    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
+    /* Transition douce pour le zoom */
+    transition: --hover-scale 0.3s ease;
 }
+
+.scattered-flower:hover
+{
+   --hover-scale: 1.2;
+    z-index: 10; /* Pour passer devant les autres fleurs au survol */
+}
+
+
+.falling-petal {
+    position: absolute;
+    width: 6px;
+    height: 8px;
+    border-radius: 50% 0 50% 0;
+    pointer-events: none;
+    z-index: 10;
+    animation: petalFall var(--p-duration) ease-out forwards;
+}
+
+@keyframes petalFall {
+    0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+    100% { opacity: 0; transform: translate(var(--p-drift), var(--p-dist)) rotate(var(--p-rot)); }
+}
+
+
+.is-shaking-flower {
+    animation: shakeFlower 0.3s ease-in-out !important;
+}
+
+/* L'animation de secousse (plus nerveuse pour les fleurs) */
+@keyframes shakeFlower {
+    0% { transform: rotate(0deg) scale(var(--rand-scale, 1)); }
+    25% { transform: rotate(-12deg) scale(var(--rand-scale, 1)); }
+    75% { transform: rotate(12deg) scale(var(--rand-scale, 1)); }
+    100% { transform: rotate(0deg) scale(var(--rand-scale, 1)); }
+}
+
 
 /* Animation de balancement qui prend en compte l'échelle aléatoire */
 @keyframes imageFlowerSway {
-    0% { transform: rotate(-8deg) scale(var(--rand-scale)); }
-    100% { transform: rotate(8deg) scale(var(--rand-scale)); }
+    0% { 
+        /* On combine l'échelle aléatoire du JS et l'échelle de survol */
+        transform: rotate(-8deg) scale(calc(var(--rand-scale) * var(--hover-scale))); 
+    }
+    100% { 
+        transform: rotate(8deg) scale(calc(var(--rand-scale) * var(--hover-scale))); 
+    }
+}
+
+/* --- Style des feuilles qui tombent --- */
+.falling-leaf {
+    position: absolute;
+    /* Position de départ verticale (un peu en dessous du haut du feuillage) */
+    top: 20%;
+    /* Taille de la petite feuille */
+    width: 8px;
+    height: 12px;
+    /* Couleur verte (similaire aux arbres) */
+    background: #76a347;
+    /* Forme de feuille simple grâce aux coins arrondis */
+    border-radius: 5% 70% 5% 70%;
+    /* Important : le curseur doit passer à travers, sinon ça bloque le ré-survol de l'arbre */
+    pointer-events: none;
+    z-index: 6; /* Devant les arbres */
+    opacity: 0; /* Invisible au départ */
+
+    /* L'animation utilise la variable de durée définie en JS */
+    animation: fallingLeafAnim var(--fall-duration, 3s) ease-out forwards;
+}
+
+/* Optionnel : Varier un peu les couleurs des feuilles */
+.falling-leaf:nth-child(odd) {
+    background: #91bd5e; /* Un vert un peu plus clair */
+}
+
+/* --- Animation de la chute --- */
+@keyframes fallingLeafAnim {
+    0% {
+        opacity: 1;
+        /* Position initiale, pas de rotation */
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0; /* Disparaît en fondu à la fin */
+        /*
+           C'est ici que la magie opère :
+           - On déplace verticalement de la distance var(--fall-distance)
+           - On déplace horizontalement de la dérive var(--fall-drift-x)
+           - On tourne de var(--fall-rotation)
+        */
+        transform: translate(var(--fall-drift-x, 20px), var(--fall-distance, 200px)) rotate(var(--fall-rotation, 360deg));
+    }
+}
+
+/* --- Animation de secousse --- */
+@keyframes shakeTree {
+    0% { transform: translateX(-50%) rotate(0deg) scale(var(--tree-scale)); }
+    20% { transform: translateX(-50%) rotate(-4deg) scale(var(--tree-scale)); }
+    40% { transform: translateX(-50%) rotate(4deg) scale(var(--tree-scale)); }
+    60% { transform: translateX(-50%) rotate(-2deg) scale(var(--tree-scale)); }
+    80% { transform: translateX(-50%) rotate(2deg) scale(var(--tree-scale)); }
+    100% { transform: translateX(-50%) rotate(0deg) scale(var(--tree-scale)); }
+}
+
+/* Cette classe sera ajoutée par le JavaScript */
+.tree.is-shaking {
+    /* On utilise !important pour surcharger l'animation de balancement doux par défaut */
+    animation: shakeTree 0.4s ease-in-out !important;
+}
+
+/* --- Animation de secousse pour la fleur --- */
+@keyframes shakeFlower {
+    0% { transform: rotate(0deg) scale(var(--rand-scale)); }
+    25% { transform: rotate(-15deg) scale(var(--rand-scale)); }
+    75% { transform: rotate(15deg) scale(var(--rand-scale)); }
+    100% { transform: rotate(0deg) scale(var(--rand-scale)); }
+}
+
+.scattered-flower.is-shaking-flower {
+    /* On garde la variable --rand-scale du JS pour ne pas changer la taille de la fleur */
+    animation: shakeFlower 0.3s ease-in-out !important;
+}
+
+/* --- Style des pétales qui tombent --- */
+.falling-petal {
+    position: absolute;
+    top: 50%; /* Part du cœur de la fleur */
+    left: 50%;
+    width: 6px;
+    height: 8px;
+    background: #ffeb3b; /* Jaune par défaut */
+    border-radius: 50% 0 50% 0; /* Forme de pétale */
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    animation: petalFall var(--p-duration) ease-out forwards;
+}
+
+@keyframes petalFall {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--p-drift), var(--p-dist)) rotate(var(--p-rot));
+    }
 }
 
 

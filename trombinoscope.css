@@ -270,6 +270,7 @@ h3 {
     justify-content: center;
     align-items: center;
     z-index: 2000;
+    padding: 20px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -393,13 +394,7 @@ h3 {
     
 }
 
-/* Mobile : on repasse en colonne si l'écran est trop petit */
-@media (max-width: 500px) {
-    .card-top { flex-direction: column; text-align: center; }
-    .card-contact { flex-direction: column; gap: 10px; align-items: center; }
-}
-
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
     .card-membre {
         height: auto;
         max-height: 90vh;
@@ -410,6 +405,167 @@ h3 {
     .photo-hex { width: 165px; height: 165px; }
     #fiche-nom { font-size: 2.5rem; }
     .card-contact { flex-direction: column; gap: 15px; }
+}
+ */
+
+/* --- Version Mobile PAYSAGE (Hauteur < 500px) --- */
+@media (max-height: 500px) and (orientation: landscape) {
+    
+    #fiche-membre {
+        align-items: flex-start; /* Permet de scroller si la carte dépasse un peu */
+        padding: 10px;
+    }
+
+    .card-membre {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr; /* Photo à gauche, contenu à droite */
+        grid-template-rows: auto 1fr;
+        width: 95vw;
+        height: auto;
+        max-height: 90vh;
+        gap: 15px;
+        padding: 20px;
+        
+    }
+
+    /* 1. Placement des éléments dans la grille */
+    .card-top {
+        grid-column: 1;
+        grid-row: 1 / span 2; /* Prend toute la hauteur à gauche */
+        flex-direction: column;
+        justify-content: center;
+        border-right: 2px dashed var(--orange-color);
+        padding-right: 15px;
+        margin-bottom: 0;
+    }
+
+    .card-right-content {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #fiche-desc {
+        grid-column: 2;
+        grid-row: 2;
+        margin-top: 0;
+        text-align: left;
+        font-size: 0.95rem;
+    }
+
+    /* 2. Réduction des tailles pour gagner de l'espace */
+    .photo-wrapperCarte {
+        width: 130px;
+        height: 130px;
+    }
+
+    .photo-hex {
+        width: 115px;
+        height: 115px;
+    }
+
+    #fiche-nom {
+        font-size: 1.8rem;
+        line-height: 1;
+    }
+
+    #fiche-role {
+        font-size: 1rem;
+        margin-top: 5px;
+    }
+
+    .card-contact {
+        flex-direction: row; /* Contacts côte à côte */
+        gap: 15px;
+        padding: 10px;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+    }
+
+    /* 3. Ajustement du bouton fermer */
+    #close-fiche {
+        top: 5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+    }
+}
+
+
+/* --- TABLETTES ET PETITS LÉGERS (Moins de 900px) --- */
+@media (max-width: 900px) {
+    .card-top {
+        gap: 20px;
+    }
+    #fiche-nom {
+        font-size: 3rem; /* On réduit un peu le nom */
+    }
+    .photo-wrapperCarte {
+        width: 200px;
+        height: 200px;
+    }
+    .photo-hex {
+        width: 185px;
+        height: 185px;
+    }
+}
+
+/* --- SMARTPHONES (Moins de 600px) --- */
+@media (max-width: 600px) {
+    .card-membre {
+        padding: 20px;
+        border-radius: 20px;
+        border-width: 4px;
+    }
+
+    .card-top {
+        flex-direction: column; /* On empile Photo et Nom */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .card-id {
+        align-items: center;
+    }
+
+    #fiche-nom {
+        font-size: 2.2rem; /* Taille adaptée au mobile */
+    }
+
+    #fiche-role {
+        font-size: 1.1rem;
+    }
+
+    .photo-wrapperCarte {
+        width: 160px; /* Photo plus petite sur mobile */
+        height: 160px;
+    }
+
+    .photo-hex {
+        width: 145px;
+        height: 145px;
+    }
+
+    .card-contact {
+        flex-direction: column; /* Contact l'un au dessus de l'autre */
+        gap: 10px;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    #fiche-desc {
+        font-size: 1.1rem;
+        text-align: justify;
+    }
+
+    /* On repositionne le bouton fermer pour qu'il soit plus facile à cliquer sur mobile */
+    #close-fiche {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
 }
 
 #close-fiche {
