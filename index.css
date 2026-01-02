@@ -246,6 +246,7 @@ main
   color: var(--orange-color);
   font-size: clamp(1rem, 15vw, 5rem);
   pointer-events: none; /* <--- AJOUTE CECI : le clic passera à travers  temporairej'ai*/ 
+  text-shadow: 3px 3px 0px white;
 }
 
 .tree-image

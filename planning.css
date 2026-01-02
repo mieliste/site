@@ -65,6 +65,7 @@ main
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis; /* Ajoute "..." si la date est vraiment trop longue */
+    font-size: 1.5rem;
 }
 
 
@@ -113,21 +114,6 @@ main
   align-items: center;
 }
 
-/* .tablesSemaine
-{
-  display: flex;       
-  flex-direction: column;
-  width: 99%;
-  height: 98%; 
-} */
-
-
-/* .tablesSemaine tr {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr); 
-    flex-grow: 1; 
-    width: 100%;
-} */
 /* --- TABLE SEMAINE UNIFIÉE --- */
 .tablesSemaine {
     display: grid !important; /* Le tableau devient la grille principale */
@@ -169,44 +155,6 @@ main
     color: white;
     font-weight: bold;
     text-transform: uppercase;
-}
-
-
-/* .tablesSemaine th, .tablesSemaine td {
-    border: 1px solid;
-    padding: 15px 5px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80px; 
-} */
-
-/* .tablesSemaine tbody{
-  
-
-
-  display: grid;
-  grid-template-columns: repeat(8,1fr);
-  grid-template-rows: repeat(3,1fr);
-  
- 
-  height: 100%;
-} */
-
-.l1
-{
-  grid-row: 1;
-}
-
-.l2
-{
-  grid-row: 2;
-}
-
-.l3
-{
-  grid-row:3;
 }
 
 /* Style pour l'en-tête (Lun, Mar...) */

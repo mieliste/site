@@ -1,3 +1,9 @@
+
+:root {
+    --honey-yellow: #FFD966;
+    --honey-orange: #F67B00;
+}
+
 body{
   
     grid-template-rows: 1fr 9fr;
@@ -20,4 +26,178 @@ main
     flex-direction: column;
     
 
+}
+
+
+.allo-page {
+    background-color: var(--honey-yellow);
+    min-height: 100vh;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Titres */
+.allo-title {
+    font-family: 'tropiland', sans-serif;
+    color: var(--honey-orange);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    text-shadow: 3px 3px 0px white;
+    margin-bottom: 10px;
+}
+
+/* On ajuste le titre pour qu'il ne soit pas caché par le miel */
+.allo-title {
+    position: relative;
+    margin-top: 60px; /* Espace pour laisser passer les gouttes */
+    z-index: 5;
+}
+
+.allo-subtitle {
+    font-family: sans-serif;
+    font-style: italic;
+    color: #5d4037;
+    margin-bottom: 50px;
+}
+
+/* Grille de Ruche */
+.hive-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* La Carte Hexagonale */
+.allo-card {
+    width: 250px;
+    height: 280px;
+    background-color: white;
+    position: relative;
+    /* Création de la forme hexagone */
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.allo-card:hover {
+    transform: scale(1.05) rotate(2deg);
+    background-color: #fff9e6;
+}
+
+.hex-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.hex-content .icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hex-content h3 {
+    font-family: 'tropiland', sans-serif;
+    color: var(--honey-orange);
+    margin: 0;
+}
+
+.hex-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+/* Bouton Goutte de Miel */
+/* .btn-call {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--honey-orange);
+    color: white;
+    text-decoration: none;
+    border-radius: 50% 50% 50% 50% / 10% 10% 80% 80%; 
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-call:hover {
+    background-color: #d66a00;
+    box-shadow: 0 4px 10px rgba(246, 123, 0, 0.4);
+} */
+
+/* --- Le Miel Coulant du Haut --- */
+.honey-drip-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Longueur des gouttes */
+    pointer-events: auto;
+    z-index: 10;
+    overflow: visible;
+}
+
+.honey-drip {
+    width: 100%;
+    height: 100%;
+    /* Nouveau tracé : gouttes plus longues et plus "lourdes" */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 400" preserveAspectRatio="none"><path fill="%23F67B00" d="M0,0 L1440,0 L1440,120 C1380,120 1360,350 1280,350 C1200,350 1180,120 1100,120 C1020,120 1000,400 900,400 C800,400 780,120 700,120 C620,120 600,300 500,300 C400,300 380,120 300,120 C220,120 200,380 100,380 C0,380 0,120 0,120 Z"></path></svg>');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    transform-origin: top;
+    /* Animation un peu plus lente pour simuler la lourdeur du miel */
+    animation: honeyFlowDown 8s ease-in-out infinite alternate;
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));
+}
+
+
+@keyframes honeyFlowDown {
+    0% { transform: scaleY(1); }
+    100% { transform: scaleY(1.2); }
+}
+
+/* --- Goutte de Miel (Particule) --- */
+.honey-drop {
+    position: absolute;
+    width: 12px;
+    height: 18px;
+    background-color: var(--honey-orange);
+    /* Forme de goutte parfaite */
+    border-radius: 0 50% 50% 50%;
+    transform: rotate(45deg); /* On la tourne pour que la pointe soit en haut */
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.9;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+    animation: honeyDropFall var(--h-duration) cubic-bezier(0.5, 0, 0.7, 0.5) forwards;
+}
+
+@keyframes honeyDropFall {
+    0% {
+        transform: translateY(0) rotate(45deg) scale(0.8);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% {
+        transform: translateY(var(--h-dist)) rotate(45deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+
+/* Responsive : On empile sur mobile */
+@media (max-width: 600px) {
+    .allo-card {
+        width: 200px;
+        height: 230px;
+    }
 }

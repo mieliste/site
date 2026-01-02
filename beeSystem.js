@@ -1,6 +1,6 @@
 const main = document.querySelector('main');
-const NB_BEES = 5;
-const bees = [];
+// const NB_BEES = 5;
+export const bees = [];
 
 // Liste d'insultes style BD
 const COMIC_INSULTS = ["$@%#!", "GRRR!", "ZUT!", "#@&%*!", "OUCH!", "NOM D'UN...!", "SCRONGNEUGNEU!"];
@@ -206,11 +206,13 @@ class Bee {
     }
 }
 
-function initBees() {
+export function initBees(n) {
     updateFlowerPositions();
-    for (let i = 0; i < NB_BEES; i++) {
+    for (let i = 0; i < n; i++) {
         bees.push(new Bee());
     }
+    // On ajoute l'écouteur ici une seule fois
+    window.addEventListener('resize', updateFlowerPositions);
     animate();
 }
 
@@ -220,6 +222,3 @@ function animate() {
     bees.forEach(bee => bee.update());
     requestAnimationFrame(animate);
 }
-
-window.addEventListener('load', initBees);
-window.addEventListener('resize', updateFlowerPositions);
