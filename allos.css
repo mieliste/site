@@ -73,8 +73,8 @@ main
 
 /* La Carte Hexagonale */
 .allo-card {
-    width: 250px;
-    height: 280px;
+    width: 270px;
+    height: 300px;
     background-color: white;
     position: relative;
     /* Création de la forme hexagone */
@@ -94,7 +94,7 @@ main
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
 }
 

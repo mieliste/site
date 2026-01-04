@@ -69,7 +69,7 @@ header
 
 main
 {
-    background-color: var(--yellow-color);
+    /* background-color: var(--yellow-color); */
     align-items: center;
     text-align: center;
 }

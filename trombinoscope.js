@@ -8,11 +8,11 @@ members.forEach(member => {
         const h3Element = member.querySelector('h3');
         
         // 2. On récupère le texte seulement s'il existe, sinon on met un texte par défaut
-        const role = h3Element ? h3Element.innerText : "Membre de la ruche"; 
         
         const nom = member.dataset.nom || "Abeille anonyme";
         const photo = member.querySelector('img').src;
-        const desc = member.dataset.desc || "Une abeille passionnée de l'école.";
+        const desc = member.dataset.desc || "description";
+        const role = member.dataset.role || "membre";
 
         document.getElementById('fiche-nom').innerText = nom;
         document.getElementById('fiche-role').innerText = role;
