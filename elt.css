@@ -39,8 +39,9 @@
     animation: swayTree 4s ease-in-out infinite alternate;
     z-index: 5;
     pointer-events: auto;
-    --tree-scale: 1;
-    transition: --tree-scale 0.3s ease; /* Pour un zoom fluide */
+    --tree-scale: 1; /* Échelle par défaut */
+    transform: scale(var(--tree-scale));
+    animation: swayTree 4s ease-in-out infinite alternate
 }
 
 .tree:hover {
@@ -68,18 +69,6 @@
     margin-top: -5px; /* Pour masquer la jonction */
 }
 
-/* --- Style 1 : Arbre Goutte --- */
-#a1
-{
-    left: 15%;
-    top: 30%;
-}
-
-#a2
-{
-    right:10%;
-    top: 30%;
-}
 
 .teardrop .foliage {
     width: 70px;
@@ -217,12 +206,8 @@
 
 /* --- Animation du balancement (à mettre dans ton CSS principal si pas déjà fait) --- */
 @keyframes swayTree {
-    0% { 
-        transform: translateX(-50%) rotate(-2deg) scale(var(--tree-scale)); 
-    }
-    100% { 
-        transform: translateX(-50%) rotate(2deg) scale(var(--tree-scale)); 
-    }
+    0% { transform: translateX(-50%) rotate(-2deg) scale(var(--tree-scale)); }
+    100% { transform: translateX(-50%) rotate(2deg) scale(var(--tree-scale)); }
 }
 
 
@@ -383,7 +368,7 @@
     position: absolute;
     width: 60px;
     height: auto;
-    z-index: 4;
+    z-index: 1000;
     transform-origin: bottom center;
     /* INDISPENSABLE : doit être cliquable */
     pointer-events: auto !important; 
@@ -547,3 +532,94 @@
 
 
 
+/* --- La Grotte --- */
+#cave-entrance {
+    position: absolute;
+    
+    left: -50px;
+    width: 150px;
+    height: 100px;
+    background-color: #3E2723;
+    border-radius: 100% 100% 0 0;
+    z-index: 190;
+}
+
+#bear-container {
+    position: absolute;
+    /* On le place à 0,0 par défaut pour que le JS gère tout le placement */
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 120px;
+    z-index: 500;
+    opacity: 0; 
+    /* SUPPRIMEZ le translateX d'ici, le JS va s'en charger */
+    transition: opacity 2s ease-in-out;
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+/* --- L'Ours (Le dessin SVG) --- */
+.bear-svg {
+    width: 100%;
+    height: 100%;
+    /* Par défaut, il est statique */
+}
+
+/* L'animation de dandinement (Waddle) */
+@keyframes bearWaddle {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50% { transform: rotate(8deg) translateY(-10px); }
+}
+
+/* L'animation de "Miam Miam" (quand il mange) */
+@keyframes bearEat {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.1) translateY(5px); }
+}
+
+
+/* --- États de l'Ours (Pilotés par JS) --- */
+
+/* État 1 : Il sort de la grotte */
+#bear-container.is-appearing {
+    opacity: 1;
+    transform: translateX(20px) scale(1);
+}
+
+/* État 2 : Il marche (on active le dandinement sur le SVG) */
+#bear-container.is-walking .bear-svg {
+    animation: bearWaddle 0.6s ease-in-out infinite;
+}
+
+/* État 3 : Il retourne à la grotte (Miroir horizontal) */
+#bear-container.is-returning {
+    /* Le scaleX(-1) retourne l'ours pour qu'il regarde à gauche */
+    transform: translateX(20px) scaleX(-1) !important; 
+}
+
+
+/* --- Le Pot de Miel CSS --- */
+/* --- FIX DU POT DE MIEL --- */
+.honey-pot-css {
+    position: absolute;
+    bottom: 40%; /* Positionné au niveau du ventre */
+    left: 50%;
+    width: 50px;
+    height: 40px;
+    background: #F7C843;
+    border-radius: 5px 5px 15px 15px;
+    border: 3px solid #F39C12;
+    z-index: 501; /* Doit être au-dessus de l'ours */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #3E2723;
+    opacity: 0; /* Caché par défaut */
+    transform: translate(-50%, 0) scale(0);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.honey-pot-css.show-pot {
+    opacity: 1; /* Rendre visible */
+    transform: translate(-50%, 0) scale(1);
+}
