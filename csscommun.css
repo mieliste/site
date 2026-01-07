@@ -211,8 +211,55 @@ main
 
 /* --- Version Mobile PAYSAGE (Orientation Landscape) --- */
 @media (max-height: 650px) and (orientation: landscape) {
-  .logo {
-    width: 60px;
-    height: auto;  /* conserve les proportions */
-}
+    .logo {
+      width: 60px;
+      height: auto;  /* conserve les proportions */
+    }
+
+    .menu-icon
+    {
+      display: block;
+      z-index: 1;
+      justify-self: center; /*Permet de centrer le burger */
+      margin: 0;
+      width: 80px;
+      height: auto;
+    }
+    .menu-icon:hover
+    {
+      transform: scale(1.10);
+      transition: all 0.5s ease;
+    }
+
+    header{
+      grid-template-columns: 1fr 1fr;
+      text-align: center;
+      align-items: center;
+      position: relative;
+    }
+    .nav {
+      display: grid;
+      position: absolute;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 20px;
+      width: 100vw;
+      top: 100%; /* parent : header car postion relative top100% deplace le nav à 100% de la hauteur de son conteneur parent*/
+      height: calc(100vh - 100%);
+      backdrop-filter: blur(7px);
+      transition: all 0.5s ease;
+      margin-left: -100%;
+      z-index: 1000;
+    }
+    .mobile-menu
+    {
+      margin-left: 0;
+    }
+
+    .welcome
+    {
+      font-size: 2em;
+    }
+
+
 }
