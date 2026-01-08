@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Miel Dash - Flappy Bee</title>
+    <script type="module" src="flappybee.js"></script>
+    <link rel="stylesheet" href="flappy-bee.css"/>
+</head>
+<body>
+    <div class="ui">Score: <span id="score">0</span></div>
+
+    <div id="start-screen" class="overlay">
+        <h1>Flappy Bee</h1>
+        <p>Appuie sur le bouton pour aider l'abeille !</p>
+        <button id="start-button">Jouer</button>
+    </div>
+
+    <div id="game-over-screen" class="overlay" style="display: none;">
+        <!-- <h1>Game Over</h1>
+        <p>Score final : <span id="final-score">0</span></p> -->
+        <div class="button-group">
+            <button id="restart-button">Recommencer</button>
+            <button id="exit-button">Quitter</button>
+        </div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    
+</body>
+</html>

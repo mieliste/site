@@ -1,126 +1,29 @@
 import { initBees, bees } from './beeSystem.js';
 import { startCloudSystem, spawnImageFlowers, initGrass } from './environment.js';
 import { createParticles } from './effects.js';
-import {setupButterflies} from './butterfly.js'
-
+import {setupButterflies} from './butterfly.js';
+import {setupBearEasterEgg} from './bear.js';
 // ================= EASTER EGG OURS =================
 
-let flowersClickedCount = 0;
-// IMPORTANT : Remplace '.fleur' par la vraie classe de tes fleurs (ex: .scattered-flower)
-const flowerSelector = '.scattered-flower'; 
+// Dans ton fichier JS principal (ex: index.js)
+export function setupSunEasterEgg() {
+    const sun = document.querySelector('.sun-container');
+    let sunClickCount = 0;
+    let clickTimer;
 
-export function setupEasterEgg() {
-    const flowers = document.querySelectorAll(flowerSelector);
-    
-    flowers.forEach(flower => {
-        flower.addEventListener('click', function() {
-            // On vérifie si la fleur a déjà été comptée dans ce cycle
-            if (this.style.pointerEvents === 'none') return;
+    sun.addEventListener('click', () => {
+        sunClickCount++;
+        
+        // On réinitialise le compteur si l'utilisateur met trop de temps entre les clics
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => { sunClickCount = 0; }, 2000);
 
-            this.style.opacity = '0.5';
-            this.style.pointerEvents = 'none'; // Désactive temporairement cette fleur
-
-            flowersClickedCount++;
-            
-            if (flowersClickedCount === flowers.length) {
-                startBearSequence();
-            }
-        });
+        if (sunClickCount === 5) {
+            console.log("Secret débloqué ! En route pour Flappy Bee...");
+            window.location.href = 'flappy-bee.html'; // Redirection vers le jeu
+        }
     });
 }
-
-function startBearSequence() {
-    const bear = document.getElementById('bear-container');
-    const bearSvg = bear.querySelector('.bear-svg');
-    const pot = bear.querySelector('.honey-pot-css');
-    const ruche = document.querySelector('.ruche-image');
-    const cave = document.getElementById('cave-entrance');
-    const main = document.querySelector('main');
-    
-    const rucheRect = ruche.getBoundingClientRect();
-    const caveRect = cave.getBoundingClientRect();
-    const mainRect = main.getBoundingClientRect();
-
-    // CALCUL DES POSITIONS CIBLES (Centrage)
-    // Centre de la ruche
-    const targetX_Ruche = (rucheRect.left + rucheRect.width / 2) - mainRect.left - (bear.offsetWidth / 2);
-    const targetY_Ruche = (rucheRect.top + rucheRect.height / 2) - mainRect.top - (bear.offsetHeight / 2);
-
-    // Centre de la grotte (Position de départ et de retour)
-    const targetX_Cave = (caveRect.left + caveRect.width / 2) - mainRect.left - (bear.offsetWidth / 2);
-    const targetY_Cave = (caveRect.top + caveRect.height / 2) - mainRect.top - (bear.offsetHeight / 2);
-
-    // --- SÉQUENCE ---
-    
-    // 1. APPARITION : On le place directement au centre de la grotte
-    bear.style.transition = 'none'; // Pas de glissement pour le placement initial
-    bear.style.transform = `translate(${targetX_Cave}px, ${targetY_Cave}px)`;
-    
-    // On force un petit délai pour que l'opacité s'anime après le placement
-    setTimeout(() => {
-        bear.style.transition = 'opacity 2s ease-in-out';
-        bear.style.opacity = '1';
-    }, 50);
-
-    // 2. MARCHE vers la ruche
-    setTimeout(() => {
-        bear.classList.add('is-walking');
-        bear.style.transition = 'transform 5s linear';
-        bear.style.transform = `translate(${targetX_Ruche}px, ${targetY_Ruche}px)`;
-    }, 2100);
-
-    // 3. ARRIVÉE et POT
-    setTimeout(() => {
-        bear.classList.remove('is-walking');
-        pot.classList.add('show-pot'); // Le pot s'affiche enfin !
-        bearSvg.style.animation = 'bearEat 0.5s ease-in-out infinite alternate';
-    }, 7100);
-
-    // 4. RETOUR vers la grotte
-    setTimeout(() => {
-        bearSvg.style.animation = '';
-        pot.classList.remove('show-pot');
-        bear.style.transform = `translate(${targetX_Ruche}px, ${targetY_Ruche}px) scaleX(-1)`; 
-        
-        setTimeout(() => {
-            bear.classList.add('is-walking');
-            bear.style.transition = 'transform 5s linear';
-            bear.style.transform = `translate(${targetX_Cave}px, ${targetY_Cave}px) scaleX(-1)`;
-        }, 500);
-    }, 11000);
-
-    // 5. DISPARITION
-    setTimeout(() => {
-        bear.classList.remove('is-walking');
-        bear.style.transition = 'opacity 2s ease-in-out';
-        bear.style.opacity = '0';
-    }, 16500);
-    // 6. RÉINITIALISATION pour pouvoir recommencer
-    setTimeout(() => {
-        // Remise à zéro du compteur
-        flowersClickedCount = 0;
-
-        // Réactivation des fleurs
-        const flowers = document.querySelectorAll(flowerSelector);
-        flowers.forEach(flower => {
-            flower.style.opacity = '1';
-            flower.style.pointerEvents = 'auto'; // Elles redeviennent cliquables
-        });
-
-        // Remise à zéro de l'ours (caché et retourné à sa position initiale)
-        bear.style.transition = 'none'; // Pas de transition pour le reset "invisible"
-        bear.style.transform = 'translateX(-150px)';
-        bear.style.opacity = '0';
-        
-        // On retire les classes résiduelles
-        bear.classList.remove('is-walking');
-        
-        console.log("Système réinitialisé, prêt pour un nouvel Easter Egg !");
-    }, 18500);
-
-}
-// N'oublie pas d'appeler setupEasterEgg() au chargement de ta page !
-// document.addEventListener('DOMContentLoaded', setupEasterEgg);
 
 
 
@@ -130,8 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     spawnImageFlowers(10);
     initBees(5);
     initGrass();
-    setupEasterEgg();
+    setupBearEasterEgg();
     setupButterflies();
+    setupSunEasterEgg();
 
     const main = document.querySelector('main');
     const vueInterieure = document.getElementById('interieur-ruche');

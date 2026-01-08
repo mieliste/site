@@ -1,0 +1,59 @@
+body { margin: 0; overflow: hidden; background: #FEAB00; font-family: sans-serif; }
+canvas { display: block; background: #fffbeb; }
+.ui { position: absolute; top: 20px; left: 20px; color: #b45309; font-size: 24px; pointer-events: none; }
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    border: 3px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    z-index: 100;
+    color: #b45309;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #fbbf24;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s;
+    width: 85%;
+    text-align: center;
+}
+
+button:hover { transform: scale(1.1); background: #f59e0b; }
+
+#game-over-screen {
+    /* 1. On rend le fond invisible pour voir le Canvas derrière */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    /* 2. On descend les boutons pour ne pas chevaucher le score */
+    top: 60% !important; 
+    transform: translate(-50%, -50%);
+}
+
+/* On garde le style des boutons car ils sont jolis */
+#game-over-screen button {
+    background: #fbbf24;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.button-group
+{   
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
