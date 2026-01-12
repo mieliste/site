@@ -98,6 +98,20 @@ export function spawnImageFlowers(count) {
     const main = document.querySelector('main');
     if (!main) return;
 
+    // 1. Récupération de TOUS les obstacles (Arbres + Grotte)
+    const trees = document.querySelectorAll('.tree');
+    // On commence par créer un tableau avec les rectangles des arbres
+    let obstacleRects = Array.from(trees).map(tree => tree.getBoundingClientRect());
+
+    // --- NOUVEAU : On ajoute la grotte à la liste des obstacles ---
+    const cave = document.getElementById('cave-entrance');
+    if (cave) {
+        // Si la grotte existe, on ajoute sa zone à éviter
+        obstacleRects.push(cave.getBoundingClientRect());
+    }
+    
+    const mainRect = main.getBoundingClientRect();
+
     const flowerImages = [
         'assets/fleur/image.png',
         'assets/fleur/image1.png',
@@ -105,25 +119,60 @@ export function spawnImageFlowers(count) {
     ];
 
     for (let i = 0; i < count; i++) {
-        const img = document.createElement('img');
-        const randomIndex = Math.floor(flowerRandom() * flowerImages.length);
-        img.src = flowerImages[randomIndex];
-        img.classList.add('scattered-flower');
+        let attempts = 0;
+        let validPosition = false;
+        let finalLeft, finalBottom;
 
-        const bottom = 5 + flowerRandom() * 30; 
-        const left = flowerRandom() * 95; 
-        const scale = 0.4 + flowerRandom() * 0.8; 
-        const delay = flowerRandom() * -5;
+        // 2. Boucle de recherche de position libre
+        while (!validPosition && attempts < 20) { // J'ai augmenté un peu les tentatives car il y a plus d'obstacles
+            const bottomPercent = 5 + flowerRandom() * 30; 
+            const leftPercent = flowerRandom() * 95; 
+            
+            // Conversion en coordonnées pixels relatives pour le test
+            const flowerX = mainRect.left + (mainRect.width * (leftPercent / 100));
+            const flowerY = mainRect.bottom - (mainRect.height * (bottomPercent / 100));
 
-        img.style.bottom = `${bottom}%`;
-        img.style.left = `${left}%`;
-        img.style.setProperty('--rand-scale', scale);
-        img.style.animationDelay = `${delay}s`;
+            // Vérification de collision avec la liste complète des obstacles
+            const collides = obstacleRects.some(rect => {
+                // Marge de sécurité autour des obstacles
+                const margin = 15; 
+                return (
+                    flowerX > rect.left - margin &&
+                    flowerX < rect.right + margin &&
+                    flowerY > rect.top - margin &&
+                    flowerY < rect.bottom + margin
+                );
+            });
 
-        main.appendChild(img);
+            if (!collides) {
+                validPosition = true;
+                finalLeft = leftPercent;
+                finalBottom = bottomPercent;
+            }
+            attempts++;
+        }
+
+        // 3. Création de la fleur si une position a été trouvée
+        if (validPosition) {
+            const img = document.createElement('img');
+            const randomIndex = Math.floor(flowerRandom() * flowerImages.length);
+            img.src = flowerImages[randomIndex];
+            img.classList.add('scattered-flower');
+
+            const scale = 0.4 + flowerRandom() * 0.8; 
+            const delay = flowerRandom() * -5;
+
+            img.style.bottom = `${finalBottom}%`;
+            img.style.left = `${finalLeft}%`;
+            img.style.setProperty('--rand-scale', scale);
+            img.style.animationDelay = `${delay}s`;
+
+            main.appendChild(img);
+        } else {
+            console.warn("Impossible de placer une fleur après 20 tentatives.");
+        }
     }
 }
-
 // Utile pour que les abeilles trouvent les fleurs
 export function getFlowerPositions() {
     const flowerElements = document.querySelectorAll('.scattered-flower');

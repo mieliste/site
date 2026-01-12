@@ -531,18 +531,63 @@
 }
 
 
-
-/* --- La Grotte --- */
 #cave-entrance {
     position: absolute;
-    bottom: 5%;
+    /* Ajustez ces valeurs selon votre image pour qu'elle soit bien posée sur l'herbe */
+    bottom: 25px; 
     left: 2%;
+    
+    /* Définissez la largeur souhaitée, la hauteur s'adaptera automatiquement */
+    width: 220px; 
+    height: auto;
+    
+    /* Z-index important : Doit être derrière l'ours (500) mais devant le fond */
+    z-index: 190; 
+    
+    /* Optionnel : empêche de cliquer sur l'image si elle gêne */
+    pointer-events: none; 
+}
+
+
+/* --- La Grotte --- */
+/* #cave-entrance {
+    position: absolute;
+    bottom: 5%;
+    left: 3%;
     width: 150px;
     height: 100px;
-    background-color: #3E2723;
-    border-radius: 100% 100% 0 0;
-    z-index: 190;
+    background: radial-gradient(circle at 50% 90%, #000000 35%, #333333 75%, #4a4a4a 100%);
+    
+    border-radius: 120px 120px 10px 10px;
+    z-index: 100;
+    box-shadow: inset 0 10px 20px rgba(0,0,0,0.8); 
 }
+
+#cave-entrance::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: -30px;
+    width: 100px;
+    height: 90px;
+    background: #666666; 
+    border-radius: 60% 40% 30% 20%;
+    z-index: -1;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+}
+
+#cave-entrance::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: -40px;
+    width: 120px;
+    height: 100px;
+    background: #555555; 
+    border-radius: 40% 60% 20% 30%;
+    z-index: -1;
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.4);
+} */
 
 #bear-container {
     position: absolute;

@@ -81,7 +81,7 @@ footer{
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     
     
@@ -136,7 +136,7 @@ main
     width: 100%;
     overflow: hidden; 
     background-color: var(--yellow-color);
-    background: no-repeat center url("assets/fondSansNuages.png"); 
+    background: no-repeat center url("assets/fond/fondSansNuages.webp"); 
     position: relative;
     background-color: var(--yellow-color);
     background-size: cover;
@@ -388,20 +388,39 @@ main.ruche-ouverte .ruche-image {
 
 @media (max-width: 1250px) {
     main {
-        background-image: url("assets/fondinter.jpg");
+        background-image: url("assets/fond/fondinter.jpg");
+        
+    }
+    #cave-entrance {
+        width: 170px;
+        height: 110px;
+        bottom: 30px;
+    }
+    #cave-entrance::before { width: 80px; height: 70px; left: -20px; }
+    #cave-entrance::after { width: 100px; height: 80px; right: -30px; }
+    
+    /* On réduit aussi l'ours pour qu'il puisse encore entrer/sortir */
+    #bear-container {
+        width: 80px;
+        height: 100px;
     }
 }
 
 @media (max-width: 1024px) {
     main {
-        background-image: url("assets/tabpor.jpg");
+        background-image: url("assets/fond/tabpor.jpg");
+    }
+
+    #cave-entrance {
+        width: 180px; /* On réduit l'image */
+        bottom: 20px; /* On ajuste légèrement la position verticale */
     }
 }
 
 @media (max-width: 768px) {
   
   main {
-        background-image: url("assets/fondtoup.jpg");
+        background-image: url("assets/fond/fondtoup.jpg");
         /* Sur mobile, on peut ajuster la position si le ciel est trop haut */
         /* background-position: center 80%; */ 
     }
@@ -504,6 +523,7 @@ main.ruche-ouverte .ruche-image {
     
     }
 
+  
     .honey-pot-css {
         width: 25px;
         height: 20px;
@@ -537,14 +557,13 @@ main.ruche-ouverte .ruche-image {
         bottom: 10%; /* Doit correspondre au bottom de la cave */
     }
 
-   #cave-entrance {
-
-        width: 60px;
-        height: 40px;
-        bottom: 10%;
-        left: 2%;
-    
+    #cave-entrance {
+        width: 140px; 
+        bottom: 15px;
+        left: 5%;
     }
+   
+    
 
     .honey-pot-css {
         width: 25px;
@@ -598,7 +617,7 @@ main.ruche-ouverte .ruche-image {
     
     main {
         /* On change l'image pour la version large */
-        background-image: url("assets/fondTelFormatPay.png");
+        background-image: url("assets/fond/fondTelFormatPay.webp");
         background-position: center 70%; /* On remonte un peu l'image pour voir l'école */
     }
 
