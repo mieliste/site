@@ -1,20 +1,11 @@
-
-/* :root {
-    --honey-yellow: #FFD966;
-    --honey-orange: #F67B00;
-} */
-
 :root {
-  /* Couleurs de base */
-  --bg-cream: #FFFDF2;      /* Fond de page ultra clair */
-  --honey-amber: #F2994A;   /* Orange ambré (Header, Boutons) */
-  --honey-gold: #F2C94C;    /* Jaune doré (Accents, Hover) */
-  --dark-brown: #3E2723;    /* Brun café (TEXTE - Très important) */
+  --bg-cream: #FFFDF2;      
+  --honey-amber: #F2994A;   
+  --honey-gold: #F2C94C;    
+  --dark-brown: #3E2723;   
   --white: #FFFFFF;
-  
-  /* On garde tes anciennes variables pour la compatibilité mais avec les nouvelles couleurs */
   --orange-color: #F2994A;
-  --yellow-color: #FFFDF2;  /* Le fond devient crème */
+  --yellow-color: #FFFDF2;  
   --yellow-hover-color: #F2C94C;
 }
 
@@ -27,9 +18,9 @@ body{
 header
 {
   display: grid;
-  grid-template-columns: 2fr 8fr 1fr; /*  nom à gauche, les liens au mileu */
-  align-items: center; /* centre verticalement */
-  text-align: center;  /*centre horizontalement */
+  grid-template-columns: 2fr 8fr 1fr; 
+  align-items: center; 
+  text-align: center;  
   background: linear-gradient(to right,var(--orange-color),var(--yellow-color));
 }
 
@@ -53,7 +44,6 @@ main
     overflow-x: hidden;
 }
 
-/* Titres */
 .allo-title {
     font-family: 'tropiland', sans-serif;
     color: var(--orange-color);
@@ -62,10 +52,9 @@ main
     margin-bottom: 10px;
 }
 
-/* On ajuste le titre pour qu'il ne soit pas caché par le miel */
 .allo-title {
     position: relative;
-    margin-top: 60px; /* Espace pour laisser passer les gouttes */
+    margin-top: 60px; 
     z-index: 5;
 }
 
@@ -76,7 +65,6 @@ main
     margin-bottom: 50px;
 }
 
-/* Grille de Ruche */
 .hive-grid {
     display: flex;
     flex-wrap: wrap;
@@ -87,13 +75,11 @@ main
     margin: 0 auto;
 }
 
-/* La Carte Hexagonale */
 .allo-card {
     width: 270px;
     height: 300px;
     background-color: white;
     position: relative;
-    /* Création de la forme hexagone */
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
     transition: transform 0.3s ease, background-color 0.3s ease;
     display: flex;
@@ -131,72 +117,47 @@ main
     margin: 10px 0;
 }
 
-/* Bouton Goutte de Miel */
-/* .btn-call {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--honey-orange);
-    color: white;
-    text-decoration: none;
-    border-radius: 50% 50% 50% 50% / 10% 10% 80% 80%; 
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-.btn-call:hover {
-    background-color: #d66a00;
-    box-shadow: 0 4px 10px rgba(246, 123, 0, 0.4);
-} */
-
-/* --- Le Miel Coulant du Haut --- */
 .honey-drip-container {
-    position: absolute; /* Ou 'fixed' si vous voulez qu'il reste visible au scroll */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
-    height: auto; /* La hauteur sera déterminée par le SVG */
-    z-index: 10; /* S'assure qu'il est au-dessus du fond mais sous le texte */
-    pointer-events: none; /* Permet de cliquer "à travers" le miel si besoin */
+    height: auto; 
+    z-index: 10; 
+    pointer-events: none;
     overflow: visible;
 }
 
-/* Le style du SVG lui-même */
 .honey-svg {
     display: block;
     width: 100%;
     height: auto;
-    max-height: 200px; /* Ajustez cette valeur pour contrôler la hauteur maximale des gouttes */
-    /* L'attribut preserveAspectRatio="none" dans le HTML est important pour qu'il s'étire */
-
-    /* Animation de coulure visqueuse */
+    max-height: 200px; 
     transform-origin: top; 
     animation: honeyFlowDown 2s ease-in-out infinite alternate;
-    
-    /* Optimisation pour la fluidité */
     will-change: transform;
     z-index: 9;
 }
 
 @keyframes honeyFlowDown {
     0% { transform: scaleY(1); }
-    100% { transform: scaleY(1.2); } /* Le lissage se fera harmonieusement du début à la fin */
+    100% { transform: scaleY(1.2); }
 }
-/* Style de la goutte individuelle */
+
 .honey-drop-falling {
     position: absolute;
-    top: -20px; /* Part un peu au-dessus du bord */
+    top: -20px; 
     width: 15px;
     height: 20px;
     background: linear-gradient(to bottom, #F7C843, #F39C12);
-    border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%; /* Forme de goutte */
+    border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%; 
     z-index: 100;
     pointer-events: none;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    will-change: transform; /* Optimisation GPU */
+    will-change: transform; 
     animation: dropFall 4s linear forwards;
 }
 
-/* Animation de chute libre */
 @keyframes dropFall {
     0% {
         transform: translateY(0) scaleX(1);
@@ -206,12 +167,11 @@ main
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) scaleX(0.8); /* Tombe jusqu'en bas */
+        transform: translateY(100vh) scaleX(0.8); 
         opacity: 0;
     }
 }
 
-/* Responsive : On empile sur mobile */
 @media (max-width: 600px) {
     .allo-card {
         width: 210px;

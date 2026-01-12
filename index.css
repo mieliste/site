@@ -1,28 +1,11 @@
-/*
-Code couleur : 
-Jaune : #FEAB00
-Orange : #F67B00
-
-
-*/
-/* :root{
-  --orange-color: #F67B00;
-  --yellow-color: #FEAB00;
-  --yellow-hover-color:#fecb00;
-} */
-
-
 :root {
-  /* Couleurs de base */
-  --bg-cream: #FFFDF2;      /* Fond de page ultra clair */
-  --honey-amber: #F2994A;   /* Orange ambré (Header, Boutons) */
-  --honey-gold: #F2C94C;    /* Jaune doré (Accents, Hover) */
-  --dark-brown: #3E2723;    /* Brun café (TEXTE - Très important) */
+  --bg-cream: #FFFDF2;      
+  --honey-amber: #F2994A;  
+  --honey-gold: #F2C94C;   
+  --dark-brown: #3E2723;    
   --white: #FFFFFF;
-  
-  /* On garde tes anciennes variables pour la compatibilité mais avec les nouvelles couleurs */
   --orange-color: #F2994A;
-  --yellow-color: #FFFDF2;  /* Le fond devient crème */
+  --yellow-color: #FFFDF2;  
   --yellow-hover-color: #F2C94C;
 }
 
@@ -33,7 +16,6 @@ Orange : #F67B00
     src: url(TropiLand.ttf);
 }
 
-/* Supprime le contour de sélection (focus) sur tous les éléments cliquables */
 svg, 
 .scattered-flower, 
 .ruche-image, 
@@ -55,7 +37,7 @@ button {
     -webkit-user-select: none;
 }
 
-/* Empêche la sélection de texte ou de l'image au clic prolongé */
+
 .scattered-flower, .ruche-image, .bear-svg {
     user-select: none;
     -webkit-user-select: none;
@@ -71,8 +53,8 @@ a{
 
 footer{
     background-color: var(--orange-color);
-    padding: 15px 0; /* Ajoute un peu d'espace en haut et en bas */
-    border-top: 2px solid var(--dark-brown); /* Rappel élégant du style cartoon */
+    padding: 15px 0; 
+    border-top: 2px solid var(--dark-brown); 
    
 }
 
@@ -117,16 +99,16 @@ body{
     height: 100vh;
     width: 100vw;
     grid-template-rows: auto 1fr auto ;
-    margin: 0; /*Pour ne pas avoir de dépassement*/
+    margin: 0; 
 }
 
 
 header
 {
   display: grid;
-  grid-template-columns: 2fr 8fr 1fr; /*  nom à gauche, les liens au mileu */
-  align-items: center; /* centre verticalement */
-  text-align: center;  /*centre horizontalement */
+  grid-template-columns: 2fr 8fr 1fr; 
+  align-items: center; 
+  text-align: center;  
   background: linear-gradient(to right,var(--orange-color),var(--yellow-color));
 }
 
@@ -145,35 +127,28 @@ main
 
 #interieur-ruche {
     position: absolute;
-    /* Centrage parfait au milieu du main */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.9); /* Un peu plus petit au départ pour l'effet d'animation */
-    
-    /* Taille réduite (ajuste selon tes envies) */
+    transform: translate(-50%, -50%) scale(0.9); 
     width: 85%; 
     height: 80%;
-    max-width: 1100px; /* Largeur max pour les grands écrans */
+    max-width: 1100px; 
     max-height: 700px;
-    
-    /* Look & Feel */
     background: url("assets/nidabeille.png") repeat;
-    background-color: rgba(254, 171, 0, 0.75); /* Transparent pour voir le flou */
-    border-radius: 50px; /* Bords arrondis */
-    border: 8px solid var(--orange-color); /* Une bordure pour bien séparer du fond */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); /* Ombre pour donner du relief */
-
+    background-color: rgba(254, 171, 0, 0.75); 
+    border-radius: 50px; 
+    border: 8px solid var(--orange-color);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
     z-index: 200;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
-/* Quand la ruche est ouverte */
 #interieur-ruche.active {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) scale(1); /* Reprend sa taille normale */
+    transform: translate(-50%, -50%) scale(1); 
 }
 
 
@@ -203,7 +178,6 @@ main
   height: auto;
 }
 
-/* Style rapide pour l'abeille */
 .container-abeille {
     position: absolute;
     bottom: 0;
@@ -212,42 +186,31 @@ main
     text-align: center;
 }
 .bulle-dialogue {
-    position: relative; /* Nécessaire pour placer la pointe */
+    position: relative;
     background: white;
     padding: 25px;
-    border-radius: 30px; /* Bords bien arrondis style cartoon */
-    margin-bottom: 30px; /* Espace pour la pointe */
-    
-    /* Trait épais style BD */
+    border-radius: 30px;
+    margin-bottom: 30px; 
     border: 4px solid #222; 
-    
-    /* Ombre portée "plate" pour donner du relief */
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1); 
-    
-    /* Ton texte */
-    font-family: tropiland, sans-serif; /* On utilise ta police Mieliste ! */
+    font-family: tropiland, sans-serif; 
     font-size: 1.2rem;
     color: #333;
     max-width: 300px;
     line-height: 1.4;
 }
 
-/* --- La Pointe de la bulle --- */
 .bulle-dialogue::after {
     content: "";
     position: absolute;
-    bottom: -25px; /* On la descend sous la bulle */
+    bottom: -25px; 
     left: 50%;
     transform: translateX(-50%);
-    
-    /* Création du triangle avec la technique des borders */
     border-width: 25px 20px 0 20px;
     border-style: solid;
     border-color: #222 transparent transparent transparent;
 }
 
-/* On ajoute un deuxième triangle blanc par-dessus le noir 
-   pour créer l'effet de bordure sur la pointe */
 .bulle-dialogue::before {
     content: "";
     position: absolute;
@@ -257,38 +220,27 @@ main
     border-width: 22px 17px 0 17px;
     border-style: solid;
     border-color: white transparent transparent transparent;
-    z-index: 1; /* Passe devant le triangle noir */
+    z-index: 1; 
 }
 
 .background-image {
-    position: absolute; /* Elle flotte */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* On la met tout au fond, derrière le contenu */
-    
-    /* C'est ici que vous choisissez votre "poison" (la méthode d'adaptation) */
-    /* Choisissez UNE seule ligne ci-dessous : */
-    
-    /* OPTION A : Ça remplit tout mais ça déforme (étire/écrase) */
-    /*object-fit: fill;*/ 
-    
-    /* OPTION B : Ça coupe les bords pour garder les proportions (comme background-size: cover) */
+    z-index: 1; 
     object-fit: cover; 
-    
-    /* OPTION C : On voit tout sans déformer, mais il y a des vides (comme background-size: contain) */
-    /*object-fit: contain;*/ 
+
 }
 
-/* Définition de l'animation de surgissement */
 @keyframes pop-bubble {
     0% {
         transform: scale(0);
         opacity: 0;
     }
     70% {
-        transform: scale(1.1); /* Petit dépassement pour l'effet rebond */
+        transform: scale(1.1); 
     }
     100% {
         transform: scale(1);
@@ -296,26 +248,25 @@ main
     }
 }
 
-/* On applique l'animation seulement quand la ruche est active */
 #interieur-ruche.active .bulle-dialogue {
     animation: pop-bubble 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    animation-delay: 0.3s; /* On attend un peu que la ruche s'ouvre d'abord */
-    transform-origin: bottom center; /* L'animation part de la pointe de la bulle */
-    opacity: 0; /* Caché au début de l'anim */
+    animation-delay: 0.3s; 
+    transform-origin: bottom center; 
+    opacity: 0; 
 }
 
 .welcome
 {
   position: absolute;
-  top: 5%;    /* On le place un peu vers le haut pour laisser de la place au sol */
+  top: 5%;   
   left: 50%;
-  transform: translate(-50%, -50%); /* Centrage parfait */
-  width: 90%;  /* Évite que le texte ne touche les bords sur mobile */
+  transform: translate(-50%, -50%); 
+  width: 90%;  
   text-align: center;
-  z-index: 10; /* Toujours au-dessus du décor */
+  z-index: 10;
   color: var(--orange-color);
   font-size: clamp(1rem, 15vw, 5rem);
-  pointer-events: none; /* <--- AJOUTE CECI : le clic passera à travers  temporairej'ai*/ 
+  pointer-events: none; 
   text-shadow: 3px 3px 0px white;
 }
 
@@ -349,13 +300,12 @@ main
   transform: scale(1.05);
 }
 
-/*Menu Burger */
 
 .menu-icon
   {
     display: block;
     z-index: 1;
-    justify-self: center; /*Permet de centrer le burger */
+    justify-self: center; 
     margin: 0;
     width: 80px;
     height: auto;
@@ -399,7 +349,7 @@ main.ruche-ouverte .ruche-image {
     #cave-entrance::before { width: 80px; height: 70px; left: -20px; }
     #cave-entrance::after { width: 100px; height: 80px; right: -30px; }
     
-    /* On réduit aussi l'ours pour qu'il puisse encore entrer/sortir */
+
     #bear-container {
         width: 80px;
         height: 100px;
@@ -412,8 +362,8 @@ main.ruche-ouverte .ruche-image {
     }
 
     #cave-entrance {
-        width: 180px; /* On réduit l'image */
-        bottom: 20px; /* On ajuste légèrement la position verticale */
+        width: 180px; 
+        bottom: 20px; 
     }
 }
 
@@ -421,8 +371,7 @@ main.ruche-ouverte .ruche-image {
   
   main {
         background-image: url("assets/fond/fondtoup.jpg");
-        /* Sur mobile, on peut ajuster la position si le ciel est trop haut */
-        /* background-position: center 80%; */ 
+
     }
 
   header{
@@ -460,29 +409,27 @@ main.ruche-ouverte .ruche-image {
    }
 
    .tree {
-        /* On réduit la taille globale des arbres de 40% sur mobile */
-        
-        --tree-scale: 0.6; /* On change juste l'échelle ici */
+
+        --tree-scale: 0.6; 
     }
     
     .tree.cloud .foliage {
-        /* On descend le feuillage pour qu'il touche le tronc */
+    
         bottom: 35px !important; 
     }
 
-    /* On peut aussi réduire un peu la taille du tronc si besoin */
     .tree.cloud .trunk {
         height: 100px !important;
     }
 
     
     .teardrop .foliage {
-        height: 120px; /* On réduit un peu la hauteur spécifique */
+        height: 120px; 
     }
 
     .tree:hover {
-        --tree-scale: 0.7; /* Zoom de 15% */
-        z-index: 25; /* Passe devant les autres éléments */
+        --tree-scale: 0.7; 
+        z-index: 25; 
     }
 
     #a1 { left: 5%; bottom: 25%; top: auto; }
@@ -492,9 +439,9 @@ main.ruche-ouverte .ruche-image {
 
     .ruche-image
     {
-        left: 75%;    /* On augmente le right pour la décaler à gauche de l'arbre */
+        left: 75%;    
         bottom: 20%;
-        width: 100px;  /* Taille ajustée pour l'arbre cloud */
+        width: 100px;  
         height: auto;
     }
    .scattered-flower
@@ -503,15 +450,12 @@ main.ruche-ouverte .ruche-image {
    }
 
    #bear-container {
-        /* On réduit la taille du conteneur pour correspondre à la nouvelle échelle */
-        width: 50px;  /* 50% de 100px */
-        height: 60px; /* 50% de 120px */
-        
-        /* On centre tout le contenu à l'intérieur */
+        width: 50px;  
+        height: 60px; 
         display: flex;
         justify-content: center;
         align-items: center;
-        bottom: 10%; /* Doit correspondre au bottom de la cave */
+        bottom: 10%; 
     }
 
    #cave-entrance {
@@ -545,16 +489,13 @@ main.ruche-ouverte .ruche-image {
     
 
    
-    #bear-container {
-        /* On réduit la taille du conteneur pour correspondre à la nouvelle échelle */
-        width: 50px;  /* 50% de 100px */
-        height: 60px; /* 50% de 120px */
-        
-        /* On centre tout le contenu à l'intérieur */
+    #bear-container {    
+        width: 50px;  
+        height: 60px; 
         display: flex;
         justify-content: center;
         align-items: center;
-        bottom: 10%; /* Doit correspondre au bottom de la cave */
+        bottom: 10%;
     }
 
     #cave-entrance {
@@ -574,7 +515,7 @@ main.ruche-ouverte .ruche-image {
     }
 
     .ruche-image {
-        width: 50px; /* On réduit la ruche car l'écran est peu haut */
+        width: 50px; 
         top: 45%;
         left: 75%;
     }
@@ -586,23 +527,20 @@ main.ruche-ouverte .ruche-image {
 
    .sun-container {
     position: absolute;
-    top: 30px;    /* Position dans le ciel */
-    right: 30px;  /* Coin supérieur droit */
-    width: 70px; /* Taille globale */
+    top: 30px;    
+    right: 30px;  
+    width: 70px; 
     height: 70px;
     
 }
-
-
 }
 
-/* --- Version Mobile PAYSAGE (Orientation Landscape) --- */
 @media (max-height: 500px) and (orientation: landscape) {
 
 
     footer {
         padding: 5px 0; 
-        border-top: 1px solid var(--dark-brown); /* Un trait plus fin pour gagner 1px */
+        border-top: 1px solid var(--dark-brown); 
     }
 
     .containerLogoFoot {
@@ -616,23 +554,21 @@ main.ruche-ouverte .ruche-image {
     }
     
     main {
-        /* On change l'image pour la version large */
         background-image: url("assets/fond/fondTelFormatPay.webp");
-        background-position: center 70%; /* On remonte un peu l'image pour voir l'école */
+        background-position: center 70%; 
     }
 
     .welcome {
-        top: 15%; /* On remonte le texte pour ne pas cacher l'école */
-        font-size: clamp(1rem, 8vh, 3rem); /* On réduit la taille pour le format court */
+        top: 15%; 
+        font-size: clamp(1rem, 8vh, 3rem); 
     }
 
     .ruche-image {
-        width: 150px; /* On réduit la ruche car l'écran est peu haut */
+        width: 150px; 
         bottom: 10%;
         right: 5%;
     }
 
-    /* On ajuste les arbres pour qu'ils ne sortent pas de l'écran */
     .tree {
         transform: scale(0.4) !important; 
     }
@@ -647,28 +583,26 @@ main.ruche-ouverte .ruche-image {
     }
 
     .container-abeille {
-        display: flex; /* On passe en mode ligne */
+        display: flex; 
         flex-direction: row; 
-        align-items: center; /* Aligne verticalement la bulle et l'abeille */
-        bottom: 5%; /* On remonte un peu le tout */
+        align-items: center; 
+        bottom: 5%; 
         width: auto;
-        gap: 20px; /* Espace entre la bulle et l'abeille */
+        gap: 20px; 
     }
 
     .bulle-dialogue {
-        margin-bottom: 0; /* On retire la marge du bas */
-        max-width: 220px; /* On réduit un peu la largeur pour gagner de la place */
-        font-size: 0.9rem; /* Texte un peu plus petit */
+        margin-bottom: 0; 
+        max-width: 220px; 
+        font-size: 0.9rem; 
         padding: 15px;
     }
 
-    /* --- On déplace la pointe de la bulle vers la DROITE --- */
     .bulle-dialogue::after {
-        bottom: 50%; /* Centré verticalement */
+        bottom: 50%; 
         left: auto;
-        right: -24px; /* Sort de la bulle à droite */
+        right: -24px; 
         transform: translateY(50%);
-        /* On change les bordures pour pointer vers la droite */
         border-width: 15px 0 15px 25px;
         border-color: transparent transparent transparent #222;
     }
@@ -678,13 +612,11 @@ main.ruche-ouverte .ruche-image {
         left: auto;
         right: -17px;
         transform: translateY(50%);
-        /* Pointe blanche pour l'effet bordure */
         border-width: 12px 0 12px 22px;
         border-color: transparent transparent transparent white;
         z-index: 1;
     }
 
-    /* On s'assure que l'animation part du bon endroit (le côté) */
     #interieur-ruche.active .bulle-dialogue {
         transform-origin: center right; 
     }

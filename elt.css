@@ -1,16 +1,16 @@
 .grass-field {
   position: absolute;
-  bottom: 0;       /* Collé au bas du main */
+  bottom: 0;       
   left: 0;
-  width: 100%;      /* Toute la largeur */
-  height: 80px;     /* Espace réservé pour l'herbe */
+  width: 100%;     
+  height: 80px;   
   z-index: 15;
-  pointer-events: none; /* Ne bloque pas le clic sur la ruche */
+  pointer-events: none; 
 }
 
 .grass {
   position: absolute;
-  bottom: 0;        /* Toutes partent du sol */
+  bottom: 0;        
   width: 5px;
   background: #183a04;
   border-radius: 50% 50% 0 0;
@@ -29,7 +29,6 @@
   100% { transform: rotate(2deg) translateX(2px); }
 }
 
-/* --- Styles Communs aux Arbres --- */
 .tree {
     position: absolute;
     display: flex;
@@ -39,14 +38,14 @@
     animation: swayTree 4s ease-in-out infinite alternate;
     z-index: 5;
     pointer-events: auto;
-    --tree-scale: 1; /* Échelle par défaut */
+    --tree-scale: 1; 
     transform: scale(var(--tree-scale));
     animation: swayTree 4s ease-in-out infinite alternate
 }
 
 .tree:hover {
-    --tree-scale: 1.1; /* Zoom de 15% */
-    z-index: 25; /* Passe devant les autres éléments */
+    --tree-scale: 1.1; 
+    z-index: 25; 
 }
 
 .tree .foliage::after {
@@ -58,99 +57,81 @@
     height: 10%;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    filter: blur(5px); /* Adoucit énormément le reflet */
+    filter: blur(5px); 
 }
 
 .trunk {
     width: 14px;
     height: 35px;
-    background: #5D4037; /* Marron tronc */
+    background: #5D4037; 
     border-radius: 2px;
-    margin-top: -5px; /* Pour masquer la jonction */
+    margin-top: -5px;
 }
 
 
 .teardrop .foliage {
     width: 70px;
     height: 180px;
-    /* Effet bicolore net : clair à gauche, sombre à droite */
     background: linear-gradient(110deg, #91bd5e 20%, #76a347 60%);
-    /* Forme de goutte : très pointu en haut, arrondi en bas */
     border-radius: 50% 50% 50% 50% / 100% 100% 30% 30%;
 }
 
-/* --- Style 2 : Arbre Nuage --- */
-/* --- Configuration de l'arbre "Nuage" --- */
 .tree.cloud {
-    position: absolute; /* Positionnement sur la scène */
-    bottom: 10%;        /* Un peu plus haut pour l'exemple */
-    right: 15%;         /* Position à droite */
-    width: 180px;       /* Largeur totale augmentée pour plus de volume */
-    height: 220px;      /* Hauteur totale augmentée */
-    display: block;     /* On s'assure que ce n'est pas un flex */
+    position: absolute; 
+    bottom: 10%;      
+    right: 15%;         
+    width: 180px;     
+    height: 220px;      
+    display: block;    
     z-index: 5;
 }
 
-/* Le Tronc : Centré et en bas */
 .tree.cloud .trunk {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%); /* Centrage horizontal parfait */
-    width: 20px;        /* Un peu plus large */
-    height: 70px;       /* Plus haut pour soutenir le gros feuillage */
-    background: #5D4037; /* Couleur marron unie */
+    transform: translateX(-50%); 
+    width: 20px;       
+    height: 70px;       
+    background: #5D4037; 
     border-radius: 3px;
-    z-index: 1;         /* Derrière le feuillage */
+    z-index: 1;         
 }
 
-/* Le Feuillage Principal (Conteneur) */
 .tree.cloud .foliage {
     position: absolute;
-    bottom: 55px;       /* Posé sur le haut du tronc */
+    bottom: 55px;       
     left: 50%;
-    transform: translateX(-50%); /* Centré horizontalement */
-    width: 140px;       /* Corps principal plus large */
-    height: 120px;      /* Corps principal plus haut */
-    /* Dégradé subtil pour le volume, style "plat" */
+    transform: translateX(-50%); 
+    width: 140px;       
+    height: 120px;     
     background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
-    /* Forme de base irrégulière */
     border-radius: 60% 70% 50% 60% / 60% 60% 50% 50%;
-    z-index: 3;         /* Devant le tronc */
-    /* Animation de balancement doux */
+    z-index: 3;         
     animation: swayTree 4s ease-in-out infinite alternate;
 }
 
-/* --- Les "Boursouflures" (Pseudo-éléments) --- */
-/* Styles communs pour les boursouflures */
 .tree.cloud .foliage::before,
 .tree.cloud .foliage::after {
     content: '';
     position: absolute;
-    background: inherit; /* Hérite du dégradé du parent */
-    border-radius: 50%;  /* Formes rondes */
+    background: inherit; 
+    border-radius: 50%; 
 }
 
-/* Grosse boursouflure en haut à gauche */
 .tree.cloud .foliage::before {
     width: 100px;
     height: 100px;
-    top: -40px; /* Plus haut */
-    left: -30px; /* Plus à gauche */
+    top: -40px; 
+    left: -30px; 
 }
 
-/* Grosse boursouflure en haut à droite */
 .tree.cloud .foliage::after {
     width: 90px;
     height: 90px;
-    top: -25px; /* Plus haut */
-    right: -35px; /* Plus à droite */
+    top: -25px;
+    right: -35px; 
 }
-
-
-
-/* --- Pour ajouter encore PLUS de boursouflures (Optionnel) --- */
-/* On peut utiliser un élément enfant supplémentaire pour une 3ème boursouflure */
 
 .tree.cloud .foliage .extra-puff {
     position: absolute;
@@ -174,8 +155,6 @@
     z-index: -1; 
 }
 
-
-/* --- Les Branches Internes (Le "V") --- */
 .tree.cloud .inner-branch {
     position: absolute;
     bottom: 0px;
@@ -184,13 +163,11 @@
     height: 50px;
     background-color: #5D4037;
     transform-origin: bottom center;
-    transform: translateX(-50%) rotate(-18deg); /* Branche gauche */
+    transform: translateX(-50%) rotate(-18deg); 
     border-radius: 3px;
-    /* opacity: 0.8; */
-    z-index: 4; /* Devant le feuillage de base */
+    z-index: 4; 
 }
 
-/* Deuxième branche du V */
 .tree.cloud .inner-branch::after {
     content: '';
     position: absolute;
@@ -200,11 +177,10 @@
     height: 45px;
     background-color: inherit;
     transform-origin: bottom center;
-    transform: rotate(36deg); /* Branche droite */
+    transform: rotate(36deg); 
     border-radius: 3px;
 }
 
-/* --- Animation du balancement (à mettre dans ton CSS principal si pas déjà fait) --- */
 @keyframes swayTree {
     0% { transform: translateX(-50%) rotate(-2deg) scale(var(--tree-scale)); }
     100% { transform: translateX(-50%) rotate(2deg) scale(var(--tree-scale)); }
@@ -216,33 +192,27 @@
 #a3 { left: 25%; bottom: 15%; }
 #a4 { right: 7%; bottom: 30%;}
 
-
-/* --- Nuages SVG animés --- */
 .cloud-svg {
     position: absolute;
-    left: -150px; /* Point de départ fixe à gauche */
+    left: -150px; 
     width: 120px;
     z-index: 3;
     pointer-events: auto;
     will-change: transform;
     top: var(--rand-top);
-    /* Utilise forwards pour éviter qu'ils ne reviennent au début après l'anim */
     animation: moveCloud var(--rand-duration) linear forwards;
     --hover-scale-cloud: 1;
-    /* Transition douce pour le zoom */
-    transition: --hover-scale-cloud 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet un peu "bondissant" */
+    transition: --hover-scale-cloud 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
-/* Au SURVOL, on change la variable */
 .cloud-svg:hover {
-    --hover-scale-cloud: 1.25; /* Grossit de 25% */
-    z-index: 10; /* Passe devant les autres éléments */
-    filter: brightness(1.1); /* Devient légèrement plus lumineux */
+    --hover-scale-cloud: 1.25; 
+    z-index: 10; 
+    filter: brightness(1.1); 
 }
 
 @keyframes moveCloud {
     from {
-        /* On multiplie l'échelle de base par l'échelle de survol */
         transform: translateX(0) scale(calc(var(--base-scale, 1) * var(--hover-scale-cloud)));
     }
     to {
@@ -255,92 +225,75 @@
     width: 3px;
     height: 12px;
     background: linear-gradient(to bottom, rgba(164, 212, 255, 0.6), rgb(19, 135, 244));
-    border-radius: 50%; /* Bout arrondi */
+    border-radius: 50%; 
     pointer-events: none;
-    z-index: 9; /* Devant le décor, derrière les abeilles */
+    z-index: 9; 
     opacity: 0.8;
-    /* Animation de chute rapide */
     animation: rainFall var(--rain-duration, 0.8s) linear forwards;
 }
 
 @keyframes rainFall {
     to {
-        /* Tombe de 400px environ */
         transform: translateY(400px) scaleY(1.2); 
-        opacity: 0; /* Disparaît en bas */
+        opacity: 0; 
     }
 }
 
 .ruche-image
 {
     position: absolute;
-    /* On se base sur les coordonnées de #a4 (right: 7%, bottom: 30%) */
-    right: 9%;    /* On augmente le right pour la décaler à gauche de l'arbre */
-    bottom: 30%;   /* Légèrement plus bas que la base de l'arbre pour le relief */
-
-    width: 200px;  /* Taille ajustée pour l'arbre cloud */
+    right: 9%;    
+    bottom: 30%;   
+    width: 200px;  
     height: auto;
-    z-index: 6;    /* Un cran au-dessus de l'arbre (z-index: 5) pour être devant */
-
+    z-index: 6;    
     cursor: pointer;
     transition: transform 0.3s ease
 }
 
 .ruche-image:hover {
-    transform: scale(1.1) rotate(-5deg); /* Petit effet d'oscillation au survol */
+    transform: scale(1.1) rotate(-5deg); 
 }
 
-
-/* --- Le Soleil Scintillant --- */
 
 .sun-container {
     position: absolute;
-    top: 30px;    /* Position dans le ciel */
-    right: 30px;  /* Coin supérieur droit */
-    width: 140px; /* Taille globale */
+    top: 30px;  
+    right: 30px;  
+    width: 140px; 
     height: 140px;
-    z-index: 2;   /* Derrière les nuages (3) et les arbres (5) */
-    
-    /* Lueur dorée globale autour du soleil */
+    z-index: 2; 
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
-    
-    /* Optimisation des animations */
     will-change: transform;
-    /* Petite animation de flottement global */
     animation: sunFloat 8s ease-in-out infinite alternate;
 }
 
-/* Style des rayons */
+
 .sun-rays line {
-    stroke: #FFC107; /* Couleur or/ambre */
+    stroke: #FFC107; 
     stroke-width: 6;
-    stroke-linecap: round; /* Bouts arrondis pour un look doux */
+    stroke-linecap: round; 
 }
 
-/* Le cœur du soleil */
 .sun-core {
-    /* Animation de pulsation (taille et luminosité) */
     animation: sunPulse 4s ease-in-out infinite alternate;
     transform-origin: center;
 }
 
-/* Animation de rotation pour les rayons */
 .rays-slow {
     animation: spin 25s linear infinite;
     transform-origin: center;
 }
 
 .rays-fast line {
-    stroke: #FFD700; /* Un jaune un peu plus clair */
-    stroke-width: 4; /* Rayons plus fins */
+    stroke: #FFD700; 
+    stroke-width: 4; 
 }
 .rays-fast {
-    /* Tourne plus vite en sens inverse */
     animation: spin 12s linear infinite reverse;
     transform-origin: center;
 }
 
-/* --- Définition des Animations Clés --- */
 
 @keyframes spin {
     100% { transform: rotate(360deg); }
@@ -352,8 +305,8 @@
         filter: brightness(1);
     }
     100% { 
-        transform: scale(1.1); /* Grossit légèrement */
-        filter: brightness(1.15); /* Devient plus lumineux */
+        transform: scale(1.1); 
+        filter: brightness(1.15); 
     }
 }
 
@@ -362,31 +315,23 @@
     100% { transform: translateY(-10px); }
 }
 
-
-/* --- Fleurs images semées aléatoirement --- */
 .scattered-flower {
     position: absolute;
     width: 60px;
     height: auto;
     z-index: 100;
     transform-origin: bottom center;
-    /* INDISPENSABLE : doit être cliquable */
     pointer-events: auto !important; 
     cursor: pointer;
-    /* On définit une variable pour l'échelle de base et une pour le multiplicateur de survol */
     --hover-scale: 1; 
-    
-    /* L'animation utilise maintenant les deux variables multipliées */
     animation: imageFlowerSway 3s ease-in-out infinite alternate;
-    
-    /* Transition douce pour le zoom */
     transition: --hover-scale 0.3s ease;
 }
 
 .scattered-flower:hover
 {
    --hover-scale: 1.2;
-    z-index: 10; /* Pour passer devant les autres fleurs au survol */
+    z-index: 10; 
 }
 
 
@@ -410,7 +355,6 @@
     animation: shakeFlower 0.3s ease-in-out !important;
 }
 
-/* L'animation de secousse (plus nerveuse pour les fleurs) */
 @keyframes shakeFlower {
     0% { transform: rotate(0deg) scale(var(--rand-scale, 1)); }
     25% { transform: rotate(-12deg) scale(var(--rand-scale, 1)); }
@@ -419,10 +363,9 @@
 }
 
 
-/* Animation de balancement qui prend en compte l'échelle aléatoire */
+
 @keyframes imageFlowerSway {
     0% { 
-        /* On combine l'échelle aléatoire du JS et l'échelle de survol */
         transform: rotate(-8deg) scale(calc(var(--rand-scale) * var(--hover-scale))); 
     }
     100% { 
@@ -430,52 +373,35 @@
     }
 }
 
-/* --- Style des feuilles qui tombent --- */
 .falling-leaf {
     position: absolute;
-    /* Position de départ verticale (un peu en dessous du haut du feuillage) */
     top: 20%;
-    /* Taille de la petite feuille */
     width: 8px;
     height: 12px;
-    /* Couleur verte (similaire aux arbres) */
     background: #76a347;
-    /* Forme de feuille simple grâce aux coins arrondis */
     border-radius: 5% 70% 5% 70%;
-    /* Important : le curseur doit passer à travers, sinon ça bloque le ré-survol de l'arbre */
     pointer-events: none;
-    z-index: 6; /* Devant les arbres */
-    opacity: 0; /* Invisible au départ */
+    z-index: 6; 
+    opacity: 0; 
 
-    /* L'animation utilise la variable de durée définie en JS */
+   
     animation: fallingLeafAnim var(--fall-duration, 3s) ease-out forwards;
 }
 
-/* Optionnel : Varier un peu les couleurs des feuilles */
 .falling-leaf:nth-child(odd) {
-    background: #91bd5e; /* Un vert un peu plus clair */
+    background: #91bd5e;
 }
 
-/* --- Animation de la chute --- */
 @keyframes fallingLeafAnim {
     0% {
         opacity: 1;
-        /* Position initiale, pas de rotation */
         transform: translate(0, 0) rotate(0deg);
     }
     100% {
-        opacity: 0; /* Disparaît en fondu à la fin */
-        /*
-           C'est ici que la magie opère :
-           - On déplace verticalement de la distance var(--fall-distance)
-           - On déplace horizontalement de la dérive var(--fall-drift-x)
-           - On tourne de var(--fall-rotation)
-        */
+        opacity: 0; 
         transform: translate(var(--fall-drift-x, 20px), var(--fall-distance, 200px)) rotate(var(--fall-rotation, 360deg));
     }
 }
-
-/* --- Animation de secousse --- */
 @keyframes shakeTree {
     0% { transform: translateX(-50%) rotate(0deg) scale(var(--tree-scale)); }
     20% { transform: translateX(-50%) rotate(-4deg) scale(var(--tree-scale)); }
@@ -485,13 +411,10 @@
     100% { transform: translateX(-50%) rotate(0deg) scale(var(--tree-scale)); }
 }
 
-/* Cette classe sera ajoutée par le JavaScript */
 .tree.is-shaking {
-    /* On utilise !important pour surcharger l'animation de balancement doux par défaut */
     animation: shakeTree 0.4s ease-in-out !important;
 }
 
-/* --- Animation de secousse pour la fleur --- */
 @keyframes shakeFlower {
     0% { transform: rotate(0deg) scale(var(--rand-scale)); }
     25% { transform: rotate(-15deg) scale(var(--rand-scale)); }
@@ -500,19 +423,17 @@
 }
 
 .scattered-flower.is-shaking-flower {
-    /* On garde la variable --rand-scale du JS pour ne pas changer la taille de la fleur */
     animation: shakeFlower 0.3s ease-in-out !important;
 }
 
-/* --- Style des pétales qui tombent --- */
 .falling-petal {
     position: absolute;
-    top: 50%; /* Part du cœur de la fleur */
+    top: 50%; 
     left: 50%;
     width: 6px;
     height: 8px;
-    background: #ffeb3b; /* Jaune par défaut */
-    border-radius: 50% 0 50% 0; /* Forme de pétale */
+    background: #ffeb3b; 
+    border-radius: 50% 0 50% 0; 
     pointer-events: none;
     z-index: 10;
     opacity: 0;
@@ -533,167 +454,100 @@
 
 #cave-entrance {
     position: absolute;
-    /* Ajustez ces valeurs selon votre image pour qu'elle soit bien posée sur l'herbe */
     bottom: 25px; 
     left: 2%;
-    
-    /* Définissez la largeur souhaitée, la hauteur s'adaptera automatiquement */
     width: 220px; 
     height: auto;
-    
-    /* Z-index important : Doit être derrière l'ours (500) mais devant le fond */
     z-index: 190; 
-    
-    /* Optionnel : empêche de cliquer sur l'image si elle gêne */
     pointer-events: none; 
 }
 
-
-/* --- La Grotte --- */
-/* #cave-entrance {
-    position: absolute;
-    bottom: 5%;
-    left: 3%;
-    width: 150px;
-    height: 100px;
-    background: radial-gradient(circle at 50% 90%, #000000 35%, #333333 75%, #4a4a4a 100%);
-    
-    border-radius: 120px 120px 10px 10px;
-    z-index: 100;
-    box-shadow: inset 0 10px 20px rgba(0,0,0,0.8); 
-}
-
-#cave-entrance::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: -30px;
-    width: 100px;
-    height: 90px;
-    background: #666666; 
-    border-radius: 60% 40% 30% 20%;
-    z-index: -1;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
-}
-
-#cave-entrance::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    right: -40px;
-    width: 120px;
-    height: 100px;
-    background: #555555; 
-    border-radius: 40% 60% 20% 30%;
-    z-index: -1;
-    box-shadow: -5px 5px 15px rgba(0,0,0,0.4);
-} */
-
 #bear-container {
     position: absolute;
-    /* On le place à 0,0 par défaut pour que le JS gère tout le placement */
     top: 0;
     left: 0;
     width: 100px;
     height: 120px;
     z-index: 500;
     opacity: 0; 
-    /* SUPPRIMEZ le translateX d'ici, le JS va s'en charger */
     transition: opacity 2s ease-in-out;
     will-change: transform, opacity;
     pointer-events: none;
 }
-/* --- L'Ours (Le dessin SVG) --- */
+
 .bear-svg {
     width: 100%;
-    height: 100%;
-    /* Par défaut, il est statique */
+    height: 100%; 
 }
 
-/* L'animation de dandinement (Waddle) */
 @keyframes bearWaddle {
     0%, 100% { transform: rotate(-8deg) translateY(0); }
     50% { transform: rotate(8deg) translateY(-10px); }
 }
 
-/* L'animation de "Miam Miam" (quand il mange) */
 @keyframes bearEat {
     0%, 100% { transform: scale(1) translateY(0); }
     50% { transform: scale(1.1) translateY(5px); }
 }
 
-
-/* --- États de l'Ours (Pilotés par JS) --- */
-
-/* État 1 : Il sort de la grotte */
 #bear-container.is-appearing {
     opacity: 1;
     transform: translateX(20px) scale(1);
 }
 
-/* État 2 : Il marche (on active le dandinement sur le SVG) */
 #bear-container.is-walking .bear-svg {
     animation: bearWaddle 0.6s ease-in-out infinite;
 }
 
-/* État 3 : Il retourne à la grotte (Miroir horizontal) */
 #bear-container.is-returning {
-    /* Le scaleX(-1) retourne l'ours pour qu'il regarde à gauche */
     transform: translateX(20px) scaleX(-1) !important; 
 }
 
 
-/* --- Le Pot de Miel CSS --- */
-/* --- FIX DU POT DE MIEL --- */
 .honey-pot-css {
     position: absolute;
-    bottom: 40%; /* Positionné au niveau du ventre */
+    bottom: 40%; 
     left: 50%;
     width: 50px;
     height: 40px;
     background: #F7C843;
     border-radius: 5px 5px 15px 15px;
     border: 3px solid #F39C12;
-    z-index: 501; /* Doit être au-dessus de l'ours */
+    z-index: 501; 
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
     color: #3E2723;
-    opacity: 0; /* Caché par défaut */
+    opacity: 0; 
     transform: translate(-50%, 0) scale(0);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .honey-pot-css.show-pot {
-    opacity: 1; /* Rendre visible */
+    opacity: 1; 
     transform: translate(-50%, 0) scale(1);
 }
 
 
-/* --- Style Général des Papillons --- */
 .butterfly {
     position: absolute;
-    width: 50px; /* Taille de base */
+    width: 50px; 
     height: auto;
-    z-index: 12; /* Devant les arbres et les fleurs, derrière la ruche ouverte */
-    pointer-events: none; /* On ne peut pas cliquer dessus, comme les abeilles */
-    will-change: transform; /* Optimisation des performances */
+    z-index: 12; 
+    pointer-events: none; 
+    will-change: transform; 
 }
 
-/* Le conteneur interne qui gère le battement d'ailes */
 .butterfly-body {
     transform-origin: center center;
-    /* Animation de flottement rapide et continu */
     animation: butterflyFlutter 0.4s ease-in-out infinite alternate;
 }
 
-/* --- Animation 1 : Le flottement (Battement d'ailes nerveux) --- */
 @keyframes butterflyFlutter {
     0% {
         transform: scaleX(1) translateY(0) rotate(0deg);
     }
     50% {
-        /* Il s'écrase un peu, monte et pivote légèrement */
         transform: scaleX(0.8) translateY(-5px) rotate(5deg); 
     }
     100% {
@@ -703,19 +557,17 @@
 
 .butterfly {
     position: absolute;
-    /* TRÈS IMPORTANT : Doit être à 0,0 pour que le JS gère tout */
     top: 0;
     left: 0;
     width: 45px;
     height: auto;
     z-index: 12;
     pointer-events: none;
-    /* On utilise une transition très courte pour lisser le jitter */
     transition: transform 0.1s linear; 
     will-change: transform;
 }
 
-/* On garde ton animation de battement d'ailes */
+
 .butterfly-body {
     transform-origin: center center;
     animation: butterflyFlutter 0.3s ease-in-out infinite alternate;
@@ -723,5 +575,5 @@
 
 @keyframes butterflyFlutter {
     0% { transform: scaleX(1) translateY(0); }
-    100% { transform: scaleX(0.5) translateY(-3px); } /* Battement plus marqué */
+    100% { transform: scaleX(0.5) translateY(-3px); }
 }

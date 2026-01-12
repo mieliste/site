@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!canvas || !heroBeeSVG) return;
 
-    // --- Configuration & Variables ---
+
     const COMIC_INSULTS = ["$@%#!", "ZUT!", "OUCH!", "NOM D'UN...!", "GRRR!", "BOUM!"];
     let gameActive = false;
     let gameStarted = false;
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastPipeHeight = window.innerHeight / 2;
     let obstacles = [];
 
-    // Paramètres physiques de l'abeille
+
     let bee = { 
         x: 100, 
         y: window.innerHeight / 2, 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         angle: 0
     };
 
-    // --- Gestion Responsive du Canvas ---
+ 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -39,13 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // --- Cycle de Vie du Jeu ---
+  
     function startGame() {
         if (gameActive) return;
         gameStarted = true;
         gameActive = true;
         
-        // Reset visuel et données
+
         heroBeeSVG.style.display = 'block';
         beeBodyHero.setAttribute('fill', '#FFD966'); 
         startScreen.style.display = 'none';
@@ -66,12 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
         lastPipeHeight = canvas.height / 2;
     }
 
-    // Gestion de la collision "colère" avant Game Over
     function triggerAngryState() {
         if (!gameActive) return;
         gameActive = false;
 
-        // Effets visuels de l'accueil
+
         beeBodyHero.setAttribute('fill', '#ff4444'); 
         
         const bubble = document.createElement('div');
@@ -81,14 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
         bubble.style.top = `${bee.y - 30}px`;
         document.getElementById('game-container').appendChild(bubble);
 
-        // Délai pour laisser voir l'insulte avant l'écran final
+
         setTimeout(() => {
             bubble.remove();
             endScreen.style.display = 'block';
         }, 1000);
     }
 
-    // --- Logique du Moteur de Jeu ---
     function createObstacle() {
         const gap = 180; 
         const minHeight = 80;
@@ -109,11 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bee.velocity += bee.gravity;
         bee.y += bee.velocity;
 
-        // Rotation de l'abeille selon la vitesse
         bee.angle = Math.min(Math.PI / 4, Math.max(-Math.PI / 4, bee.velocity * 0.1));
         heroBeeSVG.style.transform = `translate(${bee.x}px, ${bee.y}px) rotate(${bee.angle * 57.29}deg)`;
-
-        // Particules de traînée (style accueil)
         if (frame % 6 === 0) createTrailParticle(bee.x, bee.y + 20);
 
         if (frame % 100 === 0) createObstacle();
@@ -121,13 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
         obstacles.forEach((obs, index) => {
             obs.x -= 3;
 
-            // Détection de collision
             if (bee.x < obs.x + obs.w && bee.x + bee.w > obs.x &&
                 bee.y < obs.y + obs.h && bee.y + bee.h > obs.y) {
                 triggerAngryState();
             }
 
-            // Calcul du score
             if (!obs.scored && obs.x + obs.w < bee.x) {
                 if (index % 2 === 0) {
                     score++;
@@ -137,18 +130,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Nettoyage obstacles hors écran
         obstacles = obstacles.filter(obs => obs.x + obs.w > 0);
 
         if (bee.y + bee.h > canvas.height || bee.y < 0) triggerAngryState();
         frame++;
     }
 
-    // --- Rendu Graphique ---
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Dessin des Obstacles (Troncs)
+
         ctx.fillStyle = '#5D4037';
         obstacles.forEach(obs => {
             ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
@@ -168,12 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.textAlign = "center";
         ctx.shadowBlur = 0; 
 
-        // Titre Game Over
+
         ctx.font = "bold 60px Quicksand, Arial";
         ctx.fillStyle = "#fbbf24";
         ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 80);
 
-        // Score Inviolable (dessiné sur canvas)
         ctx.font = "bold 24px Quicksand, Arial";
         ctx.fillStyle = "#fffbeb";
         ctx.fillText("SCORE :", canvas.width / 2 - 20, canvas.height / 2);
@@ -191,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => p.remove(), 800);
     }
 
-    // --- Contrôles ---
     const jumpAction = (e) => {
         if (gameActive) {
             bee.velocity = bee.jump;
@@ -202,8 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('keydown', (e) => { if (e.code === 'Space') jumpAction(e); });
     window.addEventListener('mousedown', jumpAction);
     window.addEventListener('touchstart', jumpAction, { passive: false });
-
-    // Boutons Interface
     document.getElementById('start-button').addEventListener('click', startGame);
     document.getElementById('restart-button').addEventListener('click', startGame);
     document.getElementById('exit-button').addEventListener('click', () => {

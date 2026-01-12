@@ -35,18 +35,16 @@ button {
 button:hover { transform: scale(1.1); background: #f59e0b; }
 
 #game-over-screen {
-    /* 1. On rend le fond invisible pour voir le Canvas derrière */
+
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
-
-    /* 2. On descend les boutons pour ne pas chevaucher le score */
     top: 60% !important; 
     transform: translate(-50%, -50%);
 }
 
-/* On garde le style des boutons car ils sont jolis */
+
 #game-over-screen button {
     background: #fbbf24;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -60,7 +58,7 @@ button:hover { transform: scale(1.1); background: #f59e0b; }
 
 @media (max-width: 600px) {
     .overlay {
-        width: 85%; /* Plus large sur mobile */
+        width: 85%; 
         padding: 20px;
         border-radius: 20px;
     }
@@ -70,23 +68,22 @@ button:hover { transform: scale(1.1); background: #f59e0b; }
     }
 
     .button-group {
-        /* On empile les boutons au lieu de les mettre côte à côte */
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     button {
-        width: 100%; /* Boutons pleine largeur */
+        width: 100%; 
         margin: 5px 0;
         font-size: 1rem;
     }
 
     #game-over-screen {
-        top: 65% !important; /* Ajustement pour ne pas cacher le score */
+        top: 65% !important; 
     }
     
     .ui {
-        font-size: 18px; /* Score en haut à gauche plus petit */
+        font-size: 18px;
     }
 }

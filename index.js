@@ -3,9 +3,7 @@ import { startCloudSystem, spawnImageFlowers, initGrass } from './environment.js
 import { createParticles } from './effects.js';
 import {setupButterflies} from './butterfly.js';
 import {setupBearEasterEgg} from './bear.js';
-// ================= EASTER EGG OURS =================
 
-// Dans ton fichier JS principal (ex: index.js)
 export function setupSunEasterEgg() {
     const sun = document.querySelector('.sun-container');
     let sunClickCount = 0;
@@ -13,14 +11,13 @@ export function setupSunEasterEgg() {
 
     sun.addEventListener('click', () => {
         sunClickCount++;
-        
-        // On réinitialise le compteur si l'utilisateur met trop de temps entre les clics
+
         clearTimeout(clickTimer);
         clickTimer = setTimeout(() => { sunClickCount = 0; }, 2000);
 
         if (sunClickCount === 5) {
             console.log("Secret débloqué ! En route pour Flappy Bee...");
-            window.location.href = 'flappy-bee.html'; // Redirection vers le jeu
+            window.location.href = 'flappy-bee.html'; 
         }
     });
 }
@@ -28,7 +25,7 @@ export function setupSunEasterEgg() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialisation
+
     startCloudSystem();
     spawnImageFlowers(10);
     initBees(5);
@@ -40,10 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const main = document.querySelector('main');
     const vueInterieure = document.getElementById('interieur-ruche');
 
-    // 2. Gestionnaire de clics unique (Délégation)
     main.addEventListener('click', (e) => {
         
-        // --- CLIC SUR LA RUCHE ---
+
         const ruche = e.target.closest('.ruche-image');
         if (ruche) {
             vueInterieure.classList.add('active');
@@ -51,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // --- CLIC SUR UN NUAGE ---
+
         const cloud = e.target.closest('.cloud-svg');
         if (cloud) {
             const rect = cloud.getBoundingClientRect();
@@ -60,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // --- CLIC SUR UNE FLEUR ---
+
         const flower = e.target.closest('.scattered-flower');
         if (flower) {
             flower.classList.add('is-shaking-flower');
@@ -73,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             createParticles(6, x, y, 'falling-petal');
             
-            // Colère des abeilles
+
             bees.forEach(bee => {
                 const dist = Math.hypot(bee.pos.x - x, bee.pos.y - y);
                 if (bee.isPollinating && dist < 60) bee.becomeAngry();
@@ -81,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // --- CLIC SUR UN ARBRE ---
+
         const tree = e.target.closest('.tree');
         if (tree) {
             tree.classList.add('is-shaking');
@@ -93,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Bouton retour (Sortir de la ruche)
+
     document.getElementById('btn-retour').addEventListener('click', () => {
         vueInterieure.classList.remove('active');
         main.classList.remove('ruche-ouverte');

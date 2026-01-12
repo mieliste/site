@@ -22,7 +22,6 @@ class Bee {
         this.element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         this.element.setAttribute("viewBox", "0 0 120 80");
         this.element.classList.add('flying-bee');
-        // Ajout d'un ID unique au corps pour pouvoir changer sa couleur facilement
         this.bodyId = 'bee-body-' + Math.random().toString(36).substr(2, 9);
         this.element.innerHTML = `
             <g class="bee-body">
@@ -35,7 +34,6 @@ class Bee {
         `;
         main.appendChild(this.element);
 
-        // Paramètres de vol
         this.speed = 2 + Math.random() * 1.5;
         this.pos = { x: Math.random() * zoneWidth, y: Math.random() * zoneHeight };
         this.target = { x: this.pos.x, y: this.pos.y };
@@ -44,87 +42,64 @@ class Bee {
         
         this.isPollinating = false;
         this.pollinationTimer = 0;
-
-        // --- NOUVEAUX PARAMÈTRES : COLÈRE ---
         this.isAngry = false;
         this.angerTimer = 0;
         this.bubbleElement = null;
-
-        // Ajout de l'écouteur de clic
         this.element.addEventListener('mousedown', (e) => {
-            // On empêche le clic de se propager (par ex: pour ne pas ouvrir la ruche derrière)
             e.stopPropagation(); 
             this.becomeAngry();
         });
     }
 
-    // --- Méthodes de gestion de la colère ---
-
     becomeAngry() {
-        if (this.isAngry) return; // Si déjà énervée, on ne fait rien de plus
+        if (this.isAngry) return; 
 
         this.isAngry = true;
-        // Elle reste énervée environ 2 secondes (120 frames à 60fps)
         this.angerTimer = 120; 
-        this.isPollinating = false; // Si elle butinait, elle arrête
-
-        // 1. Changement de couleur en ROUGE
+        this.isPollinating = false; 
         const bodyPart = this.element.querySelector(`#${this.bodyId}`);
-        if (bodyPart) bodyPart.setAttribute('fill', '#ff4444'); // Rouge tomate
-
-        // 2. Création de la bulle
+        if (bodyPart) bodyPart.setAttribute('fill', '#ff4444'); 
         this.bubbleElement = document.createElement('div');
         this.bubbleElement.classList.add('angry-bubble');
-        // Choix d'une insulte aléatoire
         this.bubbleElement.innerText = COMIC_INSULTS[Math.floor(Math.random() * COMIC_INSULTS.length)];
         main.appendChild(this.bubbleElement);
-        
-        // Positionnement initial de la bulle
+    
         this.updateBubblePosition();
     }
 
     calmDown() {
         this.isAngry = false;
-        
-        // 1. Retour à la couleur jaune d'origine
+            
         const bodyPart = this.element.querySelector(`#${this.bodyId}`);
         if (bodyPart) bodyPart.setAttribute('fill', '#FFD966');
 
-        // 2. Suppression de la bulle
         if (this.bubbleElement) {
             this.bubbleElement.remove();
             this.bubbleElement = null;
         }
-        
-        // Elle repart vers une nouvelle cible
         this.setNewTarget();
     }
 
     updateBubblePosition() {
         if (this.bubbleElement) {
-            // La bulle suit l'abeille, légèrement au-dessus
             this.bubbleElement.style.left = `${this.pos.x}px`;
             this.bubbleElement.style.top = `${this.pos.y - 30}px`;
         }
     }
 
-    // --- Boucle principale ---
-
     update() {
-        // GESTION DE LA COLÈRE (Prioritaire)
+  
         if (this.isAngry) {
             this.angerTimer--;
             
-            // Effet de tremblement de colère
             const shakeX = (Math.random() - 0.5) * 8;
             const shakeY = (Math.random() - 0.5) * 8;
 
-            // On garde l'angle actuel mais on ajoute le tremblement
             const radians = this.angle * Math.PI / 180;
             const flip = (Math.cos(radians) < 0) ? -1 : 1;
             this.element.style.transform = `translate(${this.pos.x + shakeX}px, ${this.pos.y + shakeY}px) translate(-50%, -50%) rotate(${this.angle}deg) scaleY(${flip})`;
             
-            // La bulle doit suivre le tremblement
+    
             if (this.bubbleElement) {
                  this.bubbleElement.style.left = `${this.pos.x + shakeX}px`;
                  this.bubbleElement.style.top = `${this.pos.y - 30 + shakeY}px`;
@@ -133,11 +108,9 @@ class Bee {
             if (this.angerTimer <= 0) {
                 this.calmDown();
             }
-            return; // On stoppe le reste de la logique de mouvement
+            return; 
         }
 
-
-        // GESTION DU BUTINAGE (Si pas énervée)
         if (this.isPollinating) {
             this.pollinationTimer--;
             const wiggle = Math.sin(Date.now() * 0.1) * 2;
@@ -150,7 +123,6 @@ class Bee {
             return;
         }
 
-        // GESTION DU VOL NORMAL
         const distToTarget = Math.hypot(this.target.x - this.pos.x, this.target.y - this.pos.y);
         
         if (distToTarget < 10) {
@@ -211,7 +183,7 @@ export function initBees(n) {
     for (let i = 0; i < n; i++) {
         bees.push(new Bee());
     }
-    // On ajoute l'écouteur ici une seule fois
+
     window.addEventListener('resize', updateFlowerPositions);
     animate();
 }

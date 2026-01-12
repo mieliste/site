@@ -1,15 +1,3 @@
-// // --- Logique de Random déterministe (Seed) ---
-// const seed = 7; 
-// function seededRandom(s) {
-//     return function() {
-//         s = Math.sin(s) * 10000;
-//         return s - Math.floor(s);
-//     };
-// }
-// const myRandom = seededRandom(seed);
-
-
-// --- Logique de Random déterministe (Version robuste) ---
 function createSeededRandom(a) {
     return function() {
       let t = a += 0x6D2B79F5;
@@ -19,13 +7,11 @@ function createSeededRandom(a) {
     }
 }
 
-// On utilise des seeds différentes pour que l'herbe et les fleurs
-// n'aient pas exactement le même motif de placement
+
 const grassRandom = createSeededRandom(7); 
-const flowerRandom = createSeededRandom(7);
+const flowerRandom = createSeededRandom(14);
 
 
-// --- 1. GÉNÉRATION DE L'HERBE ---
 export function initGrass() {
     const field = document.querySelector('.grass-field');
     if (!field) return;
@@ -49,7 +35,6 @@ export function initGrass() {
     }
 }
 
-// --- 2. GÉNÉRATION DES NUAGES ---
 function spawnCloud(isInitial = false) {
     const main = document.querySelector('main');
     if (!main) return;
@@ -93,20 +78,15 @@ export function startCloudSystem() {
     nextSpawn();
 }
 
-// --- 3. GÉNÉRATION DES FLEURS ---
 export function spawnImageFlowers(count) {
     const main = document.querySelector('main');
     if (!main) return;
 
-    // 1. Récupération de TOUS les obstacles (Arbres + Grotte)
     const trees = document.querySelectorAll('.tree');
-    // On commence par créer un tableau avec les rectangles des arbres
     let obstacleRects = Array.from(trees).map(tree => tree.getBoundingClientRect());
 
-    // --- NOUVEAU : On ajoute la grotte à la liste des obstacles ---
     const cave = document.getElementById('cave-entrance');
     if (cave) {
-        // Si la grotte existe, on ajoute sa zone à éviter
         obstacleRects.push(cave.getBoundingClientRect());
     }
     
@@ -123,18 +103,16 @@ export function spawnImageFlowers(count) {
         let validPosition = false;
         let finalLeft, finalBottom;
 
-        // 2. Boucle de recherche de position libre
-        while (!validPosition && attempts < 20) { // J'ai augmenté un peu les tentatives car il y a plus d'obstacles
+        while (!validPosition && attempts < 20) { 
             const bottomPercent = 5 + flowerRandom() * 30; 
             const leftPercent = flowerRandom() * 95; 
             
-            // Conversion en coordonnées pixels relatives pour le test
             const flowerX = mainRect.left + (mainRect.width * (leftPercent / 100));
             const flowerY = mainRect.bottom - (mainRect.height * (bottomPercent / 100));
 
-            // Vérification de collision avec la liste complète des obstacles
+           
             const collides = obstacleRects.some(rect => {
-                // Marge de sécurité autour des obstacles
+            
                 const margin = 15; 
                 return (
                     flowerX > rect.left - margin &&
@@ -152,7 +130,6 @@ export function spawnImageFlowers(count) {
             attempts++;
         }
 
-        // 3. Création de la fleur si une position a été trouvée
         if (validPosition) {
             const img = document.createElement('img');
             const randomIndex = Math.floor(flowerRandom() * flowerImages.length);
@@ -173,7 +150,7 @@ export function spawnImageFlowers(count) {
         }
     }
 }
-// Utile pour que les abeilles trouvent les fleurs
+
 export function getFlowerPositions() {
     const flowerElements = document.querySelectorAll('.scattered-flower');
     return Array.from(flowerElements).map(f => ({

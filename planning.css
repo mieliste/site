@@ -21,7 +21,7 @@
 
 body {
     grid-template-rows: 1fr 9fr;
-    background-color: #f59e0b ; /* Fallback couleur miel */
+    background-color: #f59e0b ; 
     color: var(--honey-dark);
 }
 
@@ -37,8 +37,8 @@ main
 .dateContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    align-items: center; /* Aligne les 3 blocs sur la même ligne imaginaire */
-    height: 60px; /* Optionnel : fixe une hauteur pour la barre de contrôle */
+    align-items: center; 
+    height: 60px; 
     border: 1px solid var(--honey-amber);
     background: var(--glass-bg);
     margin: 10px 20px;
@@ -50,10 +50,9 @@ main
 
 .dateSelect {
     display: grid;
-    /* On fixe les colonnes des bords (50px) et on laisse le milieu flexible */
     grid-template-columns: 1fr 5fr 1fr; 
     align-items: center;
-    justify-content: center; /* Centre le bloc entier dans le container */
+    justify-content: center; 
     gap: 10px;
 }
 
@@ -61,10 +60,9 @@ main
     margin: 0;
     font-weight: bold;
     text-align: center;
-    /* On s'assure que le texte ne fait pas bouger la grille */
     white-space: nowrap; 
     overflow: hidden;
-    text-overflow: ellipsis; /* Ajoute "..." si la date est vraiment trop longue */
+    text-overflow: ellipsis; 
     font-size: 1.5rem;
 }
 
@@ -86,24 +84,24 @@ main
 }
 
 .tableJour {
-  display: flex;       /* Change le comportement par défaut de la table */
+  display: flex;       
   flex-direction: column;
   width: 99%;
-  height: 98%;        /* Ici, le 100% va enfin fonctionner */
+  height: 98%;       
   
 }
 
 .tableJour tbody {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;        /* Force le corps du tableau à grossir */
+  flex-grow: 1;      
   height: 100%;
 }
 
 .tableJour tr {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  flex-grow: 1;        /* Divise l'espace en 3 parts égales (Matin/Midi/Soir) */
+  flex-grow: 1;       
   
 }
 
@@ -114,28 +112,26 @@ main
   align-items: center;
 }
 
-/* --- TABLE SEMAINE UNIFIÉE --- */
+
 .tablesSemaine {
-    display: grid !important; /* Le tableau devient la grille principale */
-    grid-template-columns: 80px repeat(7, minmax(120px, 1fr)); /* 1 col étiquette + 7 cols jours */
+    display: grid !important; 
+    grid-template-columns: 80px repeat(7, minmax(120px, 1fr)); 
     grid-template-rows: auto repeat(3, 1fr);
     width: 100%;
     height: 100%;
-    gap: 10px; /* Gère l'espace entre toutes les cartes d'un coup */
+    gap: 10px; 
     border: none !important;
 }
 
-/* On "efface" les structures intermédiaires pour que TH et TD s'alignent sur la même grille */
 .tablesSemaine thead, 
 .tablesSemaine tbody, 
 .tablesSemaine tr {
     display: contents; 
 }
 
-/* Style des cellules (Cartes) */
 .tablesSemaine th, 
 .tablesSemaine td {
-    margin: 0; /* On utilise gap à la place */
+    margin: 0; 
     padding: 10px 5px;
     display: flex;
     justify-content: center;
@@ -148,7 +144,6 @@ main
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* Couleur spécifique pour les étiquettes fixes (Matin/Midi/Soir et Jours) */
 .tablesSemaine thead th,
 .tablesSemaine tbody th {
     background: #fab91f;
@@ -157,13 +152,12 @@ main
     text-transform: uppercase;
 }
 
-/* Style pour l'en-tête (Lun, Mar...) */
+
 .tablesSemaine thead tr {
     min-height: auto;
     
 }
 
-/* Optionnel : mettre en valeur le jour actuel comme sur ta photo */
 .today-header {
     color: #00707a;
     font-weight: bold;
@@ -174,10 +168,9 @@ main
   display: none !important;
 }
 
-/* Style des cartes du planning */
 .tableJour, .tablesSemaine {
     border-collapse: separate;
-    border-spacing: 10px; /* Espace entre les cases */
+    border-spacing: 10px; 
     border: none !important;
 }
 
@@ -185,17 +178,16 @@ main
 .tablesSemaine th, .tablesSemaine td {
     border: 1px solid var(--glass-border) !important;
     background: var(--glass-bg);
-    backdrop-filter: blur(12px); /* L'effet de flou magique */
+    backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 15px; /* Bords arrondis pour le côté "miel" */
+    border-radius: 15px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease;
 }
 
-/* Mise en valeur des étiquettes (Matin, Midi, Soir) */
 .tableJour th:first-child, 
 .tablesSemaine th {
-    background: #fab91f;/* Jaune miel plus opaque */
+    background: #fab91f;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -204,7 +196,7 @@ main
 
 .tableJour tr:hover td, 
 .tablesSemaine td:hover {
-    transform: scale(1.02); /* Petit zoom */
+    transform: scale(1.02); 
     background: rgba(255, 255, 255, 0.6);
     cursor: pointer;
 }
@@ -225,15 +217,12 @@ main
 
 .imgtable {
     
-    /* Force l'image à rester un carré parfait 1:1 */
     aspect-ratio: 1 / 1; 
-    /* Empêche Flexbox ou Grid de "pousser" sur les côtés de l'image */
     flex-shrink: 0;
-    /* Remplit le cercle sans déformer le logo */
     object-fit: cover; 
     border-radius: 50%;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-    border: 3px solid white; /* Le contour blanc brillant */
+    border: 3px solid white; 
     background-color: white;
     padding: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
@@ -262,27 +251,12 @@ main
 }
 
 
-
-/* .tablesSemaine .img-wrapper,
-.tableJour .img-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 200px; 
-    
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-
 .img-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Espace entre les deux logos */
+    gap: 10px; 
     width: 100%;
     height: 100%;
     padding: 10px;
@@ -293,10 +267,9 @@ main
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 60px; /* Assure un espace minimal pour les logos */
+    min-height: 60px; 
 }
 
-/* Style du texte d'événement */
 .event-text {
     margin: 0;
     font-size: 0.9rem;
@@ -304,33 +277,20 @@ main
     text-align: center;
     color: var(--dark-brown);
     line-height: 1.2;
-    word-break: break-word; /* Évite que le texte dépasse */
+    word-break: break-word; 
 }
 
-
-/* Ajustement pour le mode semaine (plus petit) */
 .tablesSemaine .event-text {
     font-size: 0.75rem;
 }
-
-/* On déplace la logique feat-stack sur le nouveau container */
-/* .logo-container.feat-stack {
-    min-width: 80px;
-    min-height: 80px;
-} */
 
 .logo-container.feat-stack {
     position: relative;
     width: 100px;
     height: 100px;
-    display: block; /* On sort du flex pour l'empilement */
+    display: block; 
 }
 
-
-/* .logo-container.feat-stack .imgtable {
-    position: absolute;
-
-} */
 .logo-container.feat-stack .imgtable {
     position: absolute;
     width: 65px;
@@ -340,77 +300,38 @@ main
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-
-/* Si un seul logo, il garde sa taille. Si deux, on les réduit un peu */
 .imgtable {
-    flex-shrink: 1; /* Permet aux logos de rétrécir pour tenir à deux */
+    flex-shrink: 1; 
     
 }
 
-/* Optionnel : effet de superposition pour un look "feat" plus stylé */
-/* .img-wrapper img:nth-child(2) {
-    margin-left: -15px; 
-    z-index: 1;
-} */
-
-/* --- ÉTAT "FEAT" : Superposition Diagonale --- */
-/* Quand le JS ajoute la classe .feat-stack */
-/* .feat-stack {
-    position: relative;
-    display: block; 
- 
-    min-width: 100px;
-    min-height: 100px;
-} */
-
-/* Quand une image est dans une pile */
 .feat-stack .imgtable {
-    position: absolute; /* On passe en position absolue */
-    width: 60px; /* On réduit un peu la taille des logos en pile */
+    position: absolute; 
+    width: 60px; 
     height: 60px;
-    /* Position de départ (le premier logo, celui du dessous) */
     top: 50%;
     left: 50%;
     transform: translate(-70%, -70%); 
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* --- LE DÉCALAGE DIAGONAL --- */
-
-/* Le 2ème logo (au milieu) est décalé vers le bas-droite */
 .feat-stack .imgtable:nth-child(2) {
     transform: translate(-30%, -30%);
 }
 
-/* Le 3ème logo (au-dessus) est décalé encore plus */
 .feat-stack .imgtable:nth-child(3) {
     transform: translate(10%, 10%);
 }
-
-/* --- Effet de survol interactif --- */
-/* Au survol de la case, les logos s'écartent du centre pour mieux les voir */
-/* .feat-stack:hover .imgtable:nth-child(1) {
-    transform: translate(-90%, -90%) rotate(-5deg);
-}
-
-.feat-stack:hover .imgtable:nth-child(2) {
-    transform: translate(-10%, -10%) rotate(5deg) scale(1.1);
-}
-.feat-stack:hover .imgtable:nth-child(3) { transform: translate(5px, 5px); } */
-
 
 .logo-container.feat-stack .imgtable:nth-child(1) { transform: translate(-70%, -70%); z-index: 1; }
 .logo-container.feat-stack .imgtable:nth-child(2) { transform: translate(-30%, -30%); z-index: 2; }
 .logo-container.feat-stack .imgtable:nth-child(3) { transform: translate(10%, 10%); z-index: 3; }
 
-
-/* Le reflet (caché à gauche par défaut) */
 .img-wrapper::after {
     content: "";
     position: absolute;
     top: 0;
-    left: -150%; /* Départ hors du champ à gauche */
+    left: -150%; 
     width: 50%;
     height: 100%;
     background: linear-gradient(
@@ -419,15 +340,9 @@ main
         rgba(255, 255, 255, 0.6) 50%,
         rgba(255, 255, 255, 0) 100%
     );
-    transform: skewX(-25deg); /* Incline le reflet pour plus de dynamisme */
+    transform: skewX(-25deg); 
     pointer-events: none;
 }
-
-/* --- Déclenchement au survol de la cellule --- */
-/* .tableJour tr:hover .img-wrapper::after, 
-.tablesSemaine td:hover .img-wrapper::after {
-    animation: shine 0.75s ease-in-out;
-} */
 
 .tableJour tr:hover .feat-stack .imgtable:nth-child(1),
 .tablesSemaine td:hover .feat-stack .imgtable:nth-child(1) {
@@ -444,18 +359,12 @@ main
     transform: translate(65%, 65%) rotate(10deg);
 }
 
-/* Animation du passage de la lumière */
 @keyframes shine {
     100% {
-        left: 150%; /* Traverse tout le logo jusqu'à la droite */
+        left: 150%; 
     }
 }
 
-
-
-
-
-/* Style commun pour tous les contrôles (fond, bordure, ombre) */
 .todayButton, .datePrevious, .dateNext, #FormatSelect {
     background: white;
     border: none;
@@ -469,19 +378,17 @@ main
     align-items: center;
 }
 
-/* Style spécifique pour les boutons flèches (Ronds) */
 .datePrevious, .dateNext {
-    width: 40px;  /* Largeur fixe */
-    height: 40px; /* Hauteur identique */
-    border-radius: 50% !important; /* Cercle parfait */
-    padding: 0;   /* On enlève le padding qui déforme */
+    width: 40px;  
+    height: 40px; 
+    border-radius: 50% !important; 
+    padding: 0;   
     font-size: 1.2rem;
 }
 
 .datePrevious { justify-self: end; }
 .dateNext { justify-self: start; }
 
-/* Style spécifique pour Aujourd'hui et le Select (Pilules) */
 .todayButton, #FormatSelect {
     padding: 8px 20px;
     border-radius: 20px;
@@ -510,29 +417,27 @@ main
     font-size: 1.8em;
 }
 
-/* Modifie ces classes dans ton fichier planning.css */
-
 .egg-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.7); /* Fond un peu moins opaque pour voir le planning */
+    background: rgba(0, 0, 0, 0.7); 
     z-index: 3000;
     display: none;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(4px); /* Flou plus léger */
+    backdrop-filter: blur(4px); 
 }
 
 .video-container {
     position: relative;
-    width: 60%; /* Réduit à 60% de la largeur de l'écran */
-    max-width: 600px; /* Taille maximale fixe pour les grands écrans */
+    width: 60%; 
+    max-width: 600px; 
     background: #000;
     border-radius: 15px;
-    border: 3px solid #fbbf24; /* Bordure miel pour rappeler le thème */
+    border: 3px solid #fbbf24; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
@@ -546,8 +451,8 @@ main
 
 @media (max-width: 768px) {
     .tableContainer {
-        display: block; /* On sort du mode flex pour permettre le scroll */
-        overflow-x: auto; /* Scroll horizontal si ça dépasse */
+        display: block; 
+        overflow-x: auto; 
         -webkit-overflow-scrolling: touch;
     }
         .txt
@@ -562,7 +467,7 @@ main
         font-size: 0.9rem; 
     }
     .tablesSemaine {
-        grid-template-columns: 80px repeat(7, minmax(100x, 1fr)); /* 1 col étiquette + 7 cols jours */
+        grid-template-columns: 80px repeat(7, minmax(100x, 1fr)); 
        
     }
     .tablesSemaine .imgtable
@@ -580,13 +485,9 @@ main
     
 }
 
-
-
-/* Responsive */
-
 @media (max-width: 600px) {
     .dateContainer {
-        grid-template-columns: 1fr; /* On empile tout */
+        grid-template-columns: 1fr; 
         grid-template-rows: auto auto auto;
         gap: 10px;
         height: auto;
@@ -595,12 +496,12 @@ main
     }
 
     .dateSelect {
-        grid-template-columns: 40px 1fr 40px; /* On garde les boutons alignés */
+        grid-template-columns: 40px 1fr 40px; 
         width: 100%;
     }
 
     .date {
-        font-size: 0.9rem; /* Texte un peu plus petit */
+        font-size: 0.9rem; 
     }
 
     .tableJour th
@@ -620,7 +521,7 @@ main
     }
 
     .tablesSemaine {
-        grid-template-columns: 80px repeat(7, minmax(110px, 1fr)); /* 1 col étiquette + 7 cols jours */
+        grid-template-columns: 80px repeat(7, minmax(110px, 1fr)); 
         grid-template-rows: auto repeat(3, 110px);
         height: auto !important;
         align-content: start;
@@ -639,19 +540,19 @@ main
 
 @media (max-width: 600px) {
     .tableJour tr {
-        grid-template-columns: 1fr; /* Une seule colonne */
-        grid-template-rows: auto 1fr; /* Titre en haut, logo en bas */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr; 
         margin-bottom: 5px;
     }
 
     .tableJour th:first-child {
         padding: 5px;
         font-size: 0.8rem;
-        border-radius: 15px 15px 0 0; /* Arrondi seulement en haut */
+        border-radius: 15px 15px 0 0; 
     }
 
     .tableJour td {
-        border-radius: 0 0 15px 15px; /* Arrondi seulement en bas */
+        border-radius: 0 0 15px 15px; 
         min-height: 120px;
     }
     

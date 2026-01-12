@@ -4,12 +4,10 @@
   --yellow-hover-color:#fecb00;
 }
   
-/* 1. Curseur Flèche Classique (Miel) */
 html {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4l15 11-7 2 3 7-3 1-3-7-5 5z' fill='%23fbbf24' stroke='%23b45309' stroke-width='1.5'/%3E%3C/svg%3E") 8 4, auto;
 }
 
-/* 2. Curseur Main (Hover) */
 a, 
 button, 
 input[type="submit"],
@@ -31,7 +29,6 @@ td,
 .tree,
 .scattered-flower,
 .cloud-svg {
-    /* Main Classique version Miel - Hotspot (14,4) */
 cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10,2 L12,2 C13,2 13,3.5 13,5 L13,13 L18,13 C20.5,13 22,14.5 22,17 L22,23 C22,26 20,28 17,28 L12,28 C10,28 8,26 8,24 L8,21 C6,21 5,20 5,18 C5,16 6.5,15.5 8,15.5 L8,5 C8,3.5 8.5,2 10,2 Z' fill='%23FEAB00' stroke='%23F67B00' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 11 2, pointer !important;
 }
 @font-face
@@ -52,9 +49,9 @@ body{
   display: grid;
   height: 100vh;
   width: 100vw;
-  margin: 0; /*Pour ne pas avoir de dépassement*/
+  margin: 0;
   background-color: var(--bg-cream);
-  color: var(--dark-brown); /* Texte sombre par défaut partout */
+  color: var(--dark-brown); 
   font-family: tropiland;
 
 }
@@ -64,17 +61,15 @@ body{
 header
 {
   display: grid;
-  grid-template-columns: 2fr 8fr 1fr; /*  nom à gauche, les liens au mileu */
-  align-items: center; /* centre verticalement */
-  text-align: center;  /*centre horizontalement */
+  grid-template-columns: 2fr 8fr 1fr; 
+  align-items: center;
+  text-align: center;
   background: linear-gradient(to right,var(--orange-color),var(--yellow-color));
-  /* background: linear-gradient(to right, var(--honey-amber), var(--honey-gold)); */
-  border-bottom: 3px solid var(--dark-brown); /* Petite séparation élégante */
+  border-bottom: 3px solid var(--dark-brown); 
 }
 
 main
 {
-    /* background-color: var(--yellow-color); */
     align-items: center;
     text-align: center;
     background-color: var(--bg-cream);
@@ -84,7 +79,7 @@ main
 
 .logo {
     width: 120px;
-    height: auto;  /* conserve les proportions */
+    height: auto; 
 }
 .logo:hover
 {
@@ -104,12 +99,10 @@ main
 
 .nav-link {
   text-decoration: none;
-  /* background-color: var(--yellow-color);
-  color: var(--orange-color); */
   background-color: var(--white);
   color: var(--dark-brown);
   border: 2px solid var(--honey-amber);
-  box-shadow: 4px 4px 0px var(--dark-brown); /* Style cartoon */
+  box-shadow: 4px 4px 0px var(--dark-brown); 
   
   padding: 10px 18px;
   border-radius: 8px;
@@ -119,15 +112,12 @@ main
 
 .nav-link:hover {
    background-color: var(--yellow-hover-color); 
-  /*transform: scale(1.05); */
-  /* background-color: var(--honey-gold); */
   color: var(--dark-brown);
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px var(--dark-brown);
 
 }
 
-/*Menu Burger */
 
 .menu-icon
 {   
@@ -162,7 +152,7 @@ main
   {
     display: block;
     z-index: 1;
-    justify-self: center; /*Permet de centrer le burger */
+    justify-self: center; 
     margin: 0;
     width: 40px;
     height: auto;
@@ -226,15 +216,14 @@ main
 {
   .logo {
     width: 80px;
-    height: auto;  /* conserve les proportions */
+    height: auto;  
 }
 }
 
-/* --- Version Mobile PAYSAGE (Orientation Landscape) --- */
 @media (max-height: 650px) and (orientation: landscape) {
     .logo {
       width: 40px;
-      height: auto;  /* conserve les proportions */
+      height: auto;  
     }
       .body
     {
@@ -245,7 +234,7 @@ main
     {
       display: block;
       z-index: 1;
-      justify-self: center; /*Permet de centrer le burger */
+      justify-self: center; 
       margin: 0;
       width: 40px;
       height: auto;
@@ -261,7 +250,7 @@ main
       text-align: center;
       align-items: center;
       position: relative;
-      border-bottom: 1px solid var(--dark-brown); /* Petite séparation élégante */
+      border-bottom: 1px solid var(--dark-brown); 
     }
     .nav {
       display: grid;
