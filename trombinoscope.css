@@ -1,3 +1,17 @@
+:root {
+  /* Couleurs de base */
+  --bg-cream: #FFFDF2;      /* Fond de page ultra clair */
+  --honey-amber: #F2994A;   /* Orange ambré (Header, Boutons) */
+  --honey-gold: #F2C94C;    /* Jaune doré (Accents, Hover) */
+  --dark-brown: #3E2723;    /* Brun café (TEXTE - Très important) */
+  --white: #FFFFFF;
+  
+  /* On garde tes anciennes variables pour la compatibilité mais avec les nouvelles couleurs */
+  --orange-color: #F2994A;
+  --yellow-color: #FFFDF2;  /* Le fond devient crème */
+  --yellow-hover-color: #F2C94C;
+}
+
 body{
     display: grid;
     height: 100vh;
@@ -23,7 +37,7 @@ body{
 main {
     background-color: var(--yellow-color);
     /* Optionnel : ajout d'un léger motif de fond nid d'abeille */
-    background-image: url("assets/nidabeille.png"); 
+    background-image: url("assets/nibabeilleR3.png"); 
     background-color: #FFD966;;
     background-repeat: repeat;
     background-attachment: fixed;
@@ -52,6 +66,7 @@ h2 {
     margin-bottom: 50px;
     z-index: 5;
     padding: 0 10px; /* Ajoute un peu d'espace pour que le miel dépasse joliment */
+
 }
 
 h2::before {
@@ -65,6 +80,7 @@ h2::before {
     border-radius: 0 0 50% 50%;
     animation: drip-fall 3s infinite ease-in;
     filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.2));
+    /* background-color: var(--honey-amber); */
 }
 
 h2 .drop {
@@ -76,10 +92,9 @@ h2 .drop {
     /* On reprend le dégradé brillant 3D */
     background: radial-gradient(circle at 30% 30%, var(--orange-color) 40%);
     border-radius: 0 0 50% 50%;
-    
-    /* Animation : on change la durée (4s au lieu de 3s) et on ajoute un délai */
+  
     animation: drip-fall 4s infinite ease-in;
-    animation-delay: 1.5s; /* Elle commence 1.5s après la première */
+    animation-delay: 1.5s; 
     
     filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.2));
     z-index: -1;
@@ -101,7 +116,6 @@ h2::after {
     
     /* SVG optimisé : Base rectangulaire pleine (L100 15) puis courbes fluides (C) */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M0 0 L100 0 L100 15 C95 15 95 35 85 35 C75 35 75 15 65 15 C55 15 55 40 45 40 C35 40 35 15 25 15 C15 15 15 30 5 30 C0 30 0 15 0 15 Z" fill="%23F67B00"/></svg>');
-    
     background-size: 100% 100%;
     background-repeat: no-repeat;
     
@@ -157,6 +171,7 @@ h3 {
   width: 220px; /* Légèrement plus grand que l'image pour créer la bordure */
   height: 220px;
   background-color: var(--orange-color);
+  
   /* On applique l'hexagone au conteneur */
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   display: flex;
@@ -179,6 +194,7 @@ h3 {
   cursor: pointer;
   transform: rotate(5deg) scale(1.1);
   filter: brightness(1.1);
+  background-color: var(--honey-amber);
 }
 
 
@@ -368,39 +384,22 @@ h3 {
 
 }
 .photo-hex {
-    width: 240px; /* Photo plus imposante */
+    width: 240px; 
     height: 240px;
     object-fit: cover;
-  /* On applique EXACTEMENT le même hexagone à l'image */
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
     
 }
-
-/* @media (max-width: 800px) {
-    .card-membre {
-        height: auto;
-        max-height: 90vh;
-        padding: 30px;
-    }
-    .card-top { flex-direction: column; text-align: center; gap: 20px; }
-    .photo-wrapperCarte { width: 180px; height: 180px; }
-    .photo-hex { width: 165px; height: 165px; }
-    #fiche-nom { font-size: 2.5rem; }
-    .card-contact { flex-direction: column; gap: 15px; }
-}
- */
-
-/* --- Version Mobile PAYSAGE (Hauteur < 500px) --- */
 @media (max-height: 500px) and (orientation: landscape) {
     
     #fiche-membre {
-        align-items: flex-start; /* Permet de scroller si la carte dépasse un peu */
+        align-items: flex-start; 
         padding: 10px;
     }
 
     .card-membre {
         display: grid;
-        grid-template-columns: 1fr 1.5fr; /* Photo à gauche, contenu à droite */
+        grid-template-columns: 1fr 1.5fr; 
         grid-template-rows: auto 1fr;
         width: 95vw;
         height: auto;
@@ -409,11 +408,9 @@ h3 {
         padding: 20px;
         
     }
-
-    /* 1. Placement des éléments dans la grille */
     .card-top {
         grid-column: 1;
-        grid-row: 1 / span 2; /* Prend toute la hauteur à gauche */
+        grid-row: 1 / span 2;
         flex-direction: column;
         justify-content: center;
         border-right: 2px dashed var(--orange-color);

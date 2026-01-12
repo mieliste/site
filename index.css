@@ -5,12 +5,26 @@ Orange : #F67B00
 
 
 */
-:root{
+/* :root{
   --orange-color: #F67B00;
   --yellow-color: #FEAB00;
   --yellow-hover-color:#fecb00;
-}
+} */
 
+
+:root {
+  /* Couleurs de base */
+  --bg-cream: #FFFDF2;      /* Fond de page ultra clair */
+  --honey-amber: #F2994A;   /* Orange ambré (Header, Boutons) */
+  --honey-gold: #F2C94C;    /* Jaune doré (Accents, Hover) */
+  --dark-brown: #3E2723;    /* Brun café (TEXTE - Très important) */
+  --white: #FFFFFF;
+  
+  /* On garde tes anciennes variables pour la compatibilité mais avec les nouvelles couleurs */
+  --orange-color: #F2994A;
+  --yellow-color: #FFFDF2;  /* Le fond devient crème */
+  --yellow-hover-color: #F2C94C;
+}
 
 
 @font-face
@@ -55,16 +69,10 @@ a{
   font-family: tropiland;
 }
 
-body{
-    display: grid;
-    height: 100vh;
-    width: 100vw;
-    grid-template-rows: 1fr 8fr 1fr;
-    margin: 0; /*Pour ne pas avoir de dépassement*/
-}
-
 footer{
     background-color: var(--orange-color);
+    padding: 15px 0; /* Ajoute un peu d'espace en haut et en bas */
+    border-top: 2px solid var(--dark-brown); /* Rappel élégant du style cartoon */
    
 }
 
@@ -78,6 +86,40 @@ footer{
     
     
 }
+
+.logo {
+    width: 120px;
+    height: auto;  
+}
+.logo:hover
+{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.logoFoot
+{
+    width: 40px;
+    height: auto;
+}
+
+.logoFoot:hover
+{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+
+body{
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-rows: auto 1fr auto ;
+    margin: 0; /*Pour ne pas avoir de dépassement*/
+}
+
 
 header
 {
@@ -282,29 +324,7 @@ main
   z-index: 2;
 }
 
-.logo {
-    width: 120px;
-    height: auto;  
-}
-.logo:hover
-{
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: 0.3s;
-}
 
-.logoFoot
-{
-    width: 80px;
-    height: auto;
-}
-
-.logoFoot:hover
-{
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: 0.3s;
-}
 
 .nav {
   display: grid;
@@ -352,7 +372,7 @@ main
   .logo {
     width: 80px;
     height: auto;  
-}
+    }
 }
 
 .background-image, .welcome, .ruche-image {
@@ -499,10 +519,12 @@ main.ruche-ouverte .ruche-image {
     
     .logoFoot
     {
-      width: 50px;
+      width: 25px;
       height: auto;
     }
+    
 
+   
     #bear-container {
         /* On réduit la taille du conteneur pour correspondre à la nouvelle échelle */
         width: 50px;  /* 50% de 100px */
@@ -557,6 +579,23 @@ main.ruche-ouverte .ruche-image {
 
 /* --- Version Mobile PAYSAGE (Orientation Landscape) --- */
 @media (max-height: 500px) and (orientation: landscape) {
+
+
+    footer {
+        padding: 5px 0; 
+        border-top: 1px solid var(--dark-brown); /* Un trait plus fin pour gagner 1px */
+    }
+
+    .containerLogoFoot {
+        height: auto;
+    }
+
+    .logoFoot
+    {
+      width: 25px;
+      height: auto;
+    }
+    
     main {
         /* On change l'image pour la version large */
         background-image: url("assets/fondTelFormatPay.png");
@@ -582,13 +621,6 @@ main.ruche-ouverte .ruche-image {
     #a1 { left: 5%; bottom: 50%; }
     #a2 { right: 5%; bottom: 10%; }
    
-
-    .logoFoot
-    {
-      width: 25px;
-      height: auto;
-    }
-
     .abeille-personnage
     {
       width: 100px;

@@ -1,7 +1,21 @@
 
-:root {
+/* :root {
     --honey-yellow: #FFD966;
     --honey-orange: #F67B00;
+} */
+
+:root {
+  /* Couleurs de base */
+  --bg-cream: #FFFDF2;      /* Fond de page ultra clair */
+  --honey-amber: #F2994A;   /* Orange ambré (Header, Boutons) */
+  --honey-gold: #F2C94C;    /* Jaune doré (Accents, Hover) */
+  --dark-brown: #3E2723;    /* Brun café (TEXTE - Très important) */
+  --white: #FFFFFF;
+  
+  /* On garde tes anciennes variables pour la compatibilité mais avec les nouvelles couleurs */
+  --orange-color: #F2994A;
+  --yellow-color: #FFFDF2;  /* Le fond devient crème */
+  --yellow-hover-color: #F2C94C;
 }
 
 body{
@@ -24,13 +38,14 @@ main
  
     display: flex;
     flex-direction: column;
+    background: url("assets/nibabeilleR3.png");
     
 
 }
 
 
 .allo-page {
-    background-color: var(--honey-yellow);
+    background-color: var(--bg-cream);
     min-height: 100vh;
     padding: 60px 20px;
     text-align: center;
@@ -41,7 +56,7 @@ main
 /* Titres */
 .allo-title {
     font-family: 'tropiland', sans-serif;
-    color: var(--honey-orange);
+    color: var(--orange-color);
     font-size: clamp(2.5rem, 8vw, 4rem);
     text-shadow: 3px 3px 0px white;
     margin-bottom: 10px;
@@ -66,8 +81,9 @@ main
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    max-width: 1100px;
+    gap: 50px;
+    padding-left: 10%;
+    padding-right: 10%;
     margin: 0 auto;
 }
 
@@ -105,7 +121,7 @@ main
 
 .hex-content h3 {
     font-family: 'tropiland', sans-serif;
-    color: var(--honey-orange);
+    color: var(--orange-color);
     margin: 0;
 }
 
@@ -194,75 +210,6 @@ main
         opacity: 0;
     }
 }
-/*
-.honey-drop {
-    position: absolute;
-    width: 12px;
-    height: 18px;
-    background-color: var(--honey-orange);
-    border-radius: 0 50% 50% 50%;
-    transform: rotate(45deg); 
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0.9;
-    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
-    animation: honeyDropFall var(--h-duration) cubic-bezier(0.5, 0, 0.7, 0.5) forwards;
-}
-
-*/
-
-/*
-@keyframes honeyDropFall {
-    0% {
-        transform: translateY(0) rotate(45deg) scale(0.8);
-        opacity: 0;
-    }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% {
-        transform: translateY(var(--h-dist)) rotate(45deg) scale(1.2);
-        opacity: 0;
-    }
-} */
-
-/* Style de la goutte réaliste */
-/* .honey-drop-complex {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: linear-gradient(to bottom, #F7C843, #F39C12);
-    border-radius: 50%; 
-    z-index: 100;
-    pointer-events: none;
-    will-change: transform; 
-    animation: swellAndFall 5s cubic-bezier(.45,.05,.55,.95) forwards;
-} */
-
-/* @keyframes swellAndFall {
-    0% {
-        transform: translateY(0) scale(0.1); 
-        opacity: 0;
-    }
- 
-    20% {
-        transform: translateY(5px) scale(1.2, 0.8); 
-        opacity: 1;
-        border-radius: 50%;
-    }
-
-    40% {
-        transform: translateY(15px) scale(0.8, 1.5); 
-        border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%; 
-    }
-
-    45% {
-        transform: translateY(20px) scale(1, 1.2);
-    }
-    100% {
-        opacity: 0.8;
-    }
-}
- */
 
 /* Responsive : On empile sur mobile */
 @media (max-width: 600px) {

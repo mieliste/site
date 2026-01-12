@@ -1,9 +1,17 @@
 :root {
+    --bg-cream: #FFFDF2;      
+    --honey-amber: #F2994A;   
+    --honey-gold: #F2C94C;    
+    --dark-brown: #3E2723;    
+    --white: #FFFFFF;
+
+
     --honey-light: #fffbeb;
     --honey-gold: #fbbf24;
     --honey-dark: #b45309;
     --glass-bg: rgba(255, 255, 255, 0.4);
     --glass-border: rgba(255, 255, 255, 0.6);
+
 }
 
 .imgtable[src=""], 
@@ -11,34 +19,19 @@
     display: none !important;
 }
 
-
-/* Appliquer une police plus sympa (ex: Quicksand ou Montserrat si tu les importes) */
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f59e0b; /* Fallback couleur miel */
+    grid-template-rows: 1fr 9fr;
+    background-color: #f59e0b ; /* Fallback couleur miel */
     color: var(--honey-dark);
 }
 
-body{
-  
-    grid-template-rows: 1fr 9fr;
- 
-}
-
-header
-{
-  display: grid;
-  grid-template-columns: 2fr 8fr 1fr; /*  nom à gauche, les liens au mileu */
-  align-items: center; /* centre verticalement */
-  text-align: center;  /*centre horizontalement */
-  background: linear-gradient(to right,var(--orange-color),var(--yellow-color));
-}
 
 main
 { 
   display: grid;
   grid-template-rows: 2fr 8fr;
   height: 100%;
+  background-color: #f59e0b;
 }
 
 .dateContainer {
@@ -46,7 +39,14 @@ main
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center; /* Aligne les 3 blocs sur la même ligne imaginaire */
     height: 60px; /* Optionnel : fixe une hauteur pour la barre de contrôle */
+    border: 1px solid var(--honey-amber);
+    background: var(--glass-bg);
+    margin: 10px 20px;
+    border-radius: 50px; 
+    padding: 10px;
+    backdrop-filter: blur(5px);
 }
+
 
 .dateSelect {
     display: grid;
@@ -118,7 +118,7 @@ main
 .tablesSemaine {
     display: grid !important; /* Le tableau devient la grille principale */
     grid-template-columns: 80px repeat(7, minmax(120px, 1fr)); /* 1 col étiquette + 7 cols jours */
-    grid-template-rows: auto repeat(3, 1fr); /* 1 ligne header + 3 lignes (Matin/Midi/Soir) */
+    grid-template-rows: auto repeat(3, 1fr);
     width: 100%;
     height: 100%;
     gap: 10px; /* Gère l'espace entre toutes les cartes d'un coup */
@@ -151,7 +151,7 @@ main
 /* Couleur spécifique pour les étiquettes fixes (Matin/Midi/Soir et Jours) */
 .tablesSemaine thead th,
 .tablesSemaine tbody th {
-    background: rgba(251, 191, 36, 0.8);
+    background: #fab91f;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -195,7 +195,7 @@ main
 /* Mise en valeur des étiquettes (Matin, Midi, Soir) */
 .tableJour th:first-child, 
 .tablesSemaine th {
-    background: rgba(251, 191, 36, 0.8); /* Jaune miel plus opaque */
+    background: #fab91f;/* Jaune miel plus opaque */
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -262,41 +262,85 @@ main
 }
 
 
-/* .img-wrapper {
+
+/* .tablesSemaine .img-wrapper,
+.tableJour .img-wrapper {
     position: relative;
-    width: 80px;
-    height: 80px;
-    margin: auto;
-    border-radius: 50%;
-    overflow: hidden;    
+    width: 100%;
+    height: 100%;
+    min-height: 200px; 
+    
+
     display: flex;
     justify-content: center;
     align-items: center;
 } */
 
-.tablesSemaine .img-wrapper,
-.tableJour .img-wrapper {
-    position: relative; /* Important : devient le repère pour les images absolues */
-    width: 100%;
-    height: 100%;
-    min-height: 80px; /* Assure de la place */
-    
-    /* Par défaut : on utilise Flexbox pour centrer parfaitement UN seul logo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .img-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px; /* Espace entre les deux logos */
+    gap: 10px; /* Espace entre les deux logos */
     width: 100%;
     height: 100%;
-    padding: 5px;
+    padding: 10px;
 }
+
+.logo-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px; /* Assure un espace minimal pour les logos */
+}
+
+/* Style du texte d'événement */
+.event-text {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--dark-brown);
+    line-height: 1.2;
+    word-break: break-word; /* Évite que le texte dépasse */
+}
+
+
+/* Ajustement pour le mode semaine (plus petit) */
+.tablesSemaine .event-text {
+    font-size: 0.75rem;
+}
+
+/* On déplace la logique feat-stack sur le nouveau container */
+/* .logo-container.feat-stack {
+    min-width: 80px;
+    min-height: 80px;
+} */
+
+.logo-container.feat-stack {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: block; /* On sort du flex pour l'empilement */
+}
+
+
+/* .logo-container.feat-stack .imgtable {
+    position: absolute;
+
+} */
+.logo-container.feat-stack .imgtable {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    top: 50%;
+    left: 50%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
 
 /* Si un seul logo, il garde sa taille. Si deux, on les réduit un peu */
 .imgtable {
@@ -305,20 +349,20 @@ main
 }
 
 /* Optionnel : effet de superposition pour un look "feat" plus stylé */
-.img-wrapper img:nth-child(2) {
-    margin-left: -15px; /* Les logos se chevauchent légèrement */
+/* .img-wrapper img:nth-child(2) {
+    margin-left: -15px; 
     z-index: 1;
-}
+} */
 
 /* --- ÉTAT "FEAT" : Superposition Diagonale --- */
 /* Quand le JS ajoute la classe .feat-stack */
-.feat-stack {
+/* .feat-stack {
     position: relative;
-    display: block; /* On désactive Flexbox */
-    /* On s'assure que le conteneur est assez grand pour contenir la pile */
+    display: block; 
+ 
     min-width: 100px;
     min-height: 100px;
-}
+} */
 
 /* Quand une image est dans une pile */
 .feat-stack .imgtable {
@@ -346,15 +390,19 @@ main
 
 /* --- Effet de survol interactif --- */
 /* Au survol de la case, les logos s'écartent du centre pour mieux les voir */
-.feat-stack:hover .imgtable:nth-child(1) {
+/* .feat-stack:hover .imgtable:nth-child(1) {
     transform: translate(-90%, -90%) rotate(-5deg);
 }
 
 .feat-stack:hover .imgtable:nth-child(2) {
     transform: translate(-10%, -10%) rotate(5deg) scale(1.1);
 }
-.feat-stack:hover .imgtable:nth-child(3) { transform: translate(5px, 5px); }
+.feat-stack:hover .imgtable:nth-child(3) { transform: translate(5px, 5px); } */
 
+
+.logo-container.feat-stack .imgtable:nth-child(1) { transform: translate(-70%, -70%); z-index: 1; }
+.logo-container.feat-stack .imgtable:nth-child(2) { transform: translate(-30%, -30%); z-index: 2; }
+.logo-container.feat-stack .imgtable:nth-child(3) { transform: translate(10%, 10%); z-index: 3; }
 
 
 /* Le reflet (caché à gauche par défaut) */
@@ -376,9 +424,24 @@ main
 }
 
 /* --- Déclenchement au survol de la cellule --- */
-.tableJour tr:hover .img-wrapper::after, 
+/* .tableJour tr:hover .img-wrapper::after, 
 .tablesSemaine td:hover .img-wrapper::after {
     animation: shine 0.75s ease-in-out;
+} */
+
+.tableJour tr:hover .feat-stack .imgtable:nth-child(1),
+.tablesSemaine td:hover .feat-stack .imgtable:nth-child(1) {
+    transform: translate(-105%, -105%) rotate(-10deg);
+}
+
+.tableJour tr:hover .feat-stack .imgtable:nth-child(2),
+.tablesSemaine td:hover .feat-stack .imgtable:nth-child(2) {
+    transform: translate(-15%, -15%) scale(1.1);
+}
+
+.tableJour tr:hover .feat-stack .imgtable:nth-child(3),
+.tablesSemaine td:hover .feat-stack .imgtable:nth-child(3) {
+    transform: translate(65%, 65%) rotate(10deg);
 }
 
 /* Animation du passage de la lumière */
@@ -390,13 +453,7 @@ main
 
 
 
-.dateContainer {
-    background: var(--glass-bg);
-    margin: 10px 20px;
-    border-radius: 50px; /* Forme pilule */
-    padding: 10px;
-    backdrop-filter: blur(5px);
-}
+
 
 /* Style commun pour tous les contrôles (fond, bordure, ombre) */
 .todayButton, .datePrevious, .dateNext, #FormatSelect {
@@ -434,13 +491,21 @@ main
     color: white;
 }
 
+.txt
+{
+    font-size: 1.8em;
+}
+
 @media (max-width: 768px) {
     .tableContainer {
         display: block; /* On sort du mode flex pour permettre le scroll */
         overflow-x: auto; /* Scroll horizontal si ça dépasse */
         -webkit-overflow-scrolling: touch;
     }
-
+        .txt
+    {
+        font-size: 1em;
+    }
 }
 
 

@@ -13,11 +13,14 @@ members.forEach(member => {
         const photo = member.querySelector('img').src;
         const desc = member.dataset.desc || "description";
         const role = member.dataset.role || "membre";
+        const num = member.dataset.num || "non renseigné";
 
         document.getElementById('fiche-nom').innerText = nom;
         document.getElementById('fiche-role').innerText = role;
         document.getElementById('fiche-photo').src = photo;
-        document.getElementById('fiche-desc').innerText = desc;
+        document.getElementById('fiche-tel').innerText = num;
+        document.getElementById('fiche-tel').href = `tel:${num}`;
+        // document.getElementById('fiche-desc').innerText = desc;
 
         fiche.classList.add('active');
     });

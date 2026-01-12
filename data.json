@@ -1,82 +1,248 @@
 {
-  "2025-12-28": {
-    "matin": ["Napoliste"],
-    "midi": ["Williste"],
-    "soir": ["Braziliste", "Napoliste"]
-  },
-  "2025-12-29": {
-    "matin": ["Thierceliste"],
-    "midi": ["Braziliste", "Williste"],
-    "soir": ["Napoliste"]
-  },
-  "2025-12-30": {
-    "matin": ["Williste"],
-    "midi": ["Thierceliste"],
-    "soir": ["Braziliste"]
-  },
-  "2025-12-31": {
-    "matin": ["Napoliste", "Thierceliste"],
-    "midi": ["Williste"],
-    "soir": ["Thierceliste"]
-  },
-  "2026-01-02": {
-    "matin": ["Braziliste"],
-    "midi": ["Napoliste"],
-    "soir": ["Williste", "Braziliste"]
-  },
-  "2026-01-03": {
-    "matin": ["Thierceliste"],
-    "midi": ["Braziliste"],
-    "soir": ["Napoliste"]
-  },
-  "2026-01-04": {
-    "matin": ["Williste"],
-    "midi": ["Thierceliste", "Napoliste"],
-    "soir": ["Braziliste"]
-  },
-  "2026-01-05": {
-    "matin": ["Napoliste"],
-    "midi": ["Williste"],
-    "soir": ["Thierceliste"]
-  },
-  "2026-01-06": {
-    "matin": ["Braziliste", "Williste"],
-    "midi": ["Napoliste"],
-    "soir": ["Williste"]
-  },
-  "2026-01-07": {
-    "matin": ["Thierceliste"],
-    "midi": ["Braziliste", "Napoliste"],
-    "soir": ["Napoliste"]
-  },
-  "2026-01-08": {
-    "matin": ["Williste"],
-    "midi": ["Thierceliste"],
-    "soir": ["Braziliste", "Williste"]
-  },
-  "2026-01-09": {
-    "matin": ["Napoliste"],
-    "midi": ["Williste", "Braziliste"],
-    "soir": ["Thierceliste"]
-  },
-  "2026-01-10": {
-    "matin": ["Braziliste"],
-    "midi": ["Napoliste"],
-    "soir": ["Williste", "Thierceliste"]
-  },
-  "2026-01-11": {
-    "matin": ["Thierceliste"],
-    "midi": ["Braziliste"],
-    "soir": ["Napoliste"]
-  },
   "2026-01-12": {
-    "matin": ["Williste", "Napoliste"],
-    "midi": ["Thierceliste"],
-    "soir": ["Braziliste"]
+    "matin": {
+      "logos": ["touristeliste"]
+    },
+    "midi": {
+      "logos": ["intersteliste"]
+    },
+    "soir": {
+      "logos": ["Williste", "Thierceliste"]
+    }
   },
   "2026-01-13": {
-    "matin": ["Napoliste"],
-    "midi": ["Williste"],
-    "soir": ["Thierceliste", "Braziliste"]
+    "matin": {
+      "logos": ["mieliste"]
+    },
+    "midi": {
+      "logos": ["gambliste"]
+    },
+    "soir": {
+      "logos": ["touristeliste"]
+    }
+  },
+  "2026-01-14": {
+    "matin": {
+      "logos": ["intersteliste"]
+    },
+    "midi": {
+      "logos": ["touristeliste"]
+    },
+    "soir": {
+      "logos": ["mieliste"]
+    }
+  },
+  "2026-01-15": {
+    "matin": {
+      "logos": ["gambliste"]
+    },
+    "midi": {
+      "logos": ["mieliste"]
+    },
+    "soir": {
+      "logos": ["intersteliste", "touristeliste"]
+    }
+  },
+  "2026-01-16": {
+    "matin": {
+      "logos": ["mieliste"]
+    },
+    "midi": {
+      "logos": ["intersteliste"]
+    },
+    "soir": {
+      "logos": ["gambliste"]
+      
+    }
+  },
+  "2026-01-17": {
+    "matin": {
+      "logos": ["intersteliste","mieliste"]
+    },
+    "midi": {
+      "logos": []
+    },
+    "soir": {
+      "logos": []
+     
+    }
+  },
+  "2026-01-18": {
+    "matin": {
+      "logos": ["touristeliste","gambliste"]
+    },
+    "midi": {
+      "logos": []
+    },
+    "soir": {
+      "logos": []
+    }
+  },
+  "2026-01-19": {
+    "matin": {
+      "logos": ["gambliste"]
+    },
+    "midi": {
+      "logos": ["touristeliste"]
+    },
+    "soir": {
+      "logos": ["Napoliste", "Braziliste"]
+   
+    }
+  },
+  "2026-01-20": {
+    "matin": {
+      "logos": ["mieliste"]
+    },
+    "midi": {
+      "logos": ["gambliste"]
+    },
+    "soir": {
+      "logos": ["intersteliste"]
+    }
+  },
+  "2026-01-21": {
+    "matin": {
+      "logos": ["touristeliste"]
+    },
+    "midi": {
+      "logos": ["intersteliste"]
+    },
+    "soir": {
+      "logos": ["mieliste", "gambliste"]
+    }
+  },
+  "2026-01-22": {
+    "matin": {
+      "logos": ["intersteliste"]
+    },
+    "midi": {
+      "logos": ["mieliste"]
+    },
+    "soir": {
+      "logos": ["touristeliste"]
+    }
+  },
+  "2026-01-23": {
+    "matin": {
+      "logos": ["gambliste"]
+    },
+    "midi": {
+      "logos": ["touristeliste"]
+    },
+    "soir": {
+      "logos": ["intersteliste"]
+    
+    }
+  },
+  "2026-01-26": {
+    "matin": {
+      "logos": ["touristeliste"]
+    },
+    "midi": {
+      "logos": ["mieliste"]
+    },
+    "soir": {
+      "logos": [],
+      "texte": "Soirée 3A"
+    }
+  },
+  "2026-01-27": {
+    "matin": {
+      "logos": ["intersteliste"]
+    },
+    "midi": {
+      "logos": ["gambliste"]
+    },
+    "soir": {
+      "logos": ["mieliste", "touristeliste"]
+
+    }
+  },
+  "2026-01-28": {
+    "matin": {
+      "logos": ["intersteliste"]
+    },
+    "midi": {
+      "logos": ["mieliste"]
+    },
+    "soir": {
+      "logos": ["gambliste"]
+     
+    }
+  },
+  "2026-01-29": {
+    "matin": {
+      "logos": ["touristeliste"]
+    },
+    "midi": {
+      "logos": ["intersteliste"]
+    },
+    "soir": {
+      "logos": ["mieliste"]
+    }
+  },
+  "2026-01-30": {
+    "matin": {
+      "logos": ["gambliste"]
+    },
+    "midi": {
+      "logos": ["touristeliste"]
+    },
+    "soir": {
+      "logos": ["intersteliste", "gambliste"]
+    }
+  },
+  "2026-02-02": {
+    "matin": {
+      "logos": []
+    },
+    "midi": {
+      "logos": []
+    },
+    "soir": {
+      "logos": [],
+      "texte": "Amphi de campagne 3"
+    }
+  },
+ "2026-02-03": {
+    "matin": {
+      "logos": [],
+      "texte":"Votes"
+    },
+    "midi": {
+      "logos": [],
+      "texte":"Votes"
+    },
+    "soir": {
+      "logos": []
+     
+    }
+ },
+  "2026-02-04": {
+    "matin": {
+      "logos": [],
+      "texte":"Votes"
+    },
+    "midi": {
+      "logos": [],
+      "texte":"Votes"
+    },
+    "soir": {
+      "logos": []
+     
+    }
+  },
+  "2026-02-05": {
+    "matin": {
+      "logos": []
+    },
+    "midi": {
+      "logos": []
+    },
+    "soir": {
+      "logos": [],
+      "texte": "Reveal + Passa BDE"
+    }
   }
 }
