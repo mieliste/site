@@ -448,6 +448,13 @@ main
 }
 
 
+@media (max-width: 480px) {
+    .video-container {
+        width: 95%;
+        border-width: 1px;
+    }
+}
+
 
 @media (max-width: 768px) {
     .tableContainer {
@@ -480,7 +487,10 @@ main
         width: 100px;
         height: 100px;
     }
-
+    .txt
+    {
+        font-size: 1.2em;
+    }
 
     
 }

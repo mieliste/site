@@ -19,7 +19,7 @@ body{
 
 main {
     background-color: var(--yellow-color);
-    background-image: url("assets/nibabeilleR3.png"); 
+    background-image: url("assets/nibabeilleR3.webp"); 
     background-color: #FFD966;;
     background-repeat: repeat;
     background-attachment: fixed;
@@ -146,6 +146,8 @@ h3 {
 .photo-wrapper {
   width: 220px; 
   height: 220px;
+  padding: 10px;
+  box-sizing: border-box;
   background-color: var(--orange-color);
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   display: flex;
@@ -155,8 +157,8 @@ h3 {
 }
 
 .photo {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
@@ -333,7 +335,9 @@ h3 {
 
 .photo-wrapperCarte {
     width: 260px; 
+    height: 260px;
     flex-shrink: 0;
+    padding:10px;
     background-color: var(--orange-color);
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
     display: flex;
@@ -342,8 +346,8 @@ h3 {
 
 }
 .photo-hex {
-    width: 240px; 
-    height: 240px;
+    width: 100%; 
+    height: 100%;
     object-fit: cover;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
     
@@ -379,7 +383,6 @@ h3 {
     .card-right-content {
         grid-column: 2;
         grid-row:3;
-        font-size: 10em;
     }
 
     #fiche-desc {
